@@ -1,0 +1,30 @@
+{
+  "name": "puerto-princesa-baywalk-park",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.5",
+  "engines": {
+    "node": "22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "cf:dev": "pnpm build && wrangler dev",
+    "cf:deploy": "pnpm build && wrangler deploy",
+    "deploy": "pnpm cf:deploy"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.2.1",
+    "@tailwindcss/vite": "4.0.14",
+    "astro": "5.5.5",
+    "tailwindcss": "4.0.14"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.4",
+    "typescript": "5.7.3",
+    "wrangler": "4.4.0"
+  }
+}
