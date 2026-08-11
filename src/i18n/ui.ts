@@ -1,18 +1,18 @@
-import km from './km.json';
+import fil from './fil.json';
 import en from './en.json';
 import zh from './zh.json';
 import { siteConfig } from '../config';
 
-export const defaultLang = 'km';
-export const languagesList = ['km', 'en', 'zh'] as const;
+export const defaultLang = 'fil';
+export const languagesList = ['fil', 'en', 'zh'] as const;
 
 export const languages: Record<string, string> = {
-  km: 'ខ្មែរ',
+  fil: 'Filipino',
   en: 'English',
   zh: '中文',
 };
 
-export const ui: Record<string, any> = { km, en, zh };
+export const ui: Record<string, any> = { fil, en, zh };
 
 export function getLangFromUrl(url: URL): string {
   const seg = url.pathname.split('/').filter(Boolean);
@@ -37,10 +37,10 @@ export function buildAlternates(path = ''): Record<string, string> {
   const clean = path.replace(/^\/+/, '').replace(/\/+$/, '');
   const mk = (l: string) => `${base}/${l}${clean ? '/' + clean : ''}`;
   return {
-    km: mk('km'),
+    fil: mk('fil'),
     en: mk('en'),
     zh: mk('zh'),
-    xDefault: mk('km'),
+    xDefault: mk('fil'),
   };
 }
 

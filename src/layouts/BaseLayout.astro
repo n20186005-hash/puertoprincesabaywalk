@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  lang?: string;
 }
 
 const {
   title = attraction.name,
   description = attraction.description,
   ogImage = '/gallery/puerto-princesa-city-baywalk-park-1.jpg',
+  lang = 'en',
 } = Astro.props;
 
 const url = siteConfig.baseUrl ? new URL(Astro.url.pathname, siteConfig.baseUrl).href : '';
@@ -19,7 +21,7 @@ const ga4Id = siteConfig.ga4Id;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang === 'zh' ? 'zh-CN' : lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
