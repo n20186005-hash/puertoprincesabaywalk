@@ -1,65 +1,67 @@
 ---
+import { ui } from '../i18n/ui';
 import { attraction } from '../config';
 import Icon from './Icon.astro';
 
-const faqItems = [
-  {
-    q: 'What is the best time to visit the Baywalk?',
-    a: 'The best time is late afternoon to evening, starting around 4:30 PM. Arrive before sunset (around 5:45–6:15 PM depending on the season) to find a good spot, then stay for dinner and live music. The Baywalk is open daily from 2:00 PM to midnight.',
-  },
-  {
-    q: 'Is there an entrance fee?',
-    a: 'No — the Puerto Princesa City Baywalk Park is completely free and open to the public. It is a public waterfront promenade maintained by the city government. Food, drinks, and activities are at your own expense.',
-  },
-  {
-    q: 'What can I do at the Baywalk?',
-    a: 'Plenty! Walk the promenade, watch the sunset, eat at the seafood stalls and nearby restaurants, listen to live music, rent a bicycle, take photos, buy souvenirs, and simply relax by the Sulu Sea. It\'s the city\'s main evening social hub.',
-  },
-  {
-    q: 'Are the food stalls safe to eat at?',
-    a: 'Generally yes — the Baywalk food stalls are popular with both locals and tourists. Look for stalls with a high turnover of customers and freshly cooked food. As with any street food, use your judgment and avoid anything that looks like it\'s been sitting out too long.',
-  },
-  {
-    q: 'How do I get to the Baywalk from the airport?',
-    a: 'The Baywalk is about 2 km from Puerto Princesa International Airport. Take a tricycle (PHP 50–100, about 10 minutes), a taxi, or arrange a hotel shuttle. If you\'re staying in the city center, you can walk there in 10–20 minutes.',
-  },
-  {
-    q: 'Is there parking available?',
-    a: 'Yes, there is free street parking along Sandoval Street and adjacent roads. Spaces fill up quickly during peak sunset hours (5:00–7:00 PM) and on weekends, so arrive early. Motorcycle parking is easier to find.',
-  },
-  {
-    q: 'Is the Baywalk wheelchair-accessible?',
-    a: 'The main promenade is mostly flat and paved, making it generally accessible for wheelchair users and strollers. However, some sections may have uneven surfaces. Public restrooms are available.',
-  },
-  {
-    q: 'What nearby attractions can I combine with my Baywalk visit?',
-    a: 'The Immaculate Conception Cathedral (320 m), Plaza Cuartel (370 m), and Palawan Museum (660 m) are all within walking distance. For day trips, Honda Bay (island hopping) is about 12 km away, and the famous Underground River is about 80 km north.',
-  },
-  {
-    q: 'Is it safe at night?',
-    a: 'Yes, the Baywalk is generally safe with a lively crowd and a visible police presence. Like any tourist area, keep an eye on your belongings, avoid poorly lit side streets late at night, and use a tricycle if returning to your hotel after midnight.',
-  },
-  {
-    q: 'What should I bring?',
-    a: 'Bring cash (most stalls are cash-only), light clothing, mosquito repellent, a camera for the sunset, and an appetite! A light jacket can be useful on breezy evenings. Leave valuables in your hotel safe.',
-  },
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+
+const faqItems = Array.isArray(t.faq) && t.faq.length > 0 ? t.faq : lang === 'fil' ? [
+  { q: 'Ano ang pinakamagandang oras para bumisita sa Baywalk?', a: 'Ang pinakamagandang oras ay huling bahagi ng hapon hanggang gabi, simula bandang 4:30 PM. Dumating bago ang paglubog ng araw (bandang 5:45–6:15 PM depende sa panahon) para makakuha ng magandang lugar, pagkatapos ay manatili para sa hapunan at live na musika. Bukas ang Baywalk araw-araw mula 2:00 PM hanggang hatinggabi.' },
+  { q: 'May entrance fee ba?', a: 'Wala — ang Puerto Princesa City Baywalk Park ay ganap na libre at bukas sa publiko. Ito ay isang pampublikong waterfront promenade na pinapanatili ng city government. Ang pagkain, inumin, at aktibidad ay sariling gastos mo.' },
+  { q: 'Ano ang maaari kong gawin sa Baywalk?', a: 'Marami! Maglakad sa promenade, panoorin ang paglubog ng araw, kumain sa mga seafood stall at kalapit na restaurant, makinig ng live music, magrenta ng bisikleta, magpa-picture, bumili ng souvenir, at simpleng mag-relax sa tabi ng Sulu Sea. Ito ang pangunahing evening social hub ng lungsod.' },
+  { q: 'Ligtas bang kumain sa mga food stall?', a: 'Sa pangkalahatan oo — ang mga Baywalk food stall ay sikat sa parehong lokal at turista. Humanap ng mga stall na may mataas na turnover ng customer at bagong luto na pagkain. Tulad ng anumang street food, gamitin ang iyong pagpapasya at iwasan ang anumang mukhang masyadong matagal nang nakatengga.' },
+  { q: 'Paano ako pupunta sa Baywalk mula sa airport?', a: 'Ang Baywalk ay halos 2 km mula sa Puerto Princesa International Airport. Sumakay ng tricycle (PHP 50–100, halos 10 minuto), taxi, o mag-arrange ng hotel shuttle. Kung ikaw ay nasa city center, maaari kang maglakad doon sa loob ng 10–20 minuto.' },
+  { q: 'May paradahan ba?', a: 'Oo, may libreng street parking sa kahabagan ng Sandoval Street at mga katabing kalsada. Mabilis mapuno ang mga puwesto sa peak sunset hours (5:00–7:00 PM) at tuwing weekend, kaya dumating nang maaga. Mas madaling makahanap ng paradahan ng motorsiklo.' },
+  { q: 'Accessible ba ang Baywalk para sa wheelchair?', a: 'Ang pangunahing promenade ay halos patag at sementado, kaya ito ay pangkalahatang accessible para sa mga gumagamit ng wheelchair at stroller. Gayunpaman, ang ilang seksyon ay maaaring may hindi pantay na ibabaw. Available ang mga pampublikong palikuran.' },
+  { q: 'Anong mga kalapit na atraksyon ang maaari kong isama sa aking pagbisita sa Baywalk?', a: 'Ang Immaculate Conception Cathedral (320 m), Plaza Cuartel (370 m), at Palawan Museum (660 m) ay lahat nasa walking distance. Para sa day trips, ang Honda Bay (island hopping) ay halos 12 km ang layo, at ang sikat na Underground River ay halos 80 km sa hilaga.' },
+  { q: 'Ligtas ba sa gabi?', a: 'Oo, ang Baywalk ay pangkalahatang ligtas na may masiglang tao at nakikitang presensya ng pulisya. Tulad ng anumang lugar ng turista, bantayan ang iyong mga gamit, iwasan ang madilim na side streets sa hatinggabi, at gumamit ng tricycle kung babalik sa iyong hotel pagkatapos ng hatinggabi.' },
+  { q: 'Ano ang dapat kong dalhin?', a: 'Magdala ng cash (karamihan sa mga stall ay cash-only), magaan na damit, mosquito repellent, camera para sa sunset, at gana! Ang isang light jacket ay maaaring makatulong sa mahanging gabi. Iwanan ang mga mahahalagang gamit sa safe ng iyong hotel.' },
+] : lang === 'zh' ? [
+  { q: '参观海湾步道的最佳时间是什么？', a: '最佳时间是下午晚些时候到晚上，大约从下午4:30开始。在日落前到达（约5:45–6:15 PM，视季节而定）找一个好位置，然后留下来享用晚餐和现场音乐。海湾步道每天从下午2:00开放至午夜。' },
+  { q: '需要门票吗？', a: '不需要——普林塞萨港海湾步道公园完全免费向公众开放。它是由市政府维护的公共海滨长廊。食物、饮料和活动费用自理。' },
+  { q: '在海湾步道可以做什么？', a: '很多！在长廊上散步，观看日落，在海鲜摊位和附近餐厅用餐，聆听现场音乐，租自行车，拍照，购买纪念品，在苏禄海边放松。这是城市主要的晚间社交中心。' },
+  { q: '食品摊位安全吗？', a: '一般来说是安全的——海湾步道的食品摊位深受当地人和游客的欢迎。寻找顾客流动量大和食物现做的摊位。与任何街头美食一样，请自行判断，避免食用看起来放置太久的东西。' },
+  { q: '如何从机场到海湾步道？', a: '海湾步道距离普林塞萨港国际机场约2公里。乘坐三轮车（PHP 50–100，约10分钟）、出租车或安排酒店班车。如果您住在市中心，步行10–20分钟即可到达。' },
+  { q: '有停车位吗？', a: '有，Sandoval街沿线及相邻道路有免费街边停车位。日落高峰时段（5:00–7:00 PM）和周末车位很快会被占满，建议尽早到达。摩托车停车位更容易找到。' },
+  { q: '海湾步道方便轮椅使用吗？', a: '主长廊基本平坦并铺设了路面，一般方便轮椅和婴儿车使用。但某些路段可能有不平整的表面。提供公共卫生间。' },
+  { q: '可以与海湾步道之行结合参观哪些附近景点？', a: '圣母无原罪主教座堂（320米）、Plaza Cuartel（370米）和巴拉望博物馆（660米）都在步行距离内。一日游方面，本田湾（跳岛游）约12公里，著名的地下河约80公里以北。' },
+  { q: '晚上安全吗？', a: '安全，海湾步道人流热闹，有明显的警察驻扎。像任何旅游区一样，留意您的财物，避免深夜走黑暗的小巷，如果午夜后返回酒店，请使用三轮车。' },
+  { q: '我应该带什么？', a: '带现金（大多数摊位只收现金）、轻薄衣物、驱蚊剂、拍日落的相机和好胃口！凉爽的夜晚带一件薄外套会有用。把贵重物品留在酒店保险箱。' },
+] : [
+  { q: 'What is the best time to visit the Baywalk?', a: 'The best time is late afternoon to evening, starting around 4:30 PM. Arrive before sunset (around 5:45–6:15 PM depending on the season) to find a good spot, then stay for dinner and live music. The Baywalk is open daily from 2:00 PM to midnight.' },
+  { q: 'Is there an entrance fee?', a: 'No — the Puerto Princesa City Baywalk Park is completely free and open to the public. It is a public waterfront promenade maintained by the city government. Food, drinks, and activities are at your own expense.' },
+  { q: 'What can I do at the Baywalk?', a: "Plenty! Walk the promenade, watch the sunset, eat at the seafood stalls and nearby restaurants, listen to live music, rent a bicycle, take photos, buy souvenirs, and simply relax by the Sulu Sea. It's the city's main evening social hub." },
+  { q: 'Are the food stalls safe to eat at?', a: "Generally yes — the Baywalk food stalls are popular with both locals and tourists. Look for stalls with a high turnover of customers and freshly cooked food. As with any street food, use your judgment and avoid anything that looks like it's been sitting out too long." },
+  { q: 'How do I get to the Baywalk from the airport?', a: 'The Baywalk is about 2 km from Puerto Princesa International Airport. Take a tricycle (PHP 50–100, about 10 minutes), a taxi, or arrange a hotel shuttle. If you\'re staying in the city center, you can walk there in 10–20 minutes.' },
+  { q: 'Is there parking available?', a: 'Yes, there is free street parking along Sandoval Street and adjacent roads. Spaces fill up quickly during peak sunset hours (5:00–7:00 PM) and on weekends, so arrive early. Motorcycle parking is easier to find.' },
+  { q: 'Is the Baywalk wheelchair-accessible?', a: 'The main promenade is mostly flat and paved, making it generally accessible for wheelchair users and strollers. However, some sections may have uneven surfaces. Public restrooms are available.' },
+  { q: 'What nearby attractions can I combine with my Baywalk visit?', a: 'The Immaculate Conception Cathedral (320 m), Plaza Cuartel (370 m), and Palawan Museum (660 m) are all within walking distance. For day trips, Honda Bay (island hopping) is about 12 km away, and the famous Underground River is about 80 km north.' },
+  { q: 'Is it safe at night?', a: 'Yes, the Baywalk is generally safe with a lively crowd and a visible police presence. Like any tourist area, keep an eye on your belongings, avoid poorly lit side streets late at night, and use a tricycle if returning to your hotel after midnight.' },
+  { q: 'What should I bring?', a: 'Bring cash (most stalls are cash-only), light clothing, mosquito repellent, a camera for the sunset, and an appetite! A light jacket can be useful on breezy evenings. Leave valuables in your hotel safe.' },
 ];
+
+const faqEyebrow = lang === 'fil' ? 'Mga Karaniwang Tanong' : lang === 'zh' ? '常见问题' : 'Common Questions';
+const faqTitle = lang === 'fil' ? 'Mga Madalas Itanong' : lang === 'zh' ? '常见问题解答' : 'Frequently Asked Questions';
+const faqDesc = lang === 'fil' ? `Lahat ng maaaring gusto mong malaman bago bumisita sa ${attraction.name}.` : lang === 'zh' ? `参观${attraction.name}前您可能想知道的一切。` : `Everything you might want to know before visiting ${attraction.name}.`;
 ---
 
 <section id="faq" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
   <div class="text-center mb-14">
-    <p class="section-eyebrow mb-3">Common Questions</p>
+    <p class="section-eyebrow mb-3">{faqEyebrow}</p>
     <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
-      Frequently Asked Questions
+      {faqTitle}
     </h2>
     <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
-    <p class="text-navy/60 max-w-2xl mx-auto">
-      Everything you might want to know before visiting {attraction.name}.
-    </p>
+    <p class="text-navy/60 max-w-2xl mx-auto">{faqDesc}</p>
   </div>
 
   <div class="max-w-3xl mx-auto space-y-3">
-    {faqItems.map((item) => (
+    {faqItems.map((item: { q: string; a: string }) => (
       <details class="group bg-white rounded-2xl border border-sand-warm/40 shadow-sm overflow-hidden">
         <summary class="flex items-center justify-between cursor-pointer p-5 sm:p-6 select-none">
           <span class="font-display font-semibold text-navy pr-4 text-sm sm:text-base">{item.q}</span>

@@ -1,7 +1,42 @@
 ---
+import { ui } from '../i18n/ui';
 import Icon from './Icon.astro';
 
-const checklistItems = [
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const it = t.itinerary;
+
+const checklistItems = Array.isArray(it?.items) ? it.items.map((item: any, idx: number) => ({
+  id: `item-${idx}`,
+  label: item.title || item.label || `Item ${idx + 1}`,
+  icon: item.icon || 'check',
+})) : lang === 'fil' ? [
+  { id: 'sunset', label: 'Panoorin ang paglubog ng araw sa Sulu Sea', icon: 'sunset' },
+  { id: 'seafood', label: 'Subukan ang inihaw na seafood sa mga Baywalk stall', icon: 'food' },
+  { id: 'photo', label: 'Magpa-picture sa Palawan Peacock-Pheasant sign', icon: 'camera' },
+  { id: 'walk', label: 'Maglakad sa buong haba ng promenade', icon: 'walk' },
+  { id: 'dessert', label: 'Kumain ng halo-halo o ice cream sa tabi ng bay', icon: 'heart' },
+  { id: 'music', label: 'Makinig ng live acoustic music', icon: 'music' },
+  { id: 'bike', label: 'Magrenta ng bisikleta at mag-bike sa Sandoval St', icon: 'bike' },
+  { id: 'souvenir', label: 'Bumili ng lokal na souvenir mula sa mga kalapit na tindahan', icon: 'globe' },
+  { id: 'cathedral', label: 'Bisitahin ang Immaculate Conception Cathedral (malapit)', icon: 'shield' },
+  { id: 'friends', label: 'Mag-enjoy ng gabi kasama ang mga kaibigan o pamilya', icon: 'users' },
+] : lang === 'zh' ? [
+  { id: 'sunset', label: '观看苏禄海日落', icon: 'sunset' },
+  { id: 'seafood', label: '在海湾步道摊位品尝烤海鲜', icon: 'food' },
+  { id: 'photo', label: '在孔雀雉标识牌处拍照', icon: 'camera' },
+  { id: 'walk', label: '走完整条长廊', icon: 'walk' },
+  { id: 'dessert', label: '在海边吃halo-halo或冰淇淋', icon: 'heart' },
+  { id: 'music', label: '欣赏现场原声音乐', icon: 'music' },
+  { id: 'bike', label: '租一辆自行车沿Sandoval街骑行', icon: 'bike' },
+  { id: 'souvenir', label: '在附近商店购买本地纪念品', icon: 'globe' },
+  { id: 'cathedral', label: '参观圣母无原罪主教座堂（附近）', icon: 'shield' },
+  { id: 'friends', label: '与朋友或家人共度美好夜晚', icon: 'users' },
+] : [
   { id: 'sunset', label: 'Watch the sunset over Sulu Sea', icon: 'sunset' },
   { id: 'seafood', label: 'Try grilled seafood at the Baywalk stalls', icon: 'food' },
   { id: 'photo', label: 'Take a photo with the Palawan Peacock-Pheasant sign', icon: 'camera' },
@@ -13,18 +48,22 @@ const checklistItems = [
   { id: 'cathedral', label: 'Visit Immaculate Conception Cathedral (nearby)', icon: 'shield' },
   { id: 'friends', label: 'Enjoy the evening with friends or family', icon: 'users' },
 ];
+
+const completed = lang === 'fil' ? 'nakumpleto' : lang === 'zh' ? '已完成' : 'completed';
+const resetText = lang === 'fil' ? 'I-reset Lahat' : lang === 'zh' ? '全部重置' : 'Reset All';
+const savedText = lang === 'fil' ? 'Data na naka-save nang local sa iyong device (localStorage). Walang ina-upload o ibinabahagi.' : lang === 'zh' ? '数据本地保存在您的设备上（localStorage）。不上传或共享任何内容。' : 'Data saved locally on your device (localStorage). Nothing is uploaded or shared.';
 ---
 
 <section id="itinerary" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-sand-warm/30">
   <div class="max-w-3xl mx-auto">
     <div class="text-center mb-14">
-      <p class="section-eyebrow mb-3">Plan Your Evening</p>
+      <p class="section-eyebrow mb-3">{lang === 'fil' ? 'Plano ng Iyong Gabi' : lang === 'zh' ? '规划您的夜晚' : 'Plan Your Evening'}</p>
       <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
-        Baywalk Checklist
+        {it?.title || (lang === 'fil' ? 'Baywalk Checklist' : lang === 'zh' ? '海湾步道清单' : 'Baywalk Checklist')}
       </h2>
       <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
       <p class="text-navy/60">
-        Tick off experiences as you go — saved to your device, never sent anywhere.
+        {lang === 'fil' ? 'I-tick ang mga karanasan habang ikaw ay nagpapatuloy — naka-save sa iyong device, hindi kailanman ipinapadala kahit saan.' : lang === 'zh' ? '边走边勾选体验——保存在您的设备上，不会发送到任何地方。' : 'Tick off experiences as you go — saved to your device, never sent anywhere.'}
       </p>
     </div>
 
@@ -46,36 +85,36 @@ const checklistItems = [
 
     <div class="flex items-center justify-center gap-4 mt-6">
       <span id="checklist-progress" class="text-sm text-navy/50 font-medium">
-        0 / {checklistItems.length} completed
+        0 / {checklistItems.length} {completed}
       </span>
       <button
         id="checklist-reset"
         class="text-xs text-sunset hover:text-sunset-deep font-medium transition-colors underline underline-offset-2"
       >
-        Reset All
+        {resetText}
       </button>
     </div>
     <p class="text-center text-navy/30 text-[11px] mt-3">
-      Data saved locally on your device (localStorage). Nothing is uploaded or shared.
+      {savedText}
     </p>
   </div>
 </section>
 
 <script is:inline>
   (function () {
-    const STORAGE_KEY = 'baywalk-checklist';
-    const checkboxes = document.querySelectorAll('.checklist-checkbox');
-    const progress = document.getElementById('checklist-progress');
-    const resetBtn = document.getElementById('checklist-reset');
+    var STORAGE_KEY = 'baywalk-checklist';
+    var checkboxes = document.querySelectorAll('.checklist-checkbox');
+    var progress = document.getElementById('checklist-progress');
+    var resetBtn = document.getElementById('checklist-reset');
 
     function loadState() {
       try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-        checkboxes.forEach(cb => {
-          const id = cb.dataset.id;
+        var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        checkboxes.forEach(function(cb) {
+          var id = cb.dataset.id;
           if (id && saved[id]) cb.checked = true;
         });
-      } catch {}
+      } catch (e) {}
       updateProgress();
     }
 
@@ -93,12 +132,14 @@ const checklistItems = [
       var total = checkboxes.length;
       var checked = Array.from(checkboxes).filter(function(cb) { return cb.checked; }).length;
       if (progress) {
-        progress.textContent = `${checked} / ${total} completed`;
+        progress.textContent = checked + ' / ' + total + ' completed';
       }
-      // Toggle checked class on parent
       checkboxes.forEach(function(cb) {
         var parent = cb.closest('.checklist-item');
-        if (parent) parent.classList.toggle('checked', cb.checked);
+        if (parent) {
+          if (cb.checked) parent.classList.add('checked');
+          else parent.classList.remove('checked');
+        }
       });
     }
 

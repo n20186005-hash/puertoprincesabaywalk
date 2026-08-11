@@ -1,5 +1,5 @@
 ---
-import { languagesList } from '../../i18n/ui';
+import { languagesList, ui } from '../../i18n/ui';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
@@ -9,9 +9,9 @@ import BestTime from '../../components/BestTime.astro';
 import TicketFees from '../../components/TicketFees.astro';
 import ParkingInfo from '../../components/ParkingInfo.astro';
 import PhotoGallery from '../../components/PhotoGallery.astro';
-import MapSection from '../../components/MapSection.astro';
 import NearbyFood from '../../components/NearbyFood.astro';
 import TransportSection from '../../components/TransportSection.astro';
+import MapSection from '../../components/MapSection.astro';
 import NearbyAttractions from '../../components/NearbyAttractions.astro';
 import ItineraryChecklist from '../../components/ItineraryChecklist.astro';
 import FAQ from '../../components/FAQ.astro';
@@ -22,24 +22,37 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
+const t = ui[lang] || ui['en'];
+
+const seoTitle = lang === 'fil'
+  ? 'Puerto Princesa City Baywalk Park — Ang Waterfront Promenade ng Palawan'
+  : lang === 'zh'
+  ? '普林塞萨港海湾步道公园 — 巴拉望的海滨长廊'
+  : 'Puerto Princesa City Baywalk Park — The Waterfront Promenade of Palawan';
+
+const seoDesc = lang === 'fil'
+  ? 'Tuklasin ang pinakamagandang waterfront promenade ng Puerto Princesa — paglubog ng araw, sariwang seafood, live na musika, at ang mainit na diwa ng komunidad ng Palawan. Libre at bukas para sa lahat.'
+  : lang === 'zh'
+  ? '探索普林塞萨港最迷人的海滨长廊——日落、新鲜海鲜、现场音乐和巴拉望的热情社区精神。免费向所有人开放。'
+  : 'Discover Puerto Princesa\'s most beloved waterfront promenade — sunset views, fresh seafood, live music, and the warm community spirit of Palawan. Free and open to everyone.';
 ---
 
-<BaseLayout lang={lang}>
-  <Header />
+<BaseLayout lang={lang} title={seoTitle} description={seoDesc}>
+  <Header lang={lang} />
   <main id="main-content">
-    <Hero />
-    <Introduction />
-    <InfoCards />
-    <BestTime />
-    <TicketFees />
-    <ParkingInfo />
-    <PhotoGallery />
-    <MapSection />
-    <NearbyFood />
-    <TransportSection />
-    <NearbyAttractions />
-    <ItineraryChecklist />
-    <FAQ />
+    <Hero lang={lang} />
+    <Introduction lang={lang} />
+    <InfoCards lang={lang} />
+    <BestTime lang={lang} />
+    <TicketFees lang={lang} />
+    <ParkingInfo lang={lang} />
+    <PhotoGallery lang={lang} />
+    <MapSection lang={lang} />
+    <NearbyFood lang={lang} />
+    <TransportSection lang={lang} />
+    <NearbyAttractions lang={lang} />
+    <ItineraryChecklist lang={lang} />
+    <FAQ lang={lang} />
   </main>
-  <Footer />
+  <Footer lang={lang} />
 </BaseLayout>

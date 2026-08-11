@@ -1,25 +1,34 @@
 ---
+import { ui } from '../i18n/ui';
 import Icon from './Icon.astro';
 
-const navItems = [
-  { href: '#about', label: 'About' },
-  { href: '#best-time', label: 'Best Time' },
-  { href: '#tickets', label: 'Tickets' },
-  { href: '#parking', label: 'Parking' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#food', label: 'Food' },
-  { href: '#transport', label: 'Transport' },
-  { href: '#nearby', label: 'Nearby' },
-  { href: '#itinerary', label: 'Checklist' },
-  { href: '#faq', label: 'FAQ' },
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const h = t.header;
+
+const navKeys = [
+  { href: '#about', key: 'about' },
+  { href: '#best-time', key: 'bestTime' },
+  { href: '#tickets', key: 'tickets' },
+  { href: '#parking', key: 'parking' },
+  { href: '#gallery', key: 'gallery' },
+  { href: '#food', key: 'food' },
+  { href: '#transport', key: 'transport' },
+  { href: '#nearby', key: 'nearby' },
+  { href: '#itinerary', key: 'itinerary' },
+  { href: '#faq', key: 'faq' },
 ];
 ---
 
 <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-sand-warm/50 shadow-sm" id="top">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label={lang === 'fil' ? 'Pangunahing nabigasyon' : lang === 'zh' ? '主导航' : 'Main navigation'}>
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5 group shrink-0" aria-label="Puerto Princesa City Baywalk Park - Home">
+      <a href={`/${lang}/`} class="flex items-center gap-2.5 group shrink-0" aria-label="Puerto Princesa City Baywalk Park - Home">
         <svg width="36" height="36" viewBox="0 0 36 36" class="shrink-0" aria-hidden="true">
           <circle cx="18" cy="18" r="17" fill="#1B365D"/>
           <path d="M18 5c-1.5 3.5-3.5 5.5-3.5 9s2.5 6.5 3.5 10c1-3.5 3.5-6.5 3.5-10s-2-5.5-3.5-9z" fill="#2D6A4F"/>
@@ -36,12 +45,12 @@ const navItems = [
 
       <!-- Desktop Nav -->
       <div class="hidden lg:flex items-center gap-1">
-        {navItems.map(item => (
+        {navKeys.map(item => (
           <a
-            href={item.href}
+            href={`/${lang}/${item.href}`}
             class="px-2.5 py-2 text-sm font-medium text-navy/80 hover:text-sunset transition-colors rounded-md hover:bg-sand-warm/30"
           >
-            {item.label}
+            {h.nav[item.key] ?? item.key}
           </a>
         ))}
       </div>
@@ -50,7 +59,7 @@ const navItems = [
       <button
         id="mobile-menu-btn"
         class="lg:hidden p-2 rounded-md text-navy hover:bg-sand-warm/50 transition-colors"
-        aria-label="Toggle menu"
+        aria-label={lang === 'fil' ? 'I-toggle ang menu' : lang === 'zh' ? '切换菜单' : 'Toggle menu'}
         aria-expanded="false"
       >
         <Icon name="menu" size={24} />
@@ -60,12 +69,12 @@ const navItems = [
     <!-- Mobile Nav -->
     <div id="mobile-menu" class="hidden lg:hidden pb-4 border-t border-sand-warm/30">
       <div class="flex flex-col pt-2">
-        {navItems.map(item => (
+        {navKeys.map(item => (
           <a
-            href={item.href}
+            href={`/${lang}/${item.href}`}
             class="px-3 py-2.5 text-sm font-medium text-navy/80 hover:text-sunset hover:bg-sand-warm/20 rounded-md transition-colors"
           >
-            {item.label}
+            {h.nav[item.key] ?? item.key}
           </a>
         ))}
       </div>

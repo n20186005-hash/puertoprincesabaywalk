@@ -1,12 +1,28 @@
 ---
+import { ui } from '../i18n/ui';
 import { attraction } from '../config';
 import Icon from './Icon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
 
 const transportOptions = [
   {
     icon: 'plane',
-    title: 'By Air',
-    items: [
+    title: lang === 'fil' ? 'Sa pamamagitan ng Eroplano' : lang === 'zh' ? '乘飞机' : 'By Air',
+    items: lang === 'fil' ? [
+      '<strong>Puerto Princesa International Airport (PPS)</strong> — halos 2 km mula sa Baywalk.',
+      '<strong>Mga domestic flight</strong> mula sa Manila (1.5 oras), Cebu (1 oras), Clark, at Iloilo.',
+      '<strong>Mula sa airport:</strong> Tricycle (PHP 50–100, 10 min), taxi, o hotel shuttle.',
+    ] : lang === 'zh' ? [
+      '<strong>普林塞萨港国际机场 (PPS)</strong> — 距海湾步道约2公里。',
+      '<strong>国内航班</strong> 从马尼拉（1.5小时）、宿务（1小时）、克拉克和伊洛伊洛出发。',
+      '<strong>从机场出发：</strong> 三轮车（PHP 50–100，10分钟）、出租车或酒店班车。',
+    ] : [
       '<strong>Puerto Princesa International Airport (PPS)</strong> — about 2 km from the Baywalk.',
       '<strong>Domestic flights</strong> from Manila (1.5 hr), Cebu (1 hr), Clark, and Iloilo.',
       '<strong>From the airport:</strong> Tricycle (PHP 50–100, 10 min), taxi, or hotel shuttle.',
@@ -14,8 +30,16 @@ const transportOptions = [
   },
   {
     icon: 'bus',
-    title: 'By Bus / Van',
-    items: [
+    title: lang === 'fil' ? 'Sa pamamagitan ng Bus / Van' : lang === 'zh' ? '乘巴士/面包车' : 'By Bus / Van',
+    items: lang === 'fil' ? [
+      '<strong>San Jose Terminal</strong> (halos 2.5 km) — mga bus at van mula sa El Nido (5–6 oras), Sabang, at iba pang bayan sa Palawan.',
+      'Mula sa terminal: Tricycle papuntang Baywalk (PHP 50–80, 10 min).',
+      'Cherry Bus at Roro Bus ay nagseserbisyo sa rutang Puerto Princesa–El Nido na may maraming biyahe araw-araw.',
+    ] : lang === 'zh' ? [
+      '<strong>San Jose 车站</strong>（约2.5公里）— 来自爱妮岛（5–6小时）、Sabang和其他巴拉望城镇的巴士和面包车。',
+      '从车站出发：三轮车到海湾步道（PHP 50–80，10分钟）。',
+      'Cherry Bus 和 Roro Bus 每天有多班往返于普林塞萨港–爱妮岛路线。',
+    ] : [
       '<strong>San Jose Terminal</strong> (about 2.5 km) — buses and vans from El Nido (5–6 hrs), Sabang, and other Palawan towns.',
       'From terminal: Tricycle to Baywalk (PHP 50–80, 10 min).',
       'Cherry Bus and Roro Bus serve the Puerto Princesa–El Nido route with multiple daily departures.',
@@ -23,8 +47,16 @@ const transportOptions = [
   },
   {
     icon: 'walk',
-    title: 'On Foot / Tricycle',
-    items: [
+    title: lang === 'fil' ? 'Naglalakad / Tricycle' : lang === 'zh' ? '步行/三轮车' : 'On Foot / Tricycle',
+    items: lang === 'fil' ? [
+      '<strong>Naglalakad:</strong> Kung ikaw ay nasa city center, ang Baywalk ay madaling 10–20 minutong lakad mula sa karamihan ng mga hotel.',
+      '<strong>Tricycle:</strong> Ang pangunahing transportasyon sa Puerto Princesa. Asahan ang PHP 50–100 bawat biyahe sa loob ng lungsod.',
+      '<strong>Makipag-ayos ng pamasahe</strong> bago sumakay — ang mga tricycle sa Puerto Princesa ay hindi gumagamit ng metro.',
+    ] : lang === 'zh' ? [
+      '<strong>步行：</strong> 如果您住在市中心，从大多数酒店步行10–20分钟即可到达海湾步道。',
+      '<strong>三轮车：</strong> 普林塞萨港的主要交通工具。市内行程预计PHP 50–100。',
+      '<strong>上车前议价</strong> — 普林塞萨港的三轮车不使用计价器。',
+    ] : [
       '<strong>Walking:</strong> If you\'re staying in the city center, the Baywalk is an easy 10–20 minute walk from most hotels.',
       '<strong>Tricycle:</strong> The main mode of transport around Puerto Princesa. Expect PHP 50–100 per trip within the city.',
       '<strong>Negotiate fare</strong> before the ride — tricycles in Puerto Princesa don\'t use meters.',
@@ -32,26 +64,41 @@ const transportOptions = [
   },
   {
     icon: 'car',
-    title: 'By Car / Motorcycle',
-    items: [
+    title: lang === 'fil' ? 'Sa pamamagitan ng Kotse / Motorsiklo' : lang === 'zh' ? '自驾/摩托车' : 'By Car / Motorcycle',
+    items: lang === 'fil' ? [
+      '<strong>Pumarada sa Sandoval St</strong> — libreng street parking (dumating nang maaga para sa oras ng sunset).',
+      '<strong>Pagrenta ng motorsiklo</strong> available sa lungsod (PHP 300–500/araw) — pinakamadaling paraan upang libutin.',
+      '<strong>Mula sa highway (Rizal Ave):</strong> Lumiko sa Sandoval St papuntang waterfront.',
+    ] : lang === 'zh' ? [
+      '<strong>停在 Sandoval 街</strong> — 免费街边停车（日落时段请尽早到达）。',
+      '<strong>摩托车租赁</strong> 市内可租（PHP 300–500/天）— 出行最便捷的方式。',
+      '<strong>从高速公路（Rizal大道）：</strong> 转入Sandoval街前往海滨。',
+    ] : [
       '<strong>Park along Sandoval St</strong> — free street parking (arrive early for sunset hours).',
       '<strong>Motorcycle rentals</strong> available in the city (PHP 300–500/day) — easiest way to get around.',
       '<strong>From the highway (Rizal Ave):</strong> Turn onto Sandoval St heading toward the waterfront.',
     ],
   },
 ];
+
+const quickRefLabel = lang === 'fil' ? 'Mabilisang Sanggunian: Pamasahe sa Tricycle' : lang === 'zh' ? '快速参考：三轮车费用' : 'Quick Reference: Tricycle Fares';
+const tripLabel = lang === 'fil' ? 'min' : lang === 'zh' ? '分钟' : 'min';
 ---
 
 <section id="transport" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-sand-warm/30">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-14">
-      <p class="section-eyebrow mb-3">How to Get Here</p>
+      <p class="section-eyebrow mb-3">{t.transport?.label || (lang === 'fil' ? 'Paano Pumunta' : lang === 'zh' ? '如何到达' : 'How to Get Here')}</p>
       <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
-        Detailed Transport Guide
+        {t.transport?.title || (lang === 'fil' ? 'Detalyadong Gabay sa Transportasyon' : lang === 'zh' ? '详细交通指南' : 'Detailed Transport Guide')}
       </h2>
       <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
       <p class="text-navy/60 max-w-2xl mx-auto">
-        From the airport to tricycles — everything you need to reach {attraction.name}.
+        {lang === 'fil'
+          ? `Mula sa airport hanggang sa mga tricycle — lahat ng kailangan mo para marating ang ${attraction.name}.`
+          : lang === 'zh'
+          ? `从机场到三轮车——前往${attraction.name}所需的一切。`
+          : `From the airport to tricycles — everything you need to reach ${attraction.name}.`}
       </p>
     </div>
 
@@ -80,14 +127,14 @@ const transportOptions = [
     <div class="bg-navy rounded-2xl p-6 sm:p-8 text-white">
       <h3 class="font-display font-semibold text-lg mb-4 flex items-center gap-2">
         <Icon name="compass" size={20} class="text-gold-light" />
-        Quick Reference: Tricycle Fares
+        {quickRefLabel}
       </h3>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
         {[
-          { from: 'Airport (PPS)', to: 'Baywalk', fare: 'PHP 50–100', mins: '10 min' },
-          { from: 'San Jose Terminal', to: 'Baywalk', fare: 'PHP 50–80', mins: '10 min' },
-          { from: 'City Center', to: 'Baywalk', fare: 'PHP 50–80', mins: '5–10 min' },
-          { from: 'Hue Hotels Area', to: 'Baywalk', fare: 'PHP 50', mins: '5 min' },
+          { from: lang === 'fil' ? 'Airport (PPS)' : lang === 'zh' ? '机场 (PPS)' : 'Airport (PPS)', to: 'Baywalk', fare: 'PHP 50–100', mins: '10 min' },
+          { from: lang === 'fil' ? 'San Jose Terminal' : 'San Jose Terminal', to: 'Baywalk', fare: 'PHP 50–80', mins: '10 min' },
+          { from: lang === 'fil' ? 'City Center' : lang === 'zh' ? '市中心' : 'City Center', to: 'Baywalk', fare: 'PHP 50–80', mins: '5–10 min' },
+          { from: lang === 'fil' ? 'Lugar ng Hue Hotels' : lang === 'zh' ? 'Hue Hotels 区' : 'Hue Hotels Area', to: 'Baywalk', fare: 'PHP 50', mins: '5 min' },
         ].map(trip => (
           <div class="bg-white/10 rounded-xl p-3 text-center">
             <p class="text-gold-light font-semibold text-xs mb-1">{trip.fare}</p>

@@ -1,18 +1,43 @@
 ---
+import { ui } from '../i18n/ui';
 import Icon from './Icon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const tk = t.tickets;
+
+const freeItems = [
+  tk.freeItem1 || 'Access to the entire promenade',
+  tk.freeItem2 || 'Sunset viewing areas & benches',
+  tk.freeItem3 || 'Public restrooms',
+  tk.freeItem4 || 'Photo opportunities',
+  tk.freeItem5 || 'People-watching & ambiance',
+  tk.freeItem6 || 'Occasional free live music',
+];
+
+const paidItems = [
+  { item: tk.paidItem1 || 'Food & drinks from stalls', price: tk.paidPrice1 || 'PHP 50–300' },
+  { item: tk.paidItem2 || 'Bicycle rental', price: tk.paidPrice2 || 'PHP 50–100/hr' },
+  { item: tk.paidItem3 || 'Souvenir shopping', price: tk.paidPrice3 || 'PHP 50–500' },
+  { item: tk.paidItem4 || 'Tricycle fare to/from', price: tk.paidPrice4 || 'PHP 50–100' },
+  { item: tk.paidItem5 || 'Ice cream & desserts', price: tk.paidPrice5 || 'PHP 20–80' },
+  { item: tk.paidItem6 || 'BBQ seafood platter', price: tk.paidPrice6 || 'PHP 150–400' },
+];
 ---
 
 <section id="tickets" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-sand-warm/30">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-14">
-      <p class="section-eyebrow mb-3">Admission</p>
+      <p class="section-eyebrow mb-3">{tk.eyebrow || 'Admission'}</p>
       <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
-        Tickets &amp; Fees
+        {tk.title}
       </h2>
       <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
-      <p class="text-navy/60 max-w-2xl mx-auto">
-        One of the best things about the Baywalk — it's completely free.
-      </p>
+      <p class="text-navy/60 max-w-2xl mx-auto">{tk.subtitle}</p>
     </div>
 
     <!-- Main Free Card -->
@@ -22,27 +47,20 @@ import Icon from './Icon.astro';
           <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <Icon name="ticket" size={32} class="text-white" />
           </div>
-          <p class="text-4xl sm:text-5xl font-display font-extrabold text-white">FREE</p>
-          <p class="text-white/80 mt-2 font-medium">No Entrance Fee</p>
-          <p class="text-white/60 text-sm mt-1">The Baywalk is a public space open to everyone</p>
+          <p class="text-4xl sm:text-5xl font-display font-extrabold text-white">{tk.free}</p>
+          <p class="text-white/80 mt-2 font-medium">{tk.freeLabel || 'No Entrance Fee'}</p>
+          <p class="text-white/60 text-sm mt-1">{tk.freeDesc}</p>
         </div>
 
         <div class="p-6 sm:p-8">
-          <h3 class="font-display font-semibold text-xl text-navy mb-6">What's Included &amp; Optional Costs</h3>
+          <h3 class="font-display font-semibold text-xl text-navy mb-6">{tk.whatsIncluded || "What's Included & Optional Costs"}</h3>
 
           <div class="grid sm:grid-cols-2 gap-6">
             <!-- Free -->
             <div>
-              <h4 class="font-semibold text-palm text-sm uppercase tracking-wider mb-4">Included (Free)</h4>
+              <h4 class="font-semibold text-palm text-sm uppercase tracking-wider mb-4">{tk.includedTitle || 'Included (Free)'}</h4>
               <ul class="space-y-3">
-                {[
-                  'Access to the entire promenade',
-                  'Sunset viewing areas & benches',
-                  'Public restrooms',
-                  'Photo opportunities',
-                  'People-watching & ambiance',
-                  'Occasional free live music',
-                ].map(item => (
+                {freeItems.map((item: string) => (
                   <li class="flex items-start gap-2.5 text-navy/70 text-sm">
                     <span class="text-palm mt-0.5 shrink-0">&#10003;</span>
                     {item}
@@ -53,16 +71,9 @@ import Icon from './Icon.astro';
 
             <!-- Optional Paid -->
             <div>
-              <h4 class="font-semibold text-sunset text-sm uppercase tracking-wider mb-4">At Your Own Cost</h4>
+              <h4 class="font-semibold text-sunset text-sm uppercase tracking-wider mb-4">{tk.paidTitle || 'At Your Own Cost'}</h4>
               <ul class="space-y-3">
-                {[
-                  { item: 'Food & drinks from stalls', price: 'PHP 50–300' },
-                  { item: 'Bicycle rental', price: 'PHP 50–100/hr' },
-                  { item: 'Souvenir shopping', price: 'PHP 50–500' },
-                  { item: 'Tricycle fare to/from', price: 'PHP 50–100' },
-                  { item: 'Ice cream & desserts', price: 'PHP 20–80' },
-                  { item: 'BBQ seafood platter', price: 'PHP 150–400' },
-                ].map(({ item, price }) => (
+                {paidItems.map(({ item, price }: { item: string; price: string }) => (
                   <li class="flex items-start justify-between gap-2 text-sm">
                     <span class="text-navy/70">{item}</span>
                     <span class="text-sunset font-semibold shrink-0">{price}</span>

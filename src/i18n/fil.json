@@ -48,13 +48,35 @@
     "faith": "Pamana",
     "status": "Katayuan",
     "peak": "Pinakaabalang Oras",
-    "duration": "Inirerekomendang Oras"
+    "duration": "Inirerekomendang Oras",
+    "hours": "Oras",
+    "entrance": "Pagpasok",
+    "noFee": "Walang bayad",
+    "rating": "Marka",
+    "reviews": "mga review",
+    "location": "Lokasyon",
+    "bestFor": "Pinakamainam Para",
+    "bestForVal": "Sunset at Pagkain",
+    "bestForSub": "Panggabing lakad",
+    "setting": "Lugar",
+    "settingVal": "Waterfront",
+    "settingSub": "Tanawin ng Sulu Sea",
+    "hoursDaily": "Araw-araw"
   },
   "intro": {
-    "label": "Maligayang Pagdating sa Palawan",
+    "eyebrow": "Maligayang Pagdating sa Palawan",
     "title": "Isang Waterfront Promenade na Walang Katulad",
-    "body1": "Ang Puerto Princesa City Baywalk Park ay ang minamahal na waterfront promenade ng lungsod — isang masiglang lugar kung saan sumasalubong ang simoy ng Sulu Sea sa ritmo ng lokal na buhay. Nakaunat sa kahabaan ng Sandoval Street, ang palm-lined esplanade na ito ay nagiging isang pagdiriwang tuwing gabi ng pagkain, musika, at kulay ng paglubog ng araw.",
-    "body2": "Pagsapit ng dilim, nabubuhay ang Baywalk. Sinisindihan ng mga food stall ang kanilang mga grill, naghahain ng bagong huling seafood at mga paboritong Pinoy street food tulad ng isaw at balut. Tumutugtog ang mga lokal na musikero, naglalakad ang mga pamilya habang may hawak na ice cream, at nagpapakita ang langit ng kamangha-manghang palabas ng kahel at rosas."
+    "paragraphs": [
+      "Ang <strong>Puerto Princesa City Baywalk Park</strong> ay ang minamahal na waterfront promenade ng lungsod — isang masiglang lugar kung saan sumasalubong ang simoy ng Sulu Sea sa ritmo ng lokal na buhay. Nakaunat sa kahabaan ng Sandoval Street, ang palm-lined esplanade na ito ay nagiging isang pagdiriwang tuwing gabi ng pagkain, musika, at kulay ng paglubog ng araw.",
+      "Pagsapit ng dilim, nabubuhay ang Baywalk. Sinisindihan ng mga food stall ang kanilang mga grill, naghahain ng bagong huling seafood at mga paboritong Pinoy street food tulad ng <em>isaw</em> at <em>balut</em>. Tumutugtog ang mga lokal na musikero, naglalakad ang mga pamilya habang may hawak na ice cream, at nagpapakita ang langit ng kamangha-manghang palabas ng kahel at rosas.",
+      "Kung ikaw ay isang photographer na humahabol sa golden hour, isang mahilig sa pagkain sa isang culinary adventure, o simpleng naghahanap ng nakakarelaks na paglalakad sa gabi, ang Baywalk ay nag-aalok ng tunay na lasa ng mainit na diwa ng komunidad ng Puerto Princesa — lahat ay libre."
+    ],
+    "highlights": [
+      { "title": "Tanawin ng Paglubog ng Araw", "desc": "Pang-mundong paglubog ng araw sa Sulu Sea tuwing gabi" },
+      { "title": "Paradiso ng Pagkain", "desc": "Sariwang seafood, BBQ, at Pinoy street-food stalls" },
+      { "title": "Live na Musika", "desc": "Mga lokal na banda at acoustic performers" },
+      { "title": "Libreng Pagpasok", "desc": "Bukas para sa lahat — walang bayad sa pagpasok, puro kasiyahan lang" }
+    ]
   },
   "history": {
     "label": "Kasaysayan at Kultura",
@@ -75,10 +97,41 @@
     "body2": "Magdala ng camera para sa paglubog ng araw, magsuot ng komportableng damit at sapatos, at maghanda ng kaunting cash para sa mga street food vendor. Ang Baywalk ay ligtas at maliwanag, na ginagawa itong perpekto para sa mga evening stroll."
   },
   "bestTime": {
+    "eyebrow": "Kailan Dapat Bumisita",
+    "title": "Pinakamainam na Oras para sa Baywalk",
+    "subtitle": "Nagbabago ang Baywalk sa buong araw — narito kung kailan bisitahin para sa karanasang nais mo",
     "label": "Pinakamagandang Oras para Bumisita",
-    "title": "Kailan Pupunta sa Baywalk",
-    "body1": "Ang pinakamagandang oras ay huling bahagi ng hapon hanggang gabi, bandang 4:30 PM pataas. Ito ay kung kailan lumalamig ang temperatura at masisiyahan ka sa nakamamanghang paglubog ng araw sa ibabaw ng look.",
-    "body2": "Ang dry season (Nobyembre hanggang Mayo) ay nag-aalok ng pinakamagandang panahon para sa outdoor activities. Gayunpaman, kahit sa panahon ng tag-ulan, ang Baywalk ay nananatiling isang sikat na lugar — magdala lamang ng payong kung sakali."
+    "periods": {
+      "late": {
+        "title": "Hapon",
+        "time": "4:00 PM – 5:00 PM",
+        "desc": "Dumating bago ang oras ng rush. Kumuha ng magandang lugar, maglakad-lakad, at mag-relax habang bumababa ang araw. Hindi gaanong matao at perpekto para sa photography.",
+        "badge": "Pinakatahimik"
+      },
+      "peak": {
+        "title": "Oras ng Paglubog ng Araw",
+        "time": "5:00 PM – 6:00 PM",
+        "desc": "Ang GOLDEN HOUR. Ang Sulu Sea ay nagiging canvas ng mga kahel at rosas — HUWAG PALAMPASIN ang sunset moment na ito sa pangunahing viewing area.",
+        "badge": "GOLDEN HOUR",
+        "bestLabel": "PINAKAMAHUSAY NA ORAS"
+      },
+      "evening": {
+        "title": "Gabi",
+        "time": "6:00 PM – 10:00 PM",
+        "desc": "Ang Baywalk ay ganap na buhay pagkatapos ng dilim. Ang mga grill ay mainit na at ang live na musika ay pumupuno sa simoy ng hangin. Ito ay oras ng hapunan para sa mga lokal.",
+        "badge": "Pinakamasigla"
+      }
+    },
+    "durationTitle": "Inirerekomendang Tagal",
+    "duration": "2–3 Oras",
+    "durationDesc": "Bigyan ang iyong sarili ng hindi bababa sa 2 oras upang ganap na maranasan ang Baywalk. Kasama rito ang paglalakad sa promenade, pagkuha ng mga sunset na larawan, pag-enjoy ng pagkain mula sa mga stall, at simpleng pagtambay sa waterfront.",
+    "tipsTitle": "Mga Tip sa Pagbisita",
+    "tips": [
+      "Dumating bandang <strong>4:30 PM</strong> para sa pinakamagandang lugar sa paglubog ng araw",
+      "Tanggap ang <strong>cash</strong> — walang credit card sa mga food stall",
+      "Kung gusto mong <strong>umiwas sa mga tao</strong>, maglakad sa bandang dulong hilaga ng Baywalk",
+      "Pinakamainam na bisitahin ang <strong>weekday</strong> kaysa weekend kung gusto mong konti lang ang tao"
+    ]
   },
   "transport": {
     "label": "Paano Pumunta",
@@ -133,6 +186,121 @@
     "title": "Mga Kalapit na Atraksyon",
     "body1": "Ang Baywalk ay maginhawang matatagpuan malapit sa maraming iba pang atraksyon ng Puerto Princesa. Ang Immaculate Conception Cathedral, Plaza Cuartel, at ang Palawan Museum ay lahat nasa loob ng maigsing distansya.",
     "body2": "Ang Puerto Princesa Underground River — isang UNESCO World Heritage Site — ay halos 80 km ang layo at maaaring bisitahin bilang isang day trip. Ang Honda Bay island hopping tours ay isa pang sikat na aktibidad na available mula sa city center."
+  },
+  "tickets": {
+    "eyebrow": "Pagpasok",
+    "title": "Mga Bayarin sa Pagpasok",
+    "subtitle": "Libre ang Baywalk — mga murang aktibidad at pagkain",
+    "free": "LIBRE",
+    "freeLabel": "Walang Bayad sa Pagpasok",
+    "freeDesc": "Libre ang pagpasok para sa lahat ng bisita — walang tiket na kailangan",
+    "whatsIncluded": "Ano ang Kasama at Mga Opsyonal na Gastos",
+    "includedTitle": "Kasama (Libre)",
+    "paidTitle": "Sariling Gastos",
+    "freeItem1": "Pag-access sa buong promenade",
+    "freeItem2": "Sunset viewing areas at mga bangko",
+    "freeItem3": "Mga pampublikong palikuran",
+    "freeItem4": "Photo opportunities",
+    "freeItem5": "People-watching at ambiance",
+    "freeItem6": "Paminsan-minsang libreng live na musika",
+    "paidItem1": "Pagkain at inumin mula sa mga stall",
+    "paidPrice1": "PHP 50–300",
+    "paidItem2": "Pagrenta ng bisikleta",
+    "paidPrice2": "PHP 50–100/oras",
+    "paidItem3": "Pamimili ng souvenir",
+    "paidPrice3": "PHP 50–500",
+    "paidItem4": "Pamasahe sa tricycle papunta/palabas",
+    "paidPrice4": "PHP 50–100",
+    "paidItem5": "Ice cream at panghimagas",
+    "paidPrice5": "PHP 20–80",
+    "paidItem6": "BBQ seafood platter",
+    "paidPrice6": "PHP 150–400",
+    "foodBudget": "PHP 100–500",
+    "foodBudgetDesc": "Mga street food at seafood stall sa kabuuan ng promenade",
+    "activities": "PHP 150–500",
+    "activitiesDesc": "Pagrenta ng bisikleta, souvenir, at iba pang aktibidad",
+    "note": "Ang Baywalk Park ay isang pampublikong pasilidad na pinapanatili ng Puerto Princesa City Government. Libre at bukas ito para sa lahat."
+  },
+  "parking": {
+    "eyebrow": "Paradahan",
+    "title": "Impormasyon sa Paradahan",
+    "subtitle": "Maraming libreng paradahan sa tabi ng Baywalk",
+    "streetTitle": "Paradahan sa Kalye",
+    "streetItems": [
+      "Libreng <strong>street parking</strong> sa kahabayan ng Sandoval Street at mga katabing kalsada",
+      "Sapat na espasyo para sa <strong>50+ motorsiklo</strong> sa mga itinalagang paradahan",
+      "Available ang <strong>paradahan ng kotse</strong> sa magkabilang gilid ng Sandoval Street",
+      "Available ang <strong>mga paradahan ng tricycle</strong> sa pangunahing pasukan ng Baywalk"
+    ],
+    "tipsTitle": "Mga Tip sa Paradahan",
+    "tips": [
+      "Dumating <strong>bago mag-4:30 PM</strong> para sa pinakamagandang parking spot",
+      "Ang paradahan ay kusang-loob — <strong>walang bayad</strong> saanman sa paligid ng Baywalk",
+      "Ang mga lugar sa <strong>dulong hilaga</strong> ay madalas na may mas maraming bakanteng espasyo",
+      "Mga <strong>weekend at holiday</strong>: asahan ang masikip na paradahan pagkatapos ng 5 PM",
+      "Available ang paradahan ng <strong>bisikleta</strong> sa mga itinalagang racks sa tabi ng promenade"
+    ],
+    "bike": "Mga Motorsiklo at Bisikleta",
+    "bikeDesc": "Sapat na espasyo sa paradahan sa tabi ng Sandoval Street",
+    "car": "Mga Kotse at Sasakyan",
+    "carDesc": "Libreng paradahan sa gilid ng kalye — limitado ang espasyo kapag gabi",
+    "trike": "Mga Tricycle",
+    "trikeDesc": "Maaaring maghatid diretso sa pangunahing pasukan ng Baywalk",
+    "tip": "Tip: Dumating nang maaga (bago mag-4:30 PM) para sa pinakamagandang paradahan sa panahon ng sunset"
+  },
+  "food": {
+    "title": "Mga Kalapit na Restaurant at Pagkain",
+    "subtitle": "Sariwang seafood, Pinoy street food, at casual dining",
+    "restaurants": [
+      [
+        "Kinabuchs Grill & Bar",
+        "Casual Dining",
+        "PHP 250–600",
+        "Sikat sa sariwang seafood at inihaw na karne, may outdoor seating malapit sa Baywalk"
+      ],
+      [
+        "Badjao Seafront Restaurant",
+        "Seafood Special",
+        "PHP 400–900",
+        "Matatagpuan sa ibabaw ng tubig na may nakamamanghang tanawin — sulit ang pagpunta"
+      ],
+      [
+        "Kalui Restaurant",
+        "Fine Filipino",
+        "PHP 400–800",
+        "Maaarteng Filipino cuisine sa isang magandang native-style na setting"
+      ],
+      [
+        "Ihawang Pantalan",
+        "Local Ihawan",
+        "PHP 100–300",
+        "Mga street-side grill stall sa kahabaan mismo ng Baywalk promenade"
+      ],
+      [
+        "Haim Chicken Inato",
+        "Local Favorite",
+        "PHP 150–300",
+        "Sikat na Filipino-style roasted chicken, ilang minuto lang ang layo mula sa Baywalk"
+      ],
+      [
+        "Baker's Hill",
+        "Bakery & Snacks",
+        "PHP 100–250",
+        "Mga sikat na hopia at pastry — perpekto para sa mabilis na meryenda"
+      ]
+    ]
+  },
+  "itinerary": {
+    "title": "Plano ng Pagbisita",
+    "subtitle": "Ang perpektong Baywalk itinerary — 3 oras ng sunset at seafood",
+    "items": [
+      { "icon": "sunset", "title": "Dumating sa hapon", "desc": "Dumating bandang 4:30 PM para sa pinakamagandang lugar at panoorin ang paglubog ng araw" },
+      { "icon": "camera", "title": "Kunin ang mga tanawin", "desc": "Kunin ang perpektong sunset photo sa Peacock-Pheasant sign" },
+      { "icon": "walk", "title": "Maglakad sa promenade", "desc": "Maglakad mula dulo hanggang dulo — 20-30 minutong lakad na may tanawin ng karagatan" },
+      { "icon": "food", "title": "Tangkilikin ang seafood", "desc": "Subukan ang sariwang inihaw na isda, pusit, at hipon mula sa mga stall" },
+      { "icon": "music", "title": "Live na musika", "desc": "Makinig sa mga lokal na musikero na tumutugtog sa tabi ng waterfront" },
+      { "icon": "heart", "title": "Mag-relax at mag-enjoy", "desc": "Humanap ng bench, kumain ng ice cream, at panoorin ang pagbabago ng langit" }
+    ]
   },
   "gallery": {
     "label": "Galeriya ng Larawan",

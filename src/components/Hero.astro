@@ -1,6 +1,15 @@
 ---
-import { attraction, mapsUrl } from '../config';
+import { ui } from '../i18n/ui';
+import { mapsUrl } from '../config';
 import Icon from './Icon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const h = t.hero;
 ---
 
 <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden" id="home">
@@ -8,7 +17,7 @@ import Icon from './Icon.astro';
   <div class="absolute inset-0">
     <img
       src="/gallery/puerto-princesa-city-baywalk-park-3.jpg"
-      alt="Puerto Princesa City Baywalk Park at sunset"
+      alt={lang === 'fil' ? 'Puerto Princesa City Baywalk Park sa paglubog ng araw' : lang === 'zh' ? '日落时分的普林塞萨港海湾步道公园' : 'Puerto Princesa City Baywalk Park at sunset'}
       class="w-full h-full object-cover"
       loading="eager"
       fetchpriority="high"
@@ -18,25 +27,24 @@ import Icon from './Icon.astro';
 
   <!-- Content -->
   <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto mt-8">
-    <p class="section-eyebrow text-sand-warm mb-4">Palawan, Philippines</p>
+    <p class="section-eyebrow text-sand-warm mb-4">{h.localName}</p>
     <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
-      {attraction.name}
+      {h.title}
     </h1>
     <p class="font-accent italic text-lg sm:text-xl text-sand-warm/90 mb-8 max-w-2xl mx-auto">
-      &ldquo;{attraction.tagline}&rdquo;
+      &ldquo;{h.subtitle}&rdquo;
     </p>
 
     <!-- Rating -->
     <div class="flex items-center justify-center gap-2 mb-8 text-gold-light">
       <Icon name="star" size={20} />
-      <span class="font-semibold text-white text-lg">{attraction.rating}</span>
-      <span class="text-sand-warm/70 text-sm">({attraction.reviewCount}+ reviews)</span>
+      <span class="font-semibold text-white text-lg">{h.rating}</span>
     </div>
 
     <!-- CTA Buttons -->
     <div class="flex flex-wrap items-center justify-center gap-4">
-      <a href="#about" class="inline-flex items-center gap-2 px-6 py-3 bg-sunset hover:bg-sunset-deep text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl">
-        Explore the Baywalk
+      <a href={`/${lang}/#about`} class="inline-flex items-center gap-2 px-6 py-3 bg-sunset hover:bg-sunset-deep text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl">
+        {t.common.readMore}
         <Icon name="arrow" size={18} />
       </a>
       <a
@@ -46,7 +54,7 @@ import Icon from './Icon.astro';
         class="inline-flex items-center gap-2 px-6 py-3 bg-white/15 hover:bg-white/25 text-white font-medium rounded-full backdrop-blur-sm border border-white/20 transition-all"
       >
         <Icon name="pin" size={18} />
-        Open in Maps
+        {h.maps || t.common.maps}
       </a>
     </div>
   </div>

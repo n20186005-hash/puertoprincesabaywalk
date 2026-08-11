@@ -1,5 +1,6 @@
 ---
 import { siteConfig, mapsUrl, attraction } from '../config';
+import { ui } from '../i18n/ui';
 
 interface Props {
   title?: string;
@@ -15,9 +16,44 @@ const {
   lang = 'en',
 } = Astro.props;
 
+const t = ui[lang] || ui['en'];
+
 const url = siteConfig.baseUrl ? new URL(Astro.url.pathname, siteConfig.baseUrl).href : '';
 const ogUrl = siteConfig.baseUrl ? siteConfig.baseUrl : '';
 const ga4Id = siteConfig.ga4Id;
+
+function faq(l: string) {
+  const qa = (q: string, a: string) => ({
+    '@type': 'Question' as const,
+    name: q,
+    acceptedAnswer: { '@type': 'Answer' as const, text: a },
+  });
+
+  if (l === 'fil') return [
+    qa('Ano ang pinakamagandang oras para bumisita sa Baywalk?', 'Ang pinakamagandang oras ay huling bahagi ng hapon hanggang gabi (bandang 4:30 PM pataas) kapag lumalamig ang temperatura at masisiyahan ka sa nakamamanghang paglubog ng araw sa bay. Bukas ang Baywalk araw-araw mula 2:00 PM hanggang hatinggabi.'),
+    qa('May entrance fee ba sa Baywalk Park?', 'Wala — ang Puerto Princesa City Baywalk Park ay ganap na libre at bukas sa publiko. Ito ay isang pampublikong waterfront promenade na pinapanatili ng city government.'),
+    qa('Ano ang maaari kong gawin sa Puerto Princesa Baywalk?', 'Maaari kang mag-enjoy ng scenic na paglalakad sa tabi ng waterfront, panoorin ang paglubog ng araw, kumain sa mga seafood stall at restaurant, makinig ng live na musika, magrenta ng bisikleta, magpa-picture sa Palawan Peacock-Pheasant sign, at simpleng mag-relax sa tabi ng bay.'),
+    qa('Paano ako pupunta sa Baywalk Park mula sa Puerto Princesa Airport?', 'Ang Baywalk ay halos 2 km mula sa Puerto Princesa International Airport (PPS). Maaari kang sumakay ng tricycle (halos PHP 50-100, 10-15 minuto), taxi, o maglakad kung ikaw ay nasa city center.'),
+    qa('May paradahan ba sa Baywalk Park?', 'Oo, may libreng street parking sa kahabaan ng Sandoval Street at mga itinalagang paradahan malapit sa Baywalk. Gayunpaman, mabilis mapuno ang mga puwesto sa peak sunset hours at weekend.'),
+    qa('May mga restaurant at pagkaing malapit ba?', 'Oo, sikat ang Baywalk area sa mga seafood stall at casual eateries. Kabilang sa mga sikat na kalapit na restaurant ang Kinabuchs Grill, Badjao Seafront, Kalui Restaurant, at maraming lokal na ihawan sa mismong promenade.'),
+  ];
+  if (l === 'zh') return [
+    qa('参观海湾步道的最佳时间是什么？', '最佳时间是下午晚些时候到晚上（大约下午4:30以后），此时气温凉爽，您可以欣赏到海湾上壮丽的日落。海湾步道每天从下午2:00开放至午夜。'),
+    qa('海湾步道公园需要门票吗？', '不需要——普林塞萨港海湾步道公园完全免费向公众开放。它是由市政府维护的公共海滨长廊。'),
+    qa('在普林塞萨港海湾步道可以做什么？', '您可以沿着海滨长廊悠闲散步，欣赏日落，在海鲜摊位和餐厅用餐，聆听现场音乐，租自行车，在孔雀雉标识牌处拍照，在湾区放松身心。'),
+    qa('如何从普林塞萨港机场前往海湾步道公园？', '海湾步道距离普林塞萨港国际机场（PPS）约2公里。您可以乘坐三轮车（约PHP 50-100，10-15分钟）、出租车，如果住在市中心也可以步行前往。'),
+    qa('海湾步道公园有停车场吗？', '有，Sandoval街沿线有免费街边停车，海湾步道附近也有指定停车区域。但日落高峰时段和周末车位可能会很快被占满。'),
+    qa('附近有餐厅和食物选择吗？', '有，海湾步道区域以海鲜摊位和休闲餐厅而闻名。附近受欢迎的餐厅包括Kinabuchs Grill、Badjao Seafront、Kalui Restaurant，以及长廊沿线众多的本地烧烤摊。'),
+  ];
+  return [
+    qa('What is the best time to visit Puerto Princesa City Baywalk Park?', 'The best time is late afternoon to evening (around 4:30 PM onwards) when the temperature cools down and you can enjoy the stunning sunset over the bay. The Baywalk is open daily from 2:00 PM to midnight.'),
+    qa('Is there an entrance fee for Baywalk Park?', 'No, the Puerto Princesa City Baywalk Park is completely free and open to the public. It is a public waterfront promenade maintained by the city government.'),
+    qa('What can I do at Puerto Princesa Baywalk?', 'You can enjoy a scenic walk along the waterfront, watch the sunset, dine at seafood stalls and restaurants, listen to live music, rent a bicycle, take photos with the Palawan Peacock-Pheasant sign, and simply relax by the bay.'),
+    qa('How do I get to Baywalk Park from Puerto Princesa Airport?', 'The Baywalk is about 2 km from Puerto Princesa International Airport (PPS). You can take a tricycle (around PHP 50-100, 10-15 minutes), a taxi, or walk if you are staying in the city center.'),
+    qa('Is there parking available at Baywalk Park?', 'Yes, there is free street parking along Sandoval Street and designated parking areas near the Baywalk. However, spaces can fill up during peak sunset hours and weekends.'),
+    qa('Are there restaurants and food options nearby?', 'Yes, the Baywalk area is famous for its seafood stalls and casual eateries. Popular nearby restaurants include Kinabuchs Grill & Bar, Badjao Seafront Restaurant, Kalui Restaurant, and numerous local ihawan (grill) stalls right along the promenade.'),
+  ];
+}
 ---
 
 <!doctype html>
@@ -49,7 +85,7 @@ const ga4Id = siteConfig.ga4Id;
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
 
-  {/* Favicon — inline SVG, same motif as logo */}
+  {/* Favicon */}
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%231B365D'/%3E%3Cpath d='M16 4c-1 3-3 5-3 8s2 6 3 9c1-3 3-6 3-9s-2-5-3-8z' fill='%232D6A4F'/%3E%3Cpath d='M11 28c2-3 4-5 4-7s-2-5-3-7M21 28c-2-3-4-5-4-7s2-5 3-7' stroke='%23E8784A' stroke-width='1.5' fill='none'/%3E%3Cpath d='M4 18h24' stroke='%23D4A03C' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='18' r='5' fill='%23FDF6EC'/%3E%3Ccircle cx='16' cy='18' r='2.5' fill='%23E8784A'/%3E%3C/svg%3E" />
   <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%231B365D'/%3E%3Cpath d='M16 4c-1 3-3 5-3 8s2 6 3 9c1-3 3-6 3-9s-2-5-3-8z' fill='%232D6A4F'/%3E%3Cpath d='M11 28c2-3 4-5 4-7s-2-5-3-7M21 28c-2-3-4-5-4-7s2-5 3-7' stroke='%23E8784A' stroke-width='1.5' fill='none'/%3E%3Cpath d='M4 18h24' stroke='%23D4A03C' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='18' r='5' fill='%23FDF6EC'/%3E%3Ccircle cx='16' cy='18' r='2.5' fill='%23E8784A'/%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Ccircle cx='90' cy='90' r='85' fill='%231B365D'/%3E%3Cpath d='M90 22c-6 17-17 28-17 45s11 34 17 51c6-17 17-34 17-51s-11-28-17-45z' fill='%232D6A4F'/%3E%3Cpath d='M62 158c11-17 22-28 22-40s-11-28-17-40M118 158c-11-17-22-28-22-40s11-28 17-40' stroke='%23E8784A' stroke-width='8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M22 101h136' stroke='%23D4A03C' stroke-width='6'/%3E%3Ccircle cx='90' cy='101' r='28' fill='%23FDF6EC'/%3E%3Ccircle cx='90' cy='101' r='14' fill='%23E8784A'/%3E%3C/svg%3E" />
@@ -102,60 +138,11 @@ const ga4Id = siteConfig.ga4Id;
     ...(attraction.phone ? { telephone: attraction.phone } : {}),
   })} />
 
-  {/* JSON-LD: FAQPage */}
+  {/* JSON-LD: FAQPage — language-aware */}
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is the best time to visit Puerto Princesa City Baywalk Park?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The best time is late afternoon to evening (around 4:30 PM onwards) when the temperature cools down and you can enjoy the stunning sunset over the bay. The Baywalk is open daily from 2:00 PM to midnight.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is there an entrance fee for Baywalk Park?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No, the Puerto Princesa City Baywalk Park is completely free and open to the public. It is a public waterfront promenade maintained by the city government.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What can I do at Puerto Princesa Baywalk?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'You can enjoy a scenic walk along the waterfront, watch the sunset, dine at seafood stalls and restaurants, listen to live music, rent a bicycle, take photos with the Palawan Peacock-Pheasant sign, and simply relax by the bay.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How do I get to Baywalk Park from Puerto Princesa Airport?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The Baywalk is about 2 km from Puerto Princesa International Airport (PPS). You can take a tricycle (around PHP 50-100, 10-15 minutes), a taxi, or walk if you are staying in the city center.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is there parking available at Baywalk Park?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, there is free street parking along Sandoval Street and designated parking areas near the Baywalk. However, spaces can fill up during peak sunset hours and weekends.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Are there restaurants and food options nearby?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, the Baywalk area is famous for its seafood stalls and casual eateries. Popular nearby restaurants include Kinabuchs Grill & Bar, Badjao Seafront Restaurant, Kalui Restaurant, and numerous local ihawan (grill) stalls right along the promenade.',
-        },
-      },
-    ],
+    mainEntity: faq(lang),
   })} />
 
   <style is:global>
@@ -163,7 +150,9 @@ const ga4Id = siteConfig.ga4Id;
   </style>
 </head>
 <body class="bg-cream text-charcoal font-body">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#main-content" class="skip-link">
+    {lang === 'fil' ? 'Lumaktaw sa pangunahing nilalaman' : lang === 'zh' ? '跳转到主要内容' : 'Skip to main content'}
+  </a>
   <slot />
 </body>
 </html>

@@ -1,17 +1,24 @@
 ---
+import { ui } from '../i18n/ui';
 import Icon from './Icon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const pk = t.parking;
 ---
 
 <section id="parking" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
   <div class="text-center mb-14">
-    <p class="section-eyebrow mb-3">Getting Here</p>
+    <p class="section-eyebrow mb-3">{pk.eyebrow || 'Getting Here'}</p>
     <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
-      Parking Information
+      {pk.title}
     </h2>
     <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
-    <p class="text-navy/60 max-w-2xl mx-auto">
-      Everything you need to know about parking near the Baywalk.
-    </p>
+    <p class="text-navy/60 max-w-2xl mx-auto">{pk.subtitle}</p>
   </div>
 
   <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -21,25 +28,15 @@ import Icon from './Icon.astro';
         <div class="w-12 h-12 bg-palm/10 rounded-xl flex items-center justify-center">
           <Icon name="car" size={24} class="text-palm" />
         </div>
-        <h3 class="font-display font-semibold text-xl text-navy">Street Parking</h3>
+        <h3 class="font-display font-semibold text-xl text-navy">{pk.streetTitle || 'Street Parking'}</h3>
       </div>
       <ul class="space-y-3 text-navy/70 text-sm leading-relaxed">
-        <li class="flex items-start gap-2">
-          <span class="text-palm mt-0.5 shrink-0 font-bold">&#10003;</span>
-          <span><strong class="text-navy">Free street parking</strong> available along Sandoval Street and adjacent roads.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-palm mt-0.5 shrink-0 font-bold">&#10003;</span>
-          <span>Parking is <strong class="text-navy">first-come, first-served</strong> — no reservations.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-palm mt-0.5 shrink-0 font-bold">&#10003;</span>
-          <span>Spaces fill up quickly during <strong class="text-navy">sunset hours (5:00–7:00 PM)</strong> and weekends.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-palm mt-0.5 shrink-0 font-bold">&#10003;</span>
-          <span>Park at your own risk — <strong class="text-navy">don't leave valuables visible</strong> in your car.</span>
-        </li>
+        {pk.streetItems?.map((item: string, idx: number) => (
+          <li class="flex items-start gap-2">
+            <span class="text-palm mt-0.5 shrink-0 font-bold">&#10003;</span>
+            <span set:html={item} />
+          </li>
+        ))}
       </ul>
     </div>
 
@@ -49,29 +46,15 @@ import Icon from './Icon.astro';
         <div class="w-12 h-12 bg-gold/20 rounded-xl flex items-center justify-center">
           <Icon name="info" size={24} class="text-gold-light" />
         </div>
-        <h3 class="font-display font-semibold text-xl">Parking Tips</h3>
+        <h3 class="font-display font-semibold text-xl">{pk.tipsTitle || 'Parking Tips'}</h3>
       </div>
       <ul class="space-y-3 text-white/70 text-sm leading-relaxed">
-        <li class="flex items-start gap-2">
-          <span class="text-gold mt-0.5 shrink-0">&#9679;</span>
-          <span><strong class="text-white">Arrive before 5 PM</strong> for the best parking spots close to the Baywalk entrance.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-gold mt-0.5 shrink-0">&#9679;</span>
-          <span><strong class="text-white">Designated areas</strong> near the Immaculate Conception Cathedral offer additional spaces (5-min walk).</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-gold mt-0.5 shrink-0">&#9679;</span>
-          <span><strong class="text-white">Tricycle / walking</strong> is often easier — if you're staying in the city center, the Baywalk is within walking distance.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-gold mt-0.5 shrink-0">&#9679;</span>
-          <span><strong class="text-white">Motorcycle parking</strong> is much easier to find than car parking.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-gold mt-0.5 shrink-0">&#9679;</span>
-          <span>Nearby hotels (like Hue Hotels or Aziza Paradise) have <strong class="text-white">paid parking</strong> if street parking is full.</span>
-        </li>
+        {pk.tips?.map((tip: string) => (
+          <li class="flex items-start gap-2">
+            <span class="text-gold mt-0.5 shrink-0">&#9679;</span>
+            <span set:html={tip} />
+          </li>
+        ))}
       </ul>
     </div>
   </div>

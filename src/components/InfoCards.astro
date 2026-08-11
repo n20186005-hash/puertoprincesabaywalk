@@ -1,18 +1,27 @@
 ---
+import { ui } from '../i18n/ui';
 import { attraction } from '../config';
 import Icon from './Icon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const inf = t.info;
 ---
 
 <section class="py-16 sm:py-20 bg-sand-warm/30" id="info">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
       {[
-        { icon: 'clock', label: 'Hours', value: '2 PM – 12 AM', sub: 'Daily' },
-        { icon: 'ticket', label: 'Entrance', value: 'Free', sub: 'No admission fee' },
-        { icon: 'star', label: 'Rating', value: `${attraction.rating} / 5`, sub: `${attraction.reviewCount}+ reviews` },
-        { icon: 'pin', label: 'Location', value: 'Sandoval St', sub: 'Puerto Princesa City' },
-        { icon: 'compass', label: 'Best For', value: 'Sunset & Food', sub: 'Evening strolls' },
-        { icon: 'water', label: 'Setting', value: 'Waterfront', sub: 'Sulu Sea views' },
+        { icon: 'clock', label: inf?.hours || 'Hours', value: attraction.hours.display, sub: inf?.hoursDaily || 'Daily' },
+        { icon: 'ticket', label: inf?.entrance || 'Entrance', value: t.tickets?.free || 'Free', sub: inf?.noFee || 'No admission fee' },
+        { icon: 'star', label: inf?.rating || 'Rating', value: `${attraction.rating} / 5`, sub: `${attraction.reviewCount}+ ${inf?.reviews || 'reviews'}` },
+        { icon: 'pin', label: inf?.location || 'Location', value: 'Sandoval St', sub: 'Puerto Princesa City' },
+        { icon: 'compass', label: inf?.bestFor || 'Best For', value: inf?.bestForVal || 'Sunset & Food', sub: inf?.bestForSub || 'Evening strolls' },
+        { icon: 'water', label: inf?.setting || 'Setting', value: inf?.settingVal || 'Waterfront', sub: inf?.settingSub || 'Sulu Sea views' },
       ].map(item => (
         <div class="bg-white rounded-2xl p-4 sm:p-5 text-center shadow-sm hover:shadow-md transition-shadow">
           <div class="w-10 h-10 mx-auto bg-ocean/10 rounded-full flex items-center justify-center mb-3">

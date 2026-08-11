@@ -48,11 +48,36 @@
     "faith": "Heritage",
     "status": "Status",
     "peak": "Peak Hours",
-    "duration": "Suggested Duration"
+    "duration": "Suggested Duration",
+    "hours": "Hours",
+    "entrance": "Entrance",
+    "noFee": "No admission fee",
+    "rating": "Rating",
+    "reviews": "reviews",
+    "location": "Location",
+    "bestFor": "Best For",
+    "bestForVal": "Sunset & Food",
+    "bestForSub": "Evening strolls",
+    "setting": "Setting",
+    "settingVal": "Waterfront",
+    "settingSub": "Sulu Sea views",
+    "hoursDaily": "Daily"
   },
   "intro": {
-    "label": "Welcome to Palawan",
+    "eyebrow": "Welcome to Palawan",
     "title": "A Waterfront Promenade Like No Other",
+    "paragraphs": [
+      "The <strong>Puerto Princesa City Baywalk Park</strong> is the city's beloved waterfront promenade — a vibrant strip where the Sulu Sea breeze meets the rhythm of local life. Stretching along Sandoval Street, this palm-lined esplanade transforms every evening into a celebration of food, music, and sunset colors.",
+      "As dusk falls, the Baywalk comes alive. Food stalls fire up their grills, serving everything from freshly caught seafood to Filipino street-food classics like <em>isaw</em> and <em>balut</em>. Local musicians strum guitars, families stroll with ice cream in hand, and the sky puts on a spectacular show of orange and pink.",
+      "Whether you're a photographer chasing golden hour, a foodie on a culinary adventure, or simply looking for a relaxing evening stroll, the Baywalk offers an authentic taste of Puerto Princesa's warm community spirit — all completely free."
+    ],
+    "highlights": [
+      { "title": "Sunset Views", "desc": "World-class sunsets over the Sulu Sea every evening" },
+      { "title": "Food Paradise", "desc": "Fresh seafood, BBQ, and Pinoy street-food stalls" },
+      { "title": "Live Music", "desc": "Local bands and acoustic performers" },
+      { "title": "Free Entry", "desc": "Open to everyone — no admission fee, pure enjoyment" }
+    ],
+    "label": "Welcome to Palawan",
     "body1": "The Puerto Princesa City Baywalk Park is the city's beloved waterfront promenade — a vibrant strip where the Sulu Sea breeze meets the rhythm of local life. Stretching along Sandoval Street, this palm-lined esplanade transforms every evening into a celebration of food, music, and sunset colors.",
     "body2": "As dusk falls, the Baywalk comes alive. Food stalls fire up their grills, serving everything from freshly caught seafood to Filipino street-food classics like isaw and balut. Local musicians strum guitars, families stroll with ice cream in hand, and the sky puts on a spectacular show of orange and pink."
   },
@@ -75,8 +100,41 @@
     "body2": "Bring a camera for sunset shots, wear comfortable clothing and footwear, and bring some cash for the street food vendors. The Baywalk is safe and well-lit, making it perfect for evening strolls."
   },
   "bestTime": {
+    "eyebrow": "When to Visit",
+    "title": "Best Times for the Baywalk",
+    "subtitle": "The Baywalk transforms throughout the day — here's when to visit for the experience you want",
     "label": "Best Time to Visit",
-    "title": "When to Go to the Baywalk",
+    "periods": {
+      "late": {
+        "title": "Late Afternoon",
+        "time": "4:00 PM – 5:00 PM",
+        "desc": "Arrive before the rush. Claim a good spot, enjoy a quiet stroll, and settle in as the sun begins its descent. Less crowded and perfect for photography.",
+        "badge": "Quietest"
+      },
+      "peak": {
+        "title": "Sunset Hour",
+        "time": "5:00 PM – 6:00 PM",
+        "desc": "The GOLDEN HOUR. The Sulu Sea becomes a canvas of orange and pink — do NOT miss this sunset moment at the main viewing area.",
+        "badge": "GOLDEN HOUR",
+        "bestLabel": "BEST TIME"
+      },
+      "evening": {
+        "title": "Evening",
+        "time": "6:00 PM – 10:00 PM",
+        "desc": "The Baywalk is in full swing after dark. Grills are hot and live music fills the sea breeze. This is dinner time for the locals.",
+        "badge": "Liveliest"
+      }
+    },
+    "durationTitle": "Recommended Duration",
+    "duration": "2–3 Hours",
+    "durationDesc": "Give yourself at least 2 hours to fully experience the Baywalk. This includes walking the promenade, capturing sunset photos, enjoying food from the stalls, and simply hanging out at the waterfront. Most visitors plan to be on the road around 4 PM and leave by around 7 PM after dinner.",
+    "tipsTitle": "Visit Tips",
+    "tips": [
+      "Arrive around <strong>4:30 PM</strong> for the best sunset viewing spots",
+      "Bring <strong>cash</strong> — no credit cards at food stalls",
+      "If you want to <strong>avoid crowds</strong>, walk toward the far northern end of the Baywalk",
+      "<strong>Weekday</strong> visits are best if you prefer fewer people"
+    ],
     "body1": "The best time is late afternoon to evening, around 4:30 PM onwards. This is when the temperature cools down and you can enjoy the stunning sunset over the bay. The sky transforms into brilliant shades of orange, pink, and purple reflected on the water.",
     "body2": "The dry season (November to May) offers the most reliable weather for outdoor activities. However, even during the rainy season, the Baywalk remains a popular spot — just bring an umbrella in case of passing showers."
   },
@@ -133,6 +191,91 @@
     "title": "Nearby Attractions",
     "body1": "The Baywalk is conveniently located near several other Puerto Princesa attractions. The Immaculate Conception Cathedral, Plaza Cuartel, and the Palawan Museum are all within a short distance.",
     "body2": "The Puerto Princesa Underground River — a UNESCO World Heritage Site — is approximately 80 km away and can be visited as a day trip. Honda Bay island hopping tours are another popular activity available from the city center."
+  },
+  "tickets": {
+    "eyebrow": "Admission",
+    "title": "Entrance Fees",
+    "subtitle": "The Baywalk is free — affordable activities and food",
+    "free": "FREE",
+    "freeLabel": "No Entrance Fee",
+    "freeDesc": "No entrance fee for all visitors — no tickets required",
+    "whatsIncluded": "What's Included & Optional Costs",
+    "includedTitle": "Included (Free)",
+    "paidTitle": "At Your Own Cost",
+    "freeItem1": "Access to the entire promenade",
+    "freeItem2": "Sunset viewing areas & benches",
+    "freeItem3": "Public restrooms",
+    "freeItem4": "Photo opportunities",
+    "freeItem5": "People-watching & ambiance",
+    "freeItem6": "Occasional free live music",
+    "paidItem1": "Food & drinks from stalls",
+    "paidPrice1": "PHP 50–300",
+    "paidItem2": "Bicycle rental",
+    "paidPrice2": "PHP 50–100/hr",
+    "paidItem3": "Souvenir shopping",
+    "paidPrice3": "PHP 50–500",
+    "paidItem4": "Tricycle fare to/from",
+    "paidPrice4": "PHP 50–100",
+    "paidItem5": "Ice cream & desserts",
+    "paidPrice5": "PHP 20–80",
+    "paidItem6": "BBQ seafood platter",
+    "paidPrice6": "PHP 150–400",
+    "foodBudget": "PHP 100–500",
+    "foodBudgetDesc": "Street food and seafood stalls throughout the promenade",
+    "activities": "PHP 150–500",
+    "activitiesDesc": "Bike rentals, souvenirs, and other activities",
+    "note": "The Baywalk Park is a public facility maintained by the Puerto Princesa City Government. It is free and open to everyone."
+  },
+  "parking": {
+    "eyebrow": "Parking",
+    "title": "Parking Information",
+    "subtitle": "Ample free parking alongside the Baywalk",
+    "streetTitle": "Street Parking",
+    "streetItems": [
+      "Free <strong>street parking</strong> along Sandoval Street and adjacent roads",
+      "Ample space for <strong>50+ motorcycles</strong> in designated parking bays",
+      "<strong>Car parking</strong> available on both sides of Sandoval Street",
+      "<strong>Tricycle parking</strong> available at the Baywalk's main entrance"
+    ],
+    "tipsTitle": "Parking Tips",
+    "tips": [
+      "Arrive <strong>before 4:30 PM</strong> for the best parking spots",
+      "Parking is on a first-come basis — <strong>entirely free</strong> around the Baywalk",
+      "The <strong>far northern end</strong> often has more available spaces",
+      "<strong>Weekends and holidays</strong>: expect crowded parking after 5 PM",
+      "<strong>Bicycle</strong> parking available at designated racks next to the promenade"
+    ],
+    "bike": "Motorcycles & Bicycles",
+    "bikeDesc": "Plenty of parking space along Sandoval Street",
+    "car": "Cars & Vehicles",
+    "carDesc": "Free street parking — space can be limited during evening hours",
+    "trike": "Tricycles",
+    "trikeDesc": "Can drop you off right at the Baywalk main entrance",
+    "tip": "Tip: Arrive early (before 4:30 PM) for the best parking during sunset hours"
+  },
+  "food": {
+    "title": "Nearby Restaurants & Food",
+    "subtitle": "Fresh seafood, Filipino street food, and casual dining",
+    "restaurants": [
+      ["Kinabuchs Grill & Bar", "Casual Dining", "PHP 250–600", "Famous for fresh seafood and grilled meats, with outdoor seating near the Baywalk"],
+      ["Badjao Seafront Restaurant", "Seafood Special", "PHP 400–900", "Set over the water with stunning views — worth the trip"],
+      ["Kalui Restaurant", "Fine Filipino", "PHP 400–800", "Artistic Filipino cuisine in a beautiful native-style setting"],
+      ["Ihawang Pantalan", "Local Ihawan", "PHP 100–300", "Street-side grill stalls all along the Baywalk promenade"],
+      ["Haim Chicken Inato", "Local Favorite", "PHP 150–300", "Popular Filipino-style roasted chicken, minutes from the Baywalk"],
+      ["Baker's Hill", "Bakery & Snacks", "PHP 100–250", "Famous hopia and pastries — perfect for a quick snack"]
+    ]
+  },
+  "itinerary": {
+    "title": "Visit Plan",
+    "subtitle": "The perfect Baywalk itinerary — 3 hours of sunset and seafood",
+    "items": [
+      { "icon": "sunset", "title": "Arrive in the afternoon", "desc": "Get there around 4:30 PM for the best spots and sunset views" },
+      { "icon": "camera", "title": "Capture the views", "desc": "Snap the perfect sunset photo at the Peacock-Pheasant sign" },
+      { "icon": "walk", "title": "Stroll the promenade", "desc": "Walk end to end — a 20-30 minute stroll with ocean breezes" },
+      { "icon": "food", "title": "Enjoy the seafood", "desc": "Try fresh grilled fish, squid, and shrimp from the stalls" },
+      { "icon": "music", "title": "Live music", "desc": "Listen to local musicians performing along the waterfront" },
+      { "icon": "heart", "title": "Relax and enjoy", "desc": "Find a bench, grab ice cream, and watch the sky transform" }
+    ]
   },
   "gallery": {
     "label": "Photo Gallery",
