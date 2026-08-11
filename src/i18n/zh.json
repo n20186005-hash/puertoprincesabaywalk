@@ -22,7 +22,11 @@
       "map": "地图",
       "nearby": "周边景点",
       "gallery": "相册",
-      "contact": "联系我们"
+      "contact": "联系我们",
+      "tickets": "入场",
+      "parking": "停车",
+      "food": "美食",
+      "itinerary": "行程规划"
     }
   },
   "common": {

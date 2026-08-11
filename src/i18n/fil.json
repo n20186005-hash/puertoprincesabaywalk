@@ -22,7 +22,11 @@
       "map": "Mapa",
       "nearby": "Kalapit",
       "gallery": "Mga Larawan",
-      "contact": "Makipag-ugnayan"
+      "contact": "Makipag-ugnayan",
+      "tickets": "Pagpasok",
+      "parking": "Paradahan",
+      "food": "Pagkain",
+      "itinerary": "Itineraryo"
     }
   },
   "common": {

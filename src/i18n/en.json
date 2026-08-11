@@ -22,7 +22,11 @@
       "map": "Map",
       "nearby": "Nearby",
       "gallery": "Gallery",
-      "contact": "Contact"
+      "contact": "Contact",
+      "tickets": "Admission",
+      "parking": "Parking",
+      "food": "Food",
+      "itinerary": "Itinerary"
     }
   },
   "common": {
