@@ -14,9 +14,9 @@ const messages = ui[lang];
 ---
 
 <BaseLayout lang={lang} title={messages.legal?.cookie?.title}>
-  <Header />
+  <Header lang={lang} />
   <main id="main-content">
     <LegalPage lang={lang} messages={messages} kind="cookie" />
   </main>
-  <Footer />
+  <Footer lang={lang} />
 </BaseLayout>
