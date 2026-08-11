@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-sunset: #E8784A;
+  --color-sunset-deep: #D45D2E;
+  --color-ocean: #0A7E8C;
+  --color-ocean-deep: #065A66;
+  --color-navy: #1B365D;
+  --color-navy-light: #2C5282;
+  --color-sand: #FDF6EC;
+  --color-sand-warm: #F5E6D3;
+  --color-gold: #D4A03C;
+  --color-gold-light: #E8C96A;
+  --color-palm: #2D6A4F;
+  --color-palm-light: #40916C;
+  --color-coral: #F4845F;
+  --color-cream: #FFFAF5;
+  --color-charcoal: #1A1A2E;
+
+  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-accent: "Playfair Display", ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-sunset);
+  color: #fff;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-ocean);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-ocean-deep);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+.section-eyebrow {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--color-sunset);
+}
+
+.glass-card {
+  background: rgba(255, 250, 245, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 160, 60, 0.25);
+  box-shadow: 0 8px 32px -12px rgba(27, 54, 93, 0.2);
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Gallery lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox.open {
+  display: flex;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Gallery grid responsive */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* Checklist styles */
+.checklist-item {
+  transition: all 0.2s ease;
+}
+.checklist-item.checked .checklist-label {
+  text-decoration: line-through;
+  opacity: 0.6;
+}

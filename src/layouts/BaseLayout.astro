@@ -1,0 +1,167 @@
+---
+import { siteConfig, mapsUrl, attraction } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = attraction.name,
+  description = attraction.description,
+  ogImage = '/gallery/puerto-princesa-city-baywalk-park-1.jpg',
+} = Astro.props;
+
+const url = siteConfig.baseUrl ? new URL(Astro.url.pathname, siteConfig.baseUrl).href : '';
+const ogUrl = siteConfig.baseUrl ? siteConfig.baseUrl : '';
+const ga4Id = siteConfig.ga4Id;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  {url && <link rel="canonical" href={url} />}
+
+  {/* Open Graph */}
+  {ogUrl && (
+    <>
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={ogUrl} />
+      {ogImage && siteConfig.baseUrl && (
+        <meta property="og:image" content={new URL(ogImage, siteConfig.baseUrl).href} />
+      )}
+      <meta property="og:site_name" content={attraction.name} />
+    </>
+  )}
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  {/* Favicon — inline SVG, same motif as logo */}
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%231B365D'/%3E%3Cpath d='M16 4c-1 3-3 5-3 8s2 6 3 9c1-3 3-6 3-9s-2-5-3-8z' fill='%232D6A4F'/%3E%3Cpath d='M11 28c2-3 4-5 4-7s-2-5-3-7M21 28c-2-3-4-5-4-7s2-5 3-7' stroke='%23E8784A' stroke-width='1.5' fill='none'/%3E%3Cpath d='M4 18h24' stroke='%23D4A03C' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='18' r='5' fill='%23FDF6EC'/%3E%3Ccircle cx='16' cy='18' r='2.5' fill='%23E8784A'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%231B365D'/%3E%3Cpath d='M16 4c-1 3-3 5-3 8s2 6 3 9c1-3 3-6 3-9s-2-5-3-8z' fill='%232D6A4F'/%3E%3Cpath d='M11 28c2-3 4-5 4-7s-2-5-3-7M21 28c-2-3-4-5-4-7s2-5 3-7' stroke='%23E8784A' stroke-width='1.5' fill='none'/%3E%3Cpath d='M4 18h24' stroke='%23D4A03C' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='18' r='5' fill='%23FDF6EC'/%3E%3Ccircle cx='16' cy='18' r='2.5' fill='%23E8784A'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Ccircle cx='90' cy='90' r='85' fill='%231B365D'/%3E%3Cpath d='M90 22c-6 17-17 28-17 45s11 34 17 51c6-17 17-34 17-51s-11-28-17-45z' fill='%232D6A4F'/%3E%3Cpath d='M62 158c11-17 22-28 22-40s-11-28-17-40M118 158c-11-17-22-28-22-40s11-28 17-40' stroke='%23E8784A' stroke-width='8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M22 101h136' stroke='%23D4A03C' stroke-width='6'/%3E%3Ccircle cx='90' cy='101' r='28' fill='%23FDF6EC'/%3E%3Ccircle cx='90' cy='101' r='14' fill='%23E8784A'/%3E%3C/svg%3E" />
+
+  {/* Font preconnect */}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  {/* GA4 */}
+  {ga4Id && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
+      <script is:inline define:vars={{ ga4Id }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', ga4Id);
+      </script>
+    </>
+  )}
+
+  {/* JSON-LD: TouristAttraction */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: attraction.name,
+    description: attraction.description,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Sandoval St',
+      addressLocality: 'Puerto Princesa City',
+      addressRegion: 'Palawan',
+      addressCountry: 'PH',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: attraction.lat,
+      longitude: attraction.lng,
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: attraction.hours.open,
+      closes: attraction.hours.close,
+    },
+    touristType: ['Families', 'Couples', 'Solo Travelers', 'Groups'],
+    publicAccess: true,
+    sameAs: [mapsUrl],
+    ...(siteConfig.baseUrl ? { url: siteConfig.baseUrl } : {}),
+    ...(attraction.phone ? { telephone: attraction.phone } : {}),
+  })} />
+
+  {/* JSON-LD: FAQPage */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the best time to visit Puerto Princesa City Baywalk Park?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The best time is late afternoon to evening (around 4:30 PM onwards) when the temperature cools down and you can enjoy the stunning sunset over the bay. The Baywalk is open daily from 2:00 PM to midnight.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is there an entrance fee for Baywalk Park?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No, the Puerto Princesa City Baywalk Park is completely free and open to the public. It is a public waterfront promenade maintained by the city government.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What can I do at Puerto Princesa Baywalk?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You can enjoy a scenic walk along the waterfront, watch the sunset, dine at seafood stalls and restaurants, listen to live music, rent a bicycle, take photos with the Palawan Peacock-Pheasant sign, and simply relax by the bay.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I get to Baywalk Park from Puerto Princesa Airport?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The Baywalk is about 2 km from Puerto Princesa International Airport (PPS). You can take a tricycle (around PHP 50-100, 10-15 minutes), a taxi, or walk if you are staying in the city center.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is there parking available at Baywalk Park?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, there is free street parking along Sandoval Street and designated parking areas near the Baywalk. However, spaces can fill up during peak sunset hours and weekends.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Are there restaurants and food options nearby?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, the Baywalk area is famous for its seafood stalls and casual eateries. Popular nearby restaurants include Kinabuchs Grill & Bar, Badjao Seafront Restaurant, Kalui Restaurant, and numerous local ihawan (grill) stalls right along the promenade.',
+        },
+      },
+    ],
+  })} />
+
+  <style is:global>
+    /* Additional global styles handled in global.css */
+  </style>
+</head>
+<body class="bg-cream text-charcoal font-body">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <slot />
+</body>
+</html>

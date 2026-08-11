@@ -1,0 +1,42 @@
+---
+import { attraction, mapsEmbedSrc, mapsUrl } from '../config';
+import Icon from './Icon.astro';
+---
+
+<!-- Map Embed -->
+<section id="map" class="relative" aria-label="Google Maps location">
+  <div class="w-full" style="aspect-ratio: 16/9; min-height: 400px;">
+    <iframe
+      title="Puerto Princesa City Baywalk Park on Google Maps"
+      src={mapsEmbedSrc}
+      width="100%"
+      height="100%"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="block"
+    ></iframe>
+  </div>
+
+  <!-- Overlay Info -->
+  <div class="absolute bottom-4 left-4 sm:left-8 z-10">
+    <div class="glass-card rounded-xl p-3 sm:p-4 max-w-xs">
+      <p class="text-xs text-navy/50 uppercase tracking-wider font-semibold mb-1">Location</p>
+      <p class="text-sm font-semibold text-navy">{attraction.address}</p>
+      <div class="flex items-center gap-1.5 mt-2">
+        <Icon name="pin" size={14} class="text-sunset" />
+        <span class="text-xs text-navy/60">{attraction.plusCode}</span>
+      </div>
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1 mt-2 text-xs text-ocean hover:text-ocean-deep font-medium transition-colors"
+      >
+        Open in Google Maps
+        <Icon name="arrow" size={12} />
+      </a>
+    </div>
+  </div>
+</section>

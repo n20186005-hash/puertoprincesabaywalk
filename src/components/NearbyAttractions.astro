@@ -1,0 +1,84 @@
+---
+import Icon from './Icon.astro';
+
+const nearbyAttractions = [
+  {
+    name: 'Immaculate Conception Cathedral',
+    distance: '320 m',
+    type: 'Historical · Religious Site',
+    description: 'A beautiful blue-and-white Catholic cathedral built in 1961, known for its angular modern architecture. A peaceful landmark in the heart of Puerto Princesa.',
+    icon: 'shield',
+  },
+  {
+    name: 'Plaza Cuartel',
+    distance: '370 m',
+    type: 'Historical · Memorial',
+    description: 'A restored Spanish-era garrison turned memorial park, with a poignant history from World War II. Today it\'s a tranquil garden with bay views.',
+    icon: 'globe',
+  },
+  {
+    name: 'Palawan Museum',
+    distance: '660 m',
+    type: 'Cultural · Museum',
+    description: 'A small but informative museum showcasing Palawan\'s indigenous cultures, fossils, and the Tabon Cave artifacts — a must for history buffs.',
+    icon: 'info',
+  },
+  {
+    name: 'Puerto Princesa Underground River',
+    distance: '~80 km',
+    type: 'UNESCO World Heritage · Nature',
+    description: 'One of the New 7 Wonders of Nature — a subterranean river flowing through a stunning cave system. Requires a day trip from the city.',
+    icon: 'water',
+  },
+  {
+    name: 'Honda Bay',
+    distance: '~12 km',
+    type: 'Nature · Island Hopping',
+    description: 'A beautiful bay for island-hopping tours — swim, snorkel, and relax on pristine islands like Starfish Island, Cowrie Island, and Luli Island.',
+    icon: 'compass',
+  },
+  {
+    name: 'Baker\'s Hill',
+    distance: '~4 km',
+    type: 'Food · Family Attraction',
+    description: 'A hilltop bakery and garden park famous for hopia (Filipino pastry) and panoramic views. Fun stop for families and pasalubong shopping.',
+    icon: 'leaf',
+  },
+];
+---
+
+<section id="nearby" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="section-eyebrow mb-3">Explore More</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+      Nearby Attractions
+    </h2>
+    <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+    <p class="text-navy/60 max-w-2xl mx-auto">
+      The Baywalk is surrounded by Puerto Princesa's best landmarks and natural wonders.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {nearbyAttractions.map(attr => (
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-sand-warm/40 hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-ocean/10 rounded-xl flex items-center justify-center shrink-0">
+            <Icon name={attr.icon} size={20} class="text-ocean" />
+          </div>
+          <div>
+            <h3 class="font-display font-semibold text-navy">{attr.name}</h3>
+            <p class="text-xs text-ocean font-medium">{attr.type}</p>
+          </div>
+        </div>
+        <p class="text-navy/60 text-sm leading-relaxed mb-3">{attr.description}</p>
+        <div class="flex items-center gap-2">
+          <span class="bg-sunset/10 text-sunset text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+            <Icon name="pin" size={12} />
+            {attr.distance} from Baywalk
+          </span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

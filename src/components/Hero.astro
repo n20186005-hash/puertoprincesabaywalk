@@ -1,0 +1,58 @@
+---
+import { attraction, mapsUrl } from '../config';
+import Icon from './Icon.astro';
+---
+
+<section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden" id="home">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="/gallery/puerto-princesa-city-baywalk-park-3.jpg"
+      alt="Puerto Princesa City Baywalk Park at sunset"
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/60 via-navy/30 to-navy/80"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto mt-8">
+    <p class="section-eyebrow text-sand-warm mb-4">Palawan, Philippines</p>
+    <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
+      {attraction.name}
+    </h1>
+    <p class="font-accent italic text-lg sm:text-xl text-sand-warm/90 mb-8 max-w-2xl mx-auto">
+      &ldquo;{attraction.tagline}&rdquo;
+    </p>
+
+    <!-- Rating -->
+    <div class="flex items-center justify-center gap-2 mb-8 text-gold-light">
+      <Icon name="star" size={20} />
+      <span class="font-semibold text-white text-lg">{attraction.rating}</span>
+      <span class="text-sand-warm/70 text-sm">({attraction.reviewCount}+ reviews)</span>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a href="#about" class="inline-flex items-center gap-2 px-6 py-3 bg-sunset hover:bg-sunset-deep text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl">
+        Explore the Baywalk
+        <Icon name="arrow" size={18} />
+      </a>
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-white/15 hover:bg-white/25 text-white font-medium rounded-full backdrop-blur-sm border border-white/20 transition-all"
+      >
+        <Icon name="pin" size={18} />
+        Open in Maps
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+    <Icon name="chevron" size={28} class="text-white/60" />
+  </div>
+</section>

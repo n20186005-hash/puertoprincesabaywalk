@@ -1,0 +1,76 @@
+---
+import { attraction } from '../config';
+import Icon from './Icon.astro';
+
+const faqItems = [
+  {
+    q: 'What is the best time to visit the Baywalk?',
+    a: 'The best time is late afternoon to evening, starting around 4:30 PM. Arrive before sunset (around 5:45–6:15 PM depending on the season) to find a good spot, then stay for dinner and live music. The Baywalk is open daily from 2:00 PM to midnight.',
+  },
+  {
+    q: 'Is there an entrance fee?',
+    a: 'No — the Puerto Princesa City Baywalk Park is completely free and open to the public. It is a public waterfront promenade maintained by the city government. Food, drinks, and activities are at your own expense.',
+  },
+  {
+    q: 'What can I do at the Baywalk?',
+    a: 'Plenty! Walk the promenade, watch the sunset, eat at the seafood stalls and nearby restaurants, listen to live music, rent a bicycle, take photos, buy souvenirs, and simply relax by the Sulu Sea. It\'s the city\'s main evening social hub.',
+  },
+  {
+    q: 'Are the food stalls safe to eat at?',
+    a: 'Generally yes — the Baywalk food stalls are popular with both locals and tourists. Look for stalls with a high turnover of customers and freshly cooked food. As with any street food, use your judgment and avoid anything that looks like it\'s been sitting out too long.',
+  },
+  {
+    q: 'How do I get to the Baywalk from the airport?',
+    a: 'The Baywalk is about 2 km from Puerto Princesa International Airport. Take a tricycle (PHP 50–100, about 10 minutes), a taxi, or arrange a hotel shuttle. If you\'re staying in the city center, you can walk there in 10–20 minutes.',
+  },
+  {
+    q: 'Is there parking available?',
+    a: 'Yes, there is free street parking along Sandoval Street and adjacent roads. Spaces fill up quickly during peak sunset hours (5:00–7:00 PM) and on weekends, so arrive early. Motorcycle parking is easier to find.',
+  },
+  {
+    q: 'Is the Baywalk wheelchair-accessible?',
+    a: 'The main promenade is mostly flat and paved, making it generally accessible for wheelchair users and strollers. However, some sections may have uneven surfaces. Public restrooms are available.',
+  },
+  {
+    q: 'What nearby attractions can I combine with my Baywalk visit?',
+    a: 'The Immaculate Conception Cathedral (320 m), Plaza Cuartel (370 m), and Palawan Museum (660 m) are all within walking distance. For day trips, Honda Bay (island hopping) is about 12 km away, and the famous Underground River is about 80 km north.',
+  },
+  {
+    q: 'Is it safe at night?',
+    a: 'Yes, the Baywalk is generally safe with a lively crowd and a visible police presence. Like any tourist area, keep an eye on your belongings, avoid poorly lit side streets late at night, and use a tricycle if returning to your hotel after midnight.',
+  },
+  {
+    q: 'What should I bring?',
+    a: 'Bring cash (most stalls are cash-only), light clothing, mosquito repellent, a camera for the sunset, and an appetite! A light jacket can be useful on breezy evenings. Leave valuables in your hotel safe.',
+  },
+];
+---
+
+<section id="faq" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="section-eyebrow mb-3">Common Questions</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+      Frequently Asked Questions
+    </h2>
+    <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+    <p class="text-navy/60 max-w-2xl mx-auto">
+      Everything you might want to know before visiting {attraction.name}.
+    </p>
+  </div>
+
+  <div class="max-w-3xl mx-auto space-y-3">
+    {faqItems.map((item) => (
+      <details class="group bg-white rounded-2xl border border-sand-warm/40 shadow-sm overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer p-5 sm:p-6 select-none">
+          <span class="font-display font-semibold text-navy pr-4 text-sm sm:text-base">{item.q}</span>
+          <span class="shrink-0 w-7 h-7 bg-sand-warm/40 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform duration-300">
+            <Icon name="chevron" size={16} class="text-navy/60" />
+          </span>
+        </summary>
+        <div class="px-5 sm:px-6 pb-5 sm:pb-6 -mt-2">
+          <p class="text-navy/70 text-sm leading-relaxed">{item.a}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

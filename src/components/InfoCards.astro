@@ -1,0 +1,28 @@
+---
+import { attraction } from '../config';
+import Icon from './Icon.astro';
+---
+
+<section class="py-16 sm:py-20 bg-sand-warm/30" id="info">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      {[
+        { icon: 'clock', label: 'Hours', value: '2 PM – 12 AM', sub: 'Daily' },
+        { icon: 'ticket', label: 'Entrance', value: 'Free', sub: 'No admission fee' },
+        { icon: 'star', label: 'Rating', value: `${attraction.rating} / 5`, sub: `${attraction.reviewCount}+ reviews` },
+        { icon: 'pin', label: 'Location', value: 'Sandoval St', sub: 'Puerto Princesa City' },
+        { icon: 'compass', label: 'Best For', value: 'Sunset & Food', sub: 'Evening strolls' },
+        { icon: 'water', label: 'Setting', value: 'Waterfront', sub: 'Sulu Sea views' },
+      ].map(item => (
+        <div class="bg-white rounded-2xl p-4 sm:p-5 text-center shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 mx-auto bg-ocean/10 rounded-full flex items-center justify-center mb-3">
+            <Icon name={item.icon} size={20} class="text-ocean" />
+          </div>
+          <p class="text-xs font-semibold text-navy/50 uppercase tracking-wider mb-1">{item.label}</p>
+          <p class="font-display font-bold text-navy text-sm sm:text-base mb-0.5">{item.value}</p>
+          <p class="text-xs text-navy/40">{item.sub}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

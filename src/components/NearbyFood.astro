@@ -1,0 +1,125 @@
+---
+import Icon from './Icon.astro';
+
+const restaurants = [
+  {
+    name: 'Kinabuchs Grill & Bar',
+    type: 'Filipino · Grill · Bar',
+    description: 'A Puerto Princesa institution famous for its grilled specialties, cold beer, and lively atmosphere. Try the sizzling sisig and crocodile sisig (a local delicacy).',
+    price: 'PHP 200–600',
+    distance: '5 min walk',
+    highlight: 'Local favorite since 1990s',
+  },
+  {
+    name: 'Kalui Restaurant',
+    type: 'Filipino · Seafood · Fine Dining',
+    description: 'An art-filled, award-winning restaurant serving fresh seafood in a traditional Filipino setting. Famous for its tasting menu and artistic ambiance.',
+    price: 'PHP 400–1,000',
+    distance: '10 min walk / 3 min tricycle',
+    highlight: 'Advance booking recommended',
+  },
+  {
+    name: 'Badjao Seafront Restaurant',
+    type: 'Seafood · Ocean View · Casual',
+    description: 'Built on stilts over the water, this iconic restaurant offers stunning bay views with your meal. Sunset dinners here are unforgettable.',
+    price: 'PHP 300–800',
+    distance: '15 min tricycle',
+    highlight: 'Stunning waterfront dining',
+  },
+  {
+    name: 'Haim Chicken Inato',
+    type: 'Filipino · Chicken · Fast-Casual',
+    description: 'Local chain serving juicy charcoal-grilled chicken (chicken inato) — the Palawan style. Affordable, fast, and delicious.',
+    price: 'PHP 80–200',
+    distance: '5 min walk',
+    highlight: 'Best budget eats',
+  },
+  {
+    name: 'Balay Inato',
+    type: 'Filipino · BBQ · Family-Friendly',
+    description: 'A relaxing garden-style restaurant near the Baywalk serving Filipino comfort food including grilled meats and fresh seafood.',
+    price: 'PHP 150–400',
+    distance: '7 min walk',
+    highlight: 'Great for groups',
+  },
+  {
+    name: 'Captain Ribs',
+    type: 'BBQ · Ribs · Casual Dining',
+    description: 'American-style ribs with a Filipino twist. Generous portions and a casual, fun atmosphere perfect for hungry travelers.',
+    price: 'PHP 250–500',
+    distance: '10 min tricycle',
+    highlight: 'Meat lovers\' paradise',
+  },
+];
+
+const streetFood = [
+  { item: 'Grilled Squid (Pusit)', price: 'PHP 50–100', desc: 'Freshly grilled, stuffed with onions & tomatoes' },
+  { item: 'Fish Balls & Kikiam', price: 'PHP 20–50', desc: 'Classic Filipino street snacks with sweet & spicy sauce' },
+  { item: 'Isaw (Chicken Intestines)', price: 'PHP 15–30', desc: 'Grilled on skewers, a local favorite' },
+  { item: 'BBQ Pork Skewers', price: 'PHP 20–40', desc: 'Marinated and flame-grilled to perfection' },
+  { item: 'Halo-Halo', price: 'PHP 50–80', desc: 'Shaved ice dessert with mixed toppings' },
+  { item: 'Fresh Coconut Juice', price: 'PHP 30–50', desc: 'Served straight from the shell' },
+];
+---
+
+<section id="food" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="section-eyebrow mb-3">Taste of Palawan</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+      Nearby Food &amp; Dining
+    </h2>
+    <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+    <p class="text-navy/60 max-w-2xl mx-auto">
+      From street-food stalls along the Baywalk to sit-down restaurants — Palawan's food scene awaits.
+    </p>
+  </div>
+
+  <!-- Street Food -->
+  <div class="mb-14">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 bg-sunset/10 rounded-xl flex items-center justify-center">
+        <Icon name="food" size={20} class="text-sunset" />
+      </div>
+      <h3 class="font-display font-semibold text-xl text-navy">Baywalk Street Food Stalls</h3>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      {streetFood.map(item => (
+        <div class="bg-white rounded-xl p-3 shadow-sm border border-sand-warm/40 text-center">
+          <p class="font-semibold text-navy text-xs mb-1">{item.item}</p>
+          <p class="text-sunset font-bold text-xs">{item.price}</p>
+          <p class="text-navy/40 text-[10px] mt-1">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Restaurants -->
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {restaurants.map(r => (
+      <div class="bg-white rounded-2xl shadow-sm border border-sand-warm/40 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+        <div class="p-5 flex-1">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h4 class="font-display font-semibold text-navy">{r.name}</h4>
+              <p class="text-xs text-navy/40 mt-0.5">{r.type}</p>
+            </div>
+            <span class="bg-palm/10 text-palm text-xs font-semibold px-2 py-1 rounded-full shrink-0">
+              {r.distance}
+            </span>
+          </div>
+          <p class="text-navy/60 text-sm leading-relaxed mb-3">{r.description}</p>
+          <div class="flex items-center gap-2">
+            <span class="bg-gold/10 text-gold text-xs font-semibold px-2 py-0.5 rounded-full">{r.price}</span>
+            {r.highlight && (
+              <span class="bg-sunset/10 text-sunset text-xs px-2 py-0.5 rounded-full">{r.highlight}</span>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="text-center text-navy/40 text-xs mt-8">
+    Prices are approximate and may vary. All restaurants are independently operated.
+  </p>
+</section>

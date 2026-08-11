@@ -1,0 +1,102 @@
+---
+import Icon from './Icon.astro';
+
+const photos = Array.from({ length: 12 }, (_, i) => ({
+  src: `/gallery/puerto-princesa-city-baywalk-park-${i + 1}.jpg`,
+  alt: `Puerto Princesa City Baywalk Park — Photo ${i + 1}`,
+  w: 800,
+  h: 600,
+}));
+---
+
+<section id="gallery" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-navy">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <p class="section-eyebrow text-gold-light/80 mb-3">Photo Gallery</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-4">
+        Scenes from the Baywalk
+      </h2>
+      <div class="w-20 h-1 bg-gold rounded-full mx-auto mb-4"></div>
+      <p class="text-white/60 max-w-2xl mx-auto">
+        A glimpse of the sunsets, flavors, and moments that make this waterfront special.
+      </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid mb-8">
+      {photos.map((photo, i) => (
+        <button
+          class="group relative overflow-hidden rounded-2xl cursor-zoom-in focus:outline-2 focus:outline-gold bg-navy-light/30"
+          data-lightbox={`/gallery/puerto-princesa-city-baywalk-park-${i + 1}.jpg`}
+          aria-label={`View larger photo: ${photo.alt}`}
+        >
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            loading="lazy"
+            width={photo.w}
+            height={photo.h}
+            class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <div class="bg-white/90 rounded-full p-2">
+              <Icon name="camera" size={22} class="text-navy" />
+            </div>
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="Image lightbox" aria-hidden="true">
+      <button
+        id="lightbox-close"
+        class="absolute top-4 right-4 z-10 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+        aria-label="Close lightbox"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <img id="lightbox-img" src="" alt="" loading="lazy" />
+    </div>
+
+    <p class="text-center text-white/40 text-xs mt-6">
+      All photos are of Puerto Princesa City Baywalk Park. Click any image to enlarge.
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+  // Lightbox functionality
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('[data-lightbox]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const src = btn.dataset.lightbox;
+      if (lbImg && src) {
+        lbImg.src = src;
+        lbImg.alt = btn.querySelector('img')?.alt || '';
+        lb?.classList.add('open');
+        lb?.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  function closeLightbox() {
+    lb?.classList.remove('open');
+    lb?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  lb?.addEventListener('click', (e) => {
+    if (e.target === lb) closeLightbox();
+  });
+  lbClose?.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lb?.classList.contains('open')) closeLightbox();
+  });
+</script>

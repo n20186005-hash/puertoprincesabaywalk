@@ -1,0 +1,115 @@
+---
+import Icon from './Icon.astro';
+
+const checklistItems = [
+  { id: 'sunset', label: 'Watch the sunset over Sulu Sea', icon: 'sunset' },
+  { id: 'seafood', label: 'Try grilled seafood at the Baywalk stalls', icon: 'food' },
+  { id: 'photo', label: 'Take a photo with the Palawan Peacock-Pheasant sign', icon: 'camera' },
+  { id: 'walk', label: 'Stroll the full length of the promenade', icon: 'walk' },
+  { id: 'dessert', label: 'Eat halo-halo or ice cream by the bay', icon: 'heart' },
+  { id: 'music', label: 'Listen to live acoustic music', icon: 'music' },
+  { id: 'bike', label: 'Rent a bicycle and ride along Sandoval St', icon: 'bike' },
+  { id: 'souvenir', label: 'Buy a local souvenir from nearby shops', icon: 'globe' },
+  { id: 'cathedral', label: 'Visit Immaculate Conception Cathedral (nearby)', icon: 'shield' },
+  { id: 'friends', label: 'Enjoy the evening with friends or family', icon: 'users' },
+];
+---
+
+<section id="itinerary" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-sand-warm/30">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14">
+      <p class="section-eyebrow mb-3">Plan Your Evening</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+        Baywalk Checklist
+      </h2>
+      <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+      <p class="text-navy/60">
+        Tick off experiences as you go — saved to your device, never sent anywhere.
+      </p>
+    </div>
+
+    <div id="checklist-container" class="bg-white rounded-2xl shadow-sm border border-sand-warm/50 p-4 sm:p-6">
+      {checklistItems.map(item => (
+        <label
+          class="checklist-item flex items-center gap-3 py-3 px-2 cursor-pointer border-b border-sand-warm/30 last:border-0 hover:bg-sand-warm/10 rounded-lg transition-colors"
+        >
+          <input
+            type="checkbox"
+            class="checklist-checkbox w-5 h-5 rounded accent-sunset cursor-pointer shrink-0"
+            data-id={item.id}
+          />
+          <Icon name={item.icon} size={18} class="text-navy/40 shrink-0" />
+          <span class="checklist-label text-sm text-navy/80">{item.label}</span>
+        </label>
+      ))}
+    </div>
+
+    <div class="flex items-center justify-center gap-4 mt-6">
+      <span id="checklist-progress" class="text-sm text-navy/50 font-medium">
+        0 / {checklistItems.length} completed
+      </span>
+      <button
+        id="checklist-reset"
+        class="text-xs text-sunset hover:text-sunset-deep font-medium transition-colors underline underline-offset-2"
+      >
+        Reset All
+      </button>
+    </div>
+    <p class="text-center text-navy/30 text-[11px] mt-3">
+      Data saved locally on your device (localStorage). Nothing is uploaded or shared.
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = 'baywalk-checklist';
+    const checkboxes = document.querySelectorAll('.checklist-checkbox');
+    const progress = document.getElementById('checklist-progress');
+    const resetBtn = document.getElementById('checklist-reset');
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        checkboxes.forEach(cb => {
+          const id = cb.dataset.id;
+          if (id && saved[id]) cb.checked = true;
+        });
+      } catch {}
+      updateProgress();
+    }
+
+    function saveState() {
+      var state = {};
+      checkboxes.forEach(function(cb) {
+        var id = cb.dataset.id;
+        if (id) state[id] = cb.checked;
+      });
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+      updateProgress();
+    }
+
+    function updateProgress() {
+      var total = checkboxes.length;
+      var checked = Array.from(checkboxes).filter(function(cb) { return cb.checked; }).length;
+      if (progress) {
+        progress.textContent = `${checked} / ${total} completed`;
+      }
+      // Toggle checked class on parent
+      checkboxes.forEach(function(cb) {
+        var parent = cb.closest('.checklist-item');
+        if (parent) parent.classList.toggle('checked', cb.checked);
+      });
+    }
+
+    checkboxes.forEach(function(cb) { cb.addEventListener('change', saveState); });
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function() {
+        checkboxes.forEach(function(cb) { cb.checked = false; });
+        saveState();
+      });
+    }
+
+    loadState();
+  })();
+</script>

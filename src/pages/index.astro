@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Introduction from '../components/Introduction.astro';
+import InfoCards from '../components/InfoCards.astro';
+import BestTime from '../components/BestTime.astro';
+import TicketFees from '../components/TicketFees.astro';
+import ParkingInfo from '../components/ParkingInfo.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import NearbyFood from '../components/NearbyFood.astro';
+import TransportSection from '../components/TransportSection.astro';
+import MapSection from '../components/MapSection.astro';
+import NearbyAttractions from '../components/NearbyAttractions.astro';
+import ItineraryChecklist from '../components/ItineraryChecklist.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <Introduction />
+    <InfoCards />
+    <BestTime />
+    <TicketFees />
+    <ParkingInfo />
+    <PhotoGallery />
+    <MapSection />
+    <NearbyFood />
+    <TransportSection />
+    <NearbyAttractions />
+    <ItineraryChecklist />
+    <FAQ />
+  </main>
+  <Footer />
+</BaseLayout>

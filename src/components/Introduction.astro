@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section id="about" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <!-- Text -->
+    <div>
+      <p class="section-eyebrow mb-3">Welcome to Palawan</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-6">
+        A Waterfront Promenade<br />Like No Other
+      </h2>
+      <div class="w-20 h-1 bg-sunset rounded-full mb-6"></div>
+      <div class="space-y-4 text-navy/80 leading-relaxed">
+        <p>
+          The <strong class="text-navy">Puerto Princesa City Baywalk Park</strong> is the city's beloved waterfront promenade — a vibrant strip where the Sulu Sea breeze meets the rhythm of local life. Stretching along Sandoval Street, this palm-lined esplanade transforms every evening into a celebration of food, music, and sunset colors.
+        </p>
+        <p>
+          As dusk falls, the Baywalk comes alive. Food stalls fire up their grills, serving everything from freshly caught seafood to Filipino street-food classics like <em>isaw</em> and <em>balut</em>. Local musicians strum guitars, families stroll with ice cream in hand, and the sky puts on a spectacular show of orange and pink.
+        </p>
+        <p>
+          Whether you're a photographer chasing the golden hour, a food lover on a culinary adventure, or simply looking for a relaxing evening walk, the Baywalk offers a genuine taste of Puerto Princesa's warm community spirit — all for free.
+        </p>
+      </div>
+    </div>
+
+    <!-- Highlights Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {[
+        { icon: 'sunset', title: 'Sunset Views', desc: 'World-class sunsets over the Sulu Sea every evening' },
+        { icon: 'food', title: 'Food Paradise', desc: 'Fresh seafood, BBQ, and Filipino street-food stalls' },
+        { icon: 'music', title: 'Live Music', desc: 'Local bands and acoustic performers set the mood' },
+        { icon: 'heart', title: 'Free Entry', desc: 'Open to everyone — no entrance fee, just pure enjoyment' },
+      ].map(item => (
+        <div class="glass-card rounded-2xl p-5 hover:shadow-lg transition-shadow">
+          <div class="w-10 h-10 bg-sunset/10 rounded-xl flex items-center justify-center mb-3">
+            <Icon name={item.icon} size={20} class="text-sunset" />
+          </div>
+          <h3 class="font-display font-semibold text-navy mb-1">{item.title}</h3>
+          <p class="text-sm text-navy/60">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

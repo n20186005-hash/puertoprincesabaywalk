@@ -1,0 +1,101 @@
+---
+import { attraction } from '../config';
+import Icon from './Icon.astro';
+
+const transportOptions = [
+  {
+    icon: 'plane',
+    title: 'By Air',
+    items: [
+      '<strong>Puerto Princesa International Airport (PPS)</strong> — about 2 km from the Baywalk.',
+      '<strong>Domestic flights</strong> from Manila (1.5 hr), Cebu (1 hr), Clark, and Iloilo.',
+      '<strong>From the airport:</strong> Tricycle (PHP 50–100, 10 min), taxi, or hotel shuttle.',
+    ],
+  },
+  {
+    icon: 'bus',
+    title: 'By Bus / Van',
+    items: [
+      '<strong>San Jose Terminal</strong> (about 2.5 km) — buses and vans from El Nido (5–6 hrs), Sabang, and other Palawan towns.',
+      'From terminal: Tricycle to Baywalk (PHP 50–80, 10 min).',
+      'Cherry Bus and Roro Bus serve the Puerto Princesa–El Nido route with multiple daily departures.',
+    ],
+  },
+  {
+    icon: 'walk',
+    title: 'On Foot / Tricycle',
+    items: [
+      '<strong>Walking:</strong> If you\'re staying in the city center, the Baywalk is an easy 10–20 minute walk from most hotels.',
+      '<strong>Tricycle:</strong> The main mode of transport around Puerto Princesa. Expect PHP 50–100 per trip within the city.',
+      '<strong>Negotiate fare</strong> before the ride — tricycles in Puerto Princesa don\'t use meters.',
+    ],
+  },
+  {
+    icon: 'car',
+    title: 'By Car / Motorcycle',
+    items: [
+      '<strong>Park along Sandoval St</strong> — free street parking (arrive early for sunset hours).',
+      '<strong>Motorcycle rentals</strong> available in the city (PHP 300–500/day) — easiest way to get around.',
+      '<strong>From the highway (Rizal Ave):</strong> Turn onto Sandoval St heading toward the waterfront.',
+    ],
+  },
+];
+---
+
+<section id="transport" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-sand-warm/30">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <p class="section-eyebrow mb-3">How to Get Here</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+        Detailed Transport Guide
+      </h2>
+      <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+      <p class="text-navy/60 max-w-2xl mx-auto">
+        From the airport to tricycles — everything you need to reach {attraction.name}.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-10">
+      {transportOptions.map(opt => (
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-sand-warm/50 hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 bg-ocean/10 rounded-xl flex items-center justify-center">
+              <Icon name={opt.icon} size={22} class="text-ocean" />
+            </div>
+            <h3 class="font-display font-semibold text-lg text-navy">{opt.title}</h3>
+          </div>
+          <ul class="space-y-3">
+            {opt.items.map(item => (
+              <li class="flex items-start gap-2.5 text-sm text-navy/70 leading-relaxed">
+                <span class="text-ocean mt-1 shrink-0 text-xs">&#9679;</span>
+                <span set:html={item} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Quick Reference -->
+    <div class="bg-navy rounded-2xl p-6 sm:p-8 text-white">
+      <h3 class="font-display font-semibold text-lg mb-4 flex items-center gap-2">
+        <Icon name="compass" size={20} class="text-gold-light" />
+        Quick Reference: Tricycle Fares
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+        {[
+          { from: 'Airport (PPS)', to: 'Baywalk', fare: 'PHP 50–100', mins: '10 min' },
+          { from: 'San Jose Terminal', to: 'Baywalk', fare: 'PHP 50–80', mins: '10 min' },
+          { from: 'City Center', to: 'Baywalk', fare: 'PHP 50–80', mins: '5–10 min' },
+          { from: 'Hue Hotels Area', to: 'Baywalk', fare: 'PHP 50', mins: '5 min' },
+        ].map(trip => (
+          <div class="bg-white/10 rounded-xl p-3 text-center">
+            <p class="text-gold-light font-semibold text-xs mb-1">{trip.fare}</p>
+            <p class="text-white/60 text-[11px]">{trip.from} &rarr; {trip.to}</p>
+            <p class="text-white/40 text-[10px] mt-1">~{trip.mins}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

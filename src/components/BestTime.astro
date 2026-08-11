@@ -1,0 +1,105 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section id="best-time" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="section-eyebrow mb-3">Plan Your Visit</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+      Best Time &amp; Suggested Duration
+    </h2>
+    <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+    <p class="text-navy/60 max-w-2xl mx-auto">
+      The Baywalk transforms throughout the day — here's how to time your visit perfectly.
+    </p>
+  </div>
+
+  <!-- Three Time Periods -->
+  <div class="grid md:grid-cols-3 gap-6 mb-12">
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-sand-warm/50">
+      <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-4">
+        <Icon name="sunset" size={24} class="text-gold" />
+      </div>
+      <h3 class="font-display font-semibold text-navy text-lg mb-2">Late Afternoon</h3>
+      <p class="text-3xl font-display font-bold text-gold mb-3">4:00 – 5:30 PM</p>
+      <p class="text-navy/60 text-sm leading-relaxed">
+        Arrive before the crowd. The light is soft and golden — perfect for photos. Grab a seat at a seaside bench and watch the fishing boats return.
+      </p>
+      <div class="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-palm/10 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-palm"></span>
+        <span class="text-xs font-medium text-palm">Photo Hour</span>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-sunset/30 relative ring-2 ring-sunset/20">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-sunset text-white text-xs font-bold px-3 py-1 rounded-full">
+        BEST TIME
+      </div>
+      <div class="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center mb-4">
+        <Icon name="sunset" size={24} class="text-sunset" />
+      </div>
+      <h3 class="font-display font-semibold text-navy text-lg mb-2">Sunset &amp; Dinner</h3>
+      <p class="text-3xl font-display font-bold text-sunset mb-3">5:30 – 8:00 PM</p>
+      <p class="text-navy/60 text-sm leading-relaxed">
+        The magic hour. Watch the sun sink into the Sulu Sea, then dig into grilled seafood at the food stalls. Live acoustic music fills the air.
+      </p>
+      <div class="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-sunset/10 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-sunset"></span>
+        <span class="text-xs font-medium text-sunset">Peak Experience</span>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-sand-warm/50">
+      <div class="w-12 h-12 bg-navy/10 rounded-full flex items-center justify-center mb-4">
+        <Icon name="users" size={24} class="text-navy" />
+      </div>
+      <h3 class="font-display font-semibold text-navy text-lg mb-2">Evening Stroll</h3>
+      <p class="text-3xl font-display font-bold text-navy mb-3">8:00 – 11:00 PM</p>
+      <p class="text-navy/60 text-sm leading-relaxed">
+        The Baywalk stays lively. Cooler breeze, twinkling lights, dessert stalls open up, and the vibe is relaxed. Perfect for a post-dinner walk.
+      </p>
+      <div class="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-navy/10 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-navy"></span>
+        <span class="text-xs font-medium text-navy">Chill Vibes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Duration Tips -->
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="bg-navy text-white rounded-2xl p-6 sm:p-8">
+      <h3 class="font-display font-semibold text-xl mb-3 flex items-center gap-2">
+        <Icon name="clock" size={22} class="text-gold-light" />
+        Suggested Duration
+      </h3>
+      <p class="text-3xl font-display font-bold text-gold-light mb-3">2 – 3 Hours</p>
+      <p class="text-white/70 leading-relaxed text-sm">
+        Plan for at least two hours to fully enjoy the experience: one hour for walking the promenade and soaking in the sunset, another hour or more for eating at the food stalls and enjoying the live entertainment.
+      </p>
+    </div>
+    <div class="bg-ocean/5 rounded-2xl p-6 sm:p-8 border border-ocean/10">
+      <h3 class="font-display font-semibold text-xl text-navy mb-3 flex items-center gap-2">
+        <Icon name="leaf" size={22} class="text-palm" />
+        Pro Tips
+      </h3>
+      <ul class="space-y-3 text-navy/70 text-sm leading-relaxed">
+        <li class="flex items-start gap-2">
+          <span class="text-palm mt-0.5 shrink-0">&#10003;</span>
+          <span><strong class="text-navy">Weekdays</strong> are quieter; weekends get lively with more food stalls and performances.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-palm mt-0.5 shrink-0">&#10003;</span>
+          <span><strong class="text-navy">Bring cash</strong> — most food stalls are cash-only and ATMs nearby can be unreliable.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-palm mt-0.5 shrink-0">&#10003;</span>
+          <span><strong class="text-navy">Light clothing</strong> and mosquito repellent recommended, especially in the rainy season (June–November).</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-palm mt-0.5 shrink-0">&#10003;</span>
+          <span><strong class="text-navy">December–May</strong> is the dry season with the best sunset visibility.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
