@@ -45,9 +45,34 @@ const restaurants = [
 const strFoodTitle = lang === 'fil' ? 'Mga Street Food Stall sa Baywalk' : lang === 'zh' ? '海湾步道街头美食摊' : 'Baywalk Street Food Stalls';
 const strRestaurantTitle = lang === 'fil' ? 'Mga Kalapit na Restaurant' : lang === 'zh' ? '附近餐厅' : 'Nearby Restaurants';
 const strDisclaimer = lang === 'fil' ? 'Ang mga presyo ay tinatayang at maaaring magbago. Lahat ng restaurant ay independently operated.' : lang === 'zh' ? '价格为近似值，可能有变动。所有餐厅均为独立经营。' : 'Prices are approximate and may vary. All restaurants are independently operated.';
+
+// Structured data: list the nearby restaurants as schema.org Restaurant items
+// so Google can surface them for "baywalk restaurant" / "*food*" queries.
+const foodLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: f.title,
+  itemListElement: restaurants.map((r: typeof restaurants[number], i: number) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Restaurant',
+      name: r.name,
+      servesCuisine: r.type,
+      priceRange: r.price,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Puerto Princesa City',
+        addressRegion: 'Palawan',
+        addressCountry: 'PH',
+      },
+    },
+  })),
+};
 ---
 
 <section id="food" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <script type="application/ld+json" set:html={JSON.stringify(foodLd)} />
   <div class="text-center mb-14">
     <p class="section-eyebrow mb-3">{lang === 'fil' ? 'Lasa ng Palawan' : lang === 'zh' ? '巴拉望的味道' : 'Taste of Palawan'}</p>
     <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">

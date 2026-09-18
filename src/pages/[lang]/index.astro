@@ -24,17 +24,20 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const t = ui[lang] || ui['en'];
 
+// Keyword-driven titles aligned with actual Search Console queries
+// (palawan baywalk, baywalk park puerto princesa, *restaurant*, *food*, sunset).
+// Keep under ~60 chars so Google doesn't truncate the brand + key intent.
 const seoTitle = lang === 'fil'
-  ? 'Puerto Princesa City Baywalk Park — Ang Waterfront Promenade ng Palawan'
+  ? 'Puerto Princesa Baywalk Park: Seafood, Sunset & Gabay'
   : lang === 'zh'
-  ? '普林塞萨港海湾步道公园 — 巴拉望的海滨长廊'
-  : 'Puerto Princesa City Baywalk Park — The Waterfront Promenade of Palawan';
+  ? '普林塞萨港海湾步道公园：海鲜、日落与游玩攻略'
+  : 'Puerto Princesa Baywalk Park: Seafood, Sunset & Guide';
 
 const seoDesc = lang === 'fil'
-  ? 'Tuklasin ang pinakamagandang waterfront promenade ng Puerto Princesa — paglubog ng araw, sariwang seafood, live na musika, at ang mainit na diwa ng komunidad ng Palawan. Libre at bukas para sa lahat.'
+  ? 'Planuhin ang iyong bisita sa Puerto Princesa Baywalk Park sa Palawan — oras ng pagbukas, mga seafood restaurant, sunset views, at libreng gawain sa gabi. Kumpletong gabay.'
   : lang === 'zh'
-  ? '探索普林塞萨港最迷人的海滨长廊——日落、新鲜海鲜、现场音乐和巴拉望的热情社区精神。免费向所有人开放。'
-  : 'Discover Puerto Princesa\'s most beloved waterfront promenade — sunset views, fresh seafood, live music, and the warm community spirit of Palawan. Free and open to everyone.';
+  ? '规划巴拉望普林塞萨港海湾步道公园之行——开放时间、热门海鲜餐厅、绝美日落与免费夜间活动，完整游玩攻略。'
+  : 'Plan your visit to Puerto Princesa Baywalk Park in Palawan — opening hours, top seafood restaurants, sunset views, and free evening activities. Your complete guide.';
 ---
 
 <BaseLayout lang={lang} title={seoTitle} description={seoDesc}>
