@@ -12,6 +12,13 @@ import PhotoGallery from '../../components/PhotoGallery.astro';
 import NearbyFood from '../../components/NearbyFood.astro';
 import TransportSection from '../../components/TransportSection.astro';
 import MapSection from '../../components/MapSection.astro';
+import Tides from '../../components/Tides.astro';
+import WeatherWidget from '../../components/WeatherWidget.astro';
+import Heritage from '../../components/Heritage.astro';
+import Facilities from '../../components/Facilities.astro';
+import Routes from '../../components/Routes.astro';
+import Seasonal from '../../components/Seasonal.astro';
+import Responsibility from '../../components/Responsibility.astro';
 import NearbyAttractions from '../../components/NearbyAttractions.astro';
 import ItineraryChecklist from '../../components/ItineraryChecklist.astro';
 import FAQ from '../../components/FAQ.astro';
@@ -47,14 +54,21 @@ const seoDesc = lang === 'fil'
     <Introduction lang={lang} />
     <InfoCards lang={lang} />
     <BestTime lang={lang} />
+    <WeatherWidget lang={lang} />
     <TicketFees lang={lang} />
     <ParkingInfo lang={lang} />
     <PhotoGallery lang={lang} />
     <MapSection lang={lang} />
+    <Tides lang={lang} />
+    <Heritage lang={lang} />
     <NearbyFood lang={lang} />
+    <Facilities lang={lang} />
     <TransportSection lang={lang} />
+    <Routes lang={lang} />
+    <Seasonal lang={lang} />
     <NearbyAttractions lang={lang} />
     <ItineraryChecklist lang={lang} />
+    <Responsibility lang={lang} />
     <FAQ lang={lang} />
   </main>
   <Footer lang={lang} />

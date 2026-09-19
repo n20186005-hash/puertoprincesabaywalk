@@ -26,6 +26,11 @@
       "tickets": "Admission",
       "parking": "Parking",
       "food": "Food",
+      "tides": "Tides",
+      "weather": "Weather",
+      "routes": "Routes",
+      "seasonal": "Seasons",
+      "responsibility": "Resp.",
       "itinerary": "Itinerary"
     }
   },
@@ -149,10 +154,18 @@
     "body2": "Tricycles are the most common form of local transport. Simply flag down a tricycle and say 'Baywalk' — every driver knows where it is. Fares typically range from PHP 50-150 depending on your starting point within the city."
   },
   "facilities": {
-    "label": "Visitor Facilities",
-    "title": "What's Available On Site",
-    "body1": "The Baywalk offers a range of facilities including public restrooms, seating areas, lighting for nighttime safety, and trash bins throughout the promenade. The area is kept clean by the city government's maintenance crew.",
-    "body2": "Free parking is available along Sandoval Street and nearby designated parking areas. Vendors sell food, drinks, and souvenirs along the length of the Baywalk. Public restrooms are accessible near the main gathering areas."
+    "eyebrow": "Visitor Services",
+    "title": "Facilities & Amenities",
+    "subtitle": "Everyday services around the Baywalk — described by type, not by name",
+    "intro": "The Baywalk and its immediate surroundings offer the amenities a waterfront evening needs. We describe them by category so you can plan without commercial bias.",
+    "cards": [
+      { "icon": "wc", "title": "Public Restrooms", "text": "Public toilets sit near the main gathering areas and at intervals along the promenade, maintained by the city. Carry small change where a donation is requested." },
+      { "icon": "food", "title": "Dining & Refreshments", "text": "See the Dining section for the categories of food and drink available — seafood grills, casual dining, street food, and bakeries." },
+      { "icon": "bed", "title": "Lodging Nearby", "text": "A range of lodging types lies within walking distance or a short tricycle ride: budget guesthouses, mid-range hotels, and waterfront resorts. Book ahead in the dry-season peak." },
+      { "icon": "built", "title": "Convenience & Groceries", "text": "Sari-sari stores, mini-marts, and supermarkets in the city center cover drinks, snacks, sun care, and essentials. The nearest full supermarket is a short tricycle ride inland." },
+      { "icon": "fuel", "title": "Fuel & EV Charging", "text": "Petrol stations are scattered across the city, a few minutes away by tricycle or motorbike. Public EV charging points remain limited in Puerto Princesa — charge before arriving and confirm locations with your accommodation." },
+      { "icon": "car", "title": "Parking", "text": "Free street parking lines Sandoval Street and nearby roads. See the Parking section for details and peak-hour tips." }
+    ]
   },
   "safety": {
     "label": "Visitor Tips",
@@ -183,7 +196,7 @@
     },
     {
       "q": "Are there restaurants and food options nearby?",
-      "a": "Yes, the Baywalk area is famous for its seafood stalls and casual eateries. Popular nearby restaurants include Kinabuchs Grill & Bar, Badjao Seafront Restaurant, Kalui Restaurant, and numerous local ihawan (grill) stalls right along the promenade."
+      "a": "Yes, the Baywalk area is famous for its seafood stalls and casual eateries. You'll find categories like seafood grills, casual dining, street food, and bakeries — see the Dining section for details."
     }
   ],
   "map": {
@@ -258,16 +271,36 @@
     "tip": "Tip: Arrive early (before 4:30 PM) for the best parking during sunset hours"
   },
   "food": {
-    "title": "Nearby Restaurants & Food",
-    "subtitle": "Fresh seafood, Filipino street food, and casual dining",
-    "restaurants": [
-      ["Kinabuchs Grill & Bar", "Casual Dining", "PHP 250–600", "Famous for fresh seafood and grilled meats, with outdoor seating near the Baywalk"],
-      ["Badjao Seafront Restaurant", "Seafood Special", "PHP 400–900", "Set over the water with stunning views — worth the trip"],
-      ["Kalui Restaurant", "Fine Filipino", "PHP 400–800", "Artistic Filipino cuisine in a beautiful native-style setting"],
-      ["Ihawang Pantalan", "Local Ihawan", "PHP 100–300", "Street-side grill stalls all along the Baywalk promenade"],
-      ["Haim Chicken Inato", "Local Favorite", "PHP 150–300", "Popular Filipino-style roasted chicken, minutes from the Baywalk"],
-      ["Baker's Hill", "Bakery & Snacks", "PHP 100–250", "Famous hopia and pastries — perfect for a quick snack"]
+    "title": "Dining & Refreshments",
+    "subtitle": "What to eat at the Baywalk — by type, not by brand",
+    "neutralNote": "As an independent, non-commercial guide we list food categories rather than specific vendors. Options and prices vary by stall and season.",
+    "categories": [
+      ["Seafood Grills", "PHP 150–400", "Fresh catch — fish, squid, shrimp, crab — cooked to order over open charcoal grills that line the promenade."],
+      ["Casual & Native Dining", "PHP 250–800", "Sit-down restaurants near the waterfront serving Filipino and seafood menus; some are built on stilts over the water."],
+      ["Street Food & Snacks", "PHP 20–100", "Grilled skewers (ihaw-ihaw), local bites, fresh fruit shakes, and ice cream from movable stalls."],
+      ["Bakeries & Sweets", "PHP 50–250", "Hopia, pastries, and takeaway snacks — handy for an afternoon treat or a picnic."]
     ]
+  },
+  "tides": {
+    "eyebrow": "Sea & Tides",
+    "title": "Tides at the Baywalk",
+    "subtitle": "How the Sulu Sea's twice-daily tides shape your waterfront visit",
+    "intro": "Puerto Princesa opens onto the Sulu Sea, where tides follow a mixed semi-diurnal rhythm — two highs and two lows every day, with a modest range of roughly 0.5–2 meters. The water quietly transforms the bay's mood from dawn to dusk.",
+    "patternTitle": "Typical Daily Tide Pattern",
+    "weekNote": "Illustrative weekly pattern — actual times shift by roughly an hour each day. Check a live tide table before you go.",
+    "high": "High",
+    "low": "Low",
+    "time": "Time",
+    "height": "Height (m)",
+    "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "tipsTitle": "Tides & Your Visit",
+    "tips": [
+      "At high tide the water reaches the seawall — the fullest, most reflective bay, ideal for sunset photos.",
+      "At low tide the shore recedes and exposes mudflats and the stilted restaurants' supports; the promenade itself is unaffected.",
+      "Boat trips, island hopping, and waterfront dining are best timed around high tide.",
+      "Tide times drift about an hour later each day, so don't plan around yesterday's schedule."
+    ],
+    "disclaimer": "Tide times and heights are approximate and vary with the moon and season. Always confirm with a current local tide table (e.g. a tide-forecast app) before planning water activities."
   },
   "itinerary": {
     "title": "Visit Plan",
@@ -315,8 +348,136 @@
       "cookies": "Cookie Settings"
     },
     "copyright": "© 2025 Puerto Princesa City Baywalk Park. All rights reserved. Not affiliated with the Puerto Princesa City Government."
+    },
+    "heritage": {
+    "eyebrow": "History & Stories",
+    "title": "The Baywalk's Story",
+    "subtitle": "From a quiet shoreline to the city's evening heart",
+    "timeline": [
+    { "era": "Pre-2000s", "heading": "A Working Waterfront", "body": "Before its transformation, the Sandoval Street shoreline was a simple stretch of coast used by fishers and local traders. Small boats bobbed offshore and the city faced the Sulu Sea with little formal public space." },
+    { "era": "2000s", "heading": "Urban Renewal", "body": "As part of Puerto Princesa's push to green and beautify the city, the waterfront was reclaimed and landscaped into a public promenade — palm-lined, lit, and open to all." },
+    { "era": "Today", "heading": "The City's Living Room", "body": "The Baywalk is now the city's favorite evening gathering place: free, family-friendly, and alive with food, music, and sunset. It stands as a symbol of Puerto Princesa's connection to the sea." }
+    ],
+    "legends": {
+    "title": "Stories & Local Lore",
+    "intro": "Like many Philippine coastal towns, Puerto Princesa's shore carries stories passed down by fishers and families. They are shared here as cultural heritage, not as scientific fact.",
+    "stories": [
+      { "title": "The Guardian of the Sulu Sea", "body": "Elders speak of a sea spirit said to watch over those who fish at dusk. Whether taken literally or poetically, the tale reflects a lasting respect for the waters that feed the city." },
+      { "title": "Sunsets as a Daily Gift", "body": "Locals say the Baywalk's famous sunsets are the sea 'breathing out' at day's end — a gentle folk reminder, in tradition, to pause and give thanks before nightfall." },
+      { "title": "The Peacock-Pheasant Sign", "body": "The Palawan peacock-pheasant marker has become an unofficial landmark and photo rite of passage — a small symbol of local pride in the island's unique wildlife." }
+    ],
+    "note": "Enjoy these stories as folklore. For natural-history facts, see our conservation notes below."
+    }
+    },
+    "routes": {
+    "eyebrow": "Suggested Routes",
+    "title": "How to Spend Your Time",
+    "subtitle": "Pick a plan that fits your group and your energy",
+    "generalTitle": "Classic Itineraries",
+    "general": {
+    "halfDay": { "title": "Half-Day Evening", "time": "~4:00 PM – 7:00 PM (3 hrs)", "items": ["Arrive around 4 PM and claim a good sunset spot", "Stroll the promenade from end to end", "Watch the sunset at the main viewing area", "Dinner at a seafood grill or street stall", "Ice cream and live music before heading back"] },
+    "fullDay": { "title": "Full-Day Puerto Princesa", "time": "9:00 AM – 8:00 PM (8–10 hrs)", "items": ["Morning: Immaculate Conception Cathedral and Plaza Cuartel", "Midday: Palawan Museum and a local lunch", "Afternoon: rest, then return to the Baywalk by 4 PM", "Sunset, dinner, and music at the Baywalk", "Optional evening: night market or a city stroll"] }
+    },
+    "tailoredTitle": "Routes by Traveler Type",
+    "tailored": [
+    { "key": "family", "icon": "users", "title": "Families with Kids", "audience": "All ages", "items": ["Come early (~4 PM) to avoid the heat and crowds", "Flat, stroller-friendly promenade", "Benches and open space for little ones to roam", "Kid-friendly street food and ice cream", "Keep children within arm's reach near the water at low tide"] },
+    { "key": "photo", "icon": "camera", "title": "Photographers & Nature", "audience": "Golden hour & wildlife", "items": ["Scout the Peacock-Pheasant sign before golden hour", "Golden hour is about 5–6 PM over the Sulu Sea", "Low tide reveals mudflats and stilted restaurants — great detail shots", "Blue hour just after sunset for city lights", "Bring a wide lens for the panorama"] },
+    { "key": "accessible", "icon": "shield", "title": "Low-Effort / Accessible", "audience": "Seniors & limited mobility", "items": ["Paved, step-free promenade along the water", "Rest spots and benches at regular intervals", "A tricycle can drop you at the main entrance", "Visit during the calm late-afternoon hour", "Avoid the peak sunset crush if crowds are a concern"] }
+    ]
+    },
+    "seasonal": {
+    "eyebrow": "Seasonal Strategy",
+    "title": "When to Visit — Quarter by Quarter",
+    "subtitle": "Meteorology, water clarity, and wildlife, based on long-term (30-year mean) climate norms",
+    "note": "Patterns reflect the Philippine climate (PAGASA) and long-term marine norms. Always check a live local forecast (PAGASA or a weather app) before you go. The Sulu Sea is generally calm and warm year-round.",
+    "columns": ["Period", "Weather", "Water & Sea", "Wildlife", "Our Advice"],
+    "rows": [
+    { "period": "Dec – Feb (NE Monsoon)", "weather": "Dry, cooler, breezy (24–30°C). Least rain.", "water": "Calmest seas, best clarity for swimming and photos.", "wildlife": "Clear water favors reef and shorelife; migratory birds in wetlands.", "advice": "Peak season — best all-round conditions. Book lodging early." },
+    { "period": "Mar – May (Hot Dry)", "weather": "Hot and dry (28–34°C), rising humidity.", "water": "Warm, generally calm; occasional haze.", "wildlife": "Sea turtles more active nearshore; good snorkeling.", "advice": "Go at sunset to beat the heat. Hydrate well." },
+    { "period": "Jun – Aug (SW Monsoon)", "weather": "Wet season; afternoon showers, rougher seas.", "water": "More chop, lower clarity after rain; stronger currents.", "wildlife": "Lush green landscapes; plankton blooms attract fish.", "advice": "Bring rain gear; mornings are often clearer. Watch sea state." },
+    { "period": "Sep – Nov (Transition)", "weather": "Wet to dry; typhoon risk, fewer crowds.", "water": "Variable; post-storm runoff can reduce clarity.", "wildlife": "Quiet season — peaceful promenades, good birdwatching.", "advice": "Stay flexible; monitor storm advisories. Best for solitude." }
+    ]
+    },
+    "responsibility": {
+    "eyebrow": "Conservation & Responsibility",
+    "title": "Visit Gently, Learn More",
+    "subtitle": "A non-profit guide's pledge to the bay and its community",
+    "intro": "The Baywalk thrives because the Sulu Sea and the city stay healthy. Small choices protect both.",
+    "items": [
+    { "icon": "leaf", "title": "Leave No Trace", "body": "Use the bins provided; if they are full, take your trash with you. Litter in the water harms marine life." },
+    { "icon": "water", "title": "Protect the Water", "body": "Don't feed wildlife or toss food into the sea. Keep soaps and plastics away from the shoreline." },
+    { "icon": "shield", "title": "Respect the Community", "body": "The Baywalk is a public, family space. Keep noise reasonable late at night and follow local guidance." },
+    { "icon": "compass", "title": "Learn the Place", "body": "Read the history and tide notes to understand why this coast matters — informed visitors protect what they value." },
+    { "icon": "users", "title": "Support Locals Fairly", "body": "Buy from local stalls and treat vendors with respect. As a non-commercial guide, we don't endorse specific businesses." },
+    { "icon": "info", "title": "Stay Informed", "body": "Check weather, tide, and official advisories before visiting. Conditions on the Sulu Sea change daily." }
+    ],
+    "pledge": "This site is an independent, non-profit visitor guide. We earn nothing from recommendations and list services by type, not by brand, to keep information fair and useful for everyone."
+    },
+    "weather": {
+    "eyebrow": "Live Conditions",
+    "title": "Baywalk Weather & Forecast",
+    "subtitle": "Real-time conditions and the next 7 days at the Sulu Sea waterfront",
+    "loading": "Loading current conditions…",
+    "error": "Weather is temporarily unavailable. Please check a local forecast app.",
+    "updated": "Updated",
+    "now": "Now",
+    "feelsLike": "Feels like",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "precip": "Precip",
+    "umbrellaYes": "Likely rain — bring an umbrella or raincoat.",
+    "umbrellaNo": "Dry — no umbrella needed, just sun protection.",
+    "umbrellaMaybe": "A chance of showers — a packable umbrella is wise.",
+    "today": "Today",
+    "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "high": "H",
+    "low": "L",
+    "pop": "Rain",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "conditions": {
+      "clear": "Clear",
+      "mainlyClear": "Mainly clear",
+      "partlyCloudy": "Partly cloudy",
+      "overcast": "Overcast",
+      "fog": "Fog",
+      "drizzle": "Drizzle",
+      "rain": "Rain",
+      "showers": "Showers",
+      "snow": "Snow",
+      "snowShowers": "Snow showers",
+      "storm": "Thunderstorm",
+      "cloudy": "Cloudy"
+    },
+    "uvStrong": "Strong UV",
+    "uvMild": "Moderate UV",
+    "windDesc": ["Light breeze", "Breezy (level 5–6)", "Strong wind (level 7+)"],
+    "advice": {
+      "sections": {
+        "outfit": "What to Wear",
+        "activity": "How to Plan Your Visit",
+        "items": "What to Bring",
+        "risk": "Risk Notice"
+      },
+      "noRisk": "No weather warnings at this time",
+      "triggers": {
+        "precipProb": { "outfit": "High chance of rain — bring rain gear just in case.", "activity": "Favor indoor spots; delay seaside or hill outings if it pours.", "item": "Umbrella / raincoat" },
+        "lightRain": { "outfit": "Light rain — watch for slippery pavements.", "activity": "Open-air activities will feel less pleasant.", "item": "Compact umbrella" },
+        "modHeavyRain": { "outfit": "Heavy rain — a waterproof jacket is best.", "risk": "Heavy rain — avoid low-lying areas and valleys.", "activity": "Skip outdoor play; boat rides and cable cars may stop.", "item": "Raincoat (long umbrellas are awkward in wind)" },
+        "thunder": { "risk": "Thunderstorms — no climbing, no wading at the shore, no shelter under trees.", "activity": "Water activities are likely closed." },
+        "highTemp": { "outfit": "Hot — light, breathable clothing.", "activity": "Avoid the midday sun and shorten outdoor time.", "item": "Sunscreen, sunglasses, plenty of water, heat relief" },
+        "uvHigh": { "outfit": "Strong UV — cover up.", "activity": "Be sun-smart when outdoors.", "item": "Sunscreen, sunglasses, sun hat" },
+        "tempDiff": { "outfit": "Big day–night temperature swing — bring a light layer." },
+        "lowTemp": { "outfit": "Cold — dress warmly.", "item": "Thick coat, scarf" },
+        "windModerate": { "outfit": "Breezy — secure your hat.", "activity": "Seaside boat rides and some open attractions may pause.", "item": "Avoid loose long skirts" },
+        "windHigh": { "outfit": "Windproof layer; secure hats and loose items.", "risk": "Strong wind — stay clear of billboards and coastal rocks.", "activity": "Offshore activities are likely cancelled." },
+        "clear": { "outfit": "Clear skies — dress for the temperature.", "activity": "Great for outdoor strolls and the sunset over the bay.", "item": "Don't forget sun protection" },
+        "cloudy": { "outfit": "Soft light — comfortable for photos.", "activity": "No harsh sun; good for long outdoor wandering." },
+        "fog": { "risk": "Poor visibility — ferries and flights may be delayed.", "activity": "Not ideal for sea or hill views.", "item": "Face mask" }
+      }
+    }
   },
-  "legal": {
+    "legal": {
     "privacy": {
       "title": "Privacy Policy",
       "lastUpdated": "Last updated: March 2025",

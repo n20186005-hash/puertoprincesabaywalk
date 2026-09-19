@@ -10,6 +10,7 @@ const { lang } = Astro.props;
 const t = ui[lang] || ui['en'];
 const f = t.food;
 
+// Generic street-food dishes (categories, not vendors) — kept neutral.
 const streetFood = lang === 'fil' ? [
   { item: 'Inihaw na Pusit', price: 'PHP 50–100', desc: 'Bagong ihaw, pinalamanan ng sibuyas at kamatis' },
   { item: 'Fish Balls at Kikiam', price: 'PHP 20–50', desc: 'Klasikong Pinoy street snacks na may matamis at maanghang na sarsa' },
@@ -33,46 +34,14 @@ const streetFood = lang === 'fil' ? [
   { item: 'Fresh Coconut Juice', price: 'PHP 30–50', desc: 'Served straight from the shell' },
 ];
 
-const restaurants = [
-  { name: 'Kinabuchs Grill & Bar', type: f.restaurants?.[0]?.[1] || 'Casual Dining', price: 'PHP 200–600', distance: lang === 'fil' ? '5 min lakad' : lang === 'zh' ? '步行5分钟' : '5 min walk', highlight: lang === 'fil' ? 'Paborito ng lokal mula 1990s' : lang === 'zh' ? '自90年代以来的本地最爱' : 'Local favorite since 1990s', desc: lang === 'fil' ? 'Isang institusyon ng Puerto Princesa na sikat sa mga inihaw na specialty, malamig na beer, at masiglang atmosphere.' : lang === 'zh' ? '普林塞萨港的地标餐厅，以烧烤特色菜、冰镇啤酒和热闹氛围闻名。' : 'A Puerto Princesa institution famous for its grilled specialties, cold beer, and lively atmosphere.' },
-  { name: 'Kalui Restaurant', type: f.restaurants?.[2]?.[1] || 'Fine Dining', price: 'PHP 400–1,000', distance: lang === 'fil' ? '10 min lakad' : lang === 'zh' ? '步行10分钟' : '10 min walk', highlight: lang === 'fil' ? 'Inirerekomenda ang advance booking' : lang === 'zh' ? '建议提前预订' : 'Advance booking recommended', desc: lang === 'fil' ? 'Isang award-winning na restaurant na puno ng sining na naghahain ng sariwang seafood sa tradisyonal na Filipino setting.' : lang === 'zh' ? '屡获殊荣的艺术风格餐厅，在传统菲律宾环境中供应新鲜海鲜。' : 'An art-filled, award-winning restaurant serving fresh seafood in a traditional Filipino setting.' },
-  { name: 'Badjao Seafront Restaurant', type: f.restaurants?.[1]?.[1] || 'Seafood', price: 'PHP 300–800', distance: lang === 'fil' ? '15 min tricycle' : lang === 'zh' ? '三轮车15分钟' : '15 min tricycle', highlight: lang === 'fil' ? 'Kamangha-manghang waterfront dining' : lang === 'zh' ? '绝美海滨餐饮' : 'Stunning waterfront dining', desc: lang === 'fil' ? 'Itinayo sa ibabaw ng tubig, nag-aalok ang iconic restaurant na ito ng nakamamanghang tanawin ng bay kasama ng iyong pagkain.' : lang === 'zh' ? '建在水上，这家标志性餐厅让您在用餐的同时欣赏绝美海湾风景。' : 'Built on stilts over the water, this iconic restaurant offers stunning bay views with your meal.' },
-  { name: 'Haim Chicken Inato', type: lang === 'fil' ? 'Manok · Mabilis-Kaswal' : lang === 'zh' ? '鸡肉 · 快餐' : 'Chicken · Fast-Casual', price: 'PHP 80–200', distance: lang === 'fil' ? '5 min lakad' : lang === 'zh' ? '步行5分钟' : '5 min walk', highlight: lang === 'fil' ? 'Pinakamurang kainan' : lang === 'zh' ? '最佳平价美食' : 'Best budget eats', desc: lang === 'fil' ? 'Lokal na chain na naghahain ng makatas na charcoal-grilled chicken (chicken inato) — ang istilong Palawan.' : lang === 'zh' ? '本地连锁店，供应多汁的木炭烤鸡（chicken inato）——巴拉望风味。' : 'Local chain serving juicy charcoal-grilled chicken (chicken inato) — the Palawan style.' },
-  { name: 'Balay Inato', type: lang === 'fil' ? 'Filipino · BBQ · Pampamilya' : lang === 'zh' ? '菲律宾 · 烧烤 · 家庭餐厅' : 'Filipino · BBQ · Family-Friendly', price: 'PHP 150–400', distance: lang === 'fil' ? '7 min lakad' : lang === 'zh' ? '步行7分钟' : '7 min walk', highlight: lang === 'fil' ? 'Maganda para sa grupo' : lang === 'zh' ? '适合团体' : 'Great for groups', desc: lang === 'fil' ? 'Isang nakakarelaks na garden-style restaurant malapit sa Baywalk na naghahain ng Filipino comfort food.' : lang === 'zh' ? '海湾步道附近的休闲花园餐厅，供应菲律宾舒适美食。' : 'A relaxing garden-style restaurant near the Baywalk serving Filipino comfort food.' },
-  { name: 'Captain Ribs', type: lang === 'fil' ? 'BBQ · Ribs · Kaswal' : lang === 'zh' ? '烧烤 · 排骨 · 休闲' : 'BBQ · Ribs · Casual Dining', price: 'PHP 250–500', distance: lang === 'fil' ? '10 min tricycle' : lang === 'zh' ? '三轮车10分钟' : '10 min tricycle', highlight: lang === 'fil' ? 'Paradiso ng mahilig sa karne' : lang === 'zh' ? '肉食爱好者的天堂' : "Meat lovers' paradise", desc: lang === 'fil' ? 'American-style ribs na may Filipino twist. Masaganang portions at masayang atmosphere.' : lang === 'zh' ? '美式排骨融入菲律宾风味，分量十足，氛围轻松愉快。' : 'American-style ribs with a Filipino twist. Generous portions and a casual, fun atmosphere.' },
-];
+const categories = f.categories ?? [];
 
 const strFoodTitle = lang === 'fil' ? 'Mga Street Food Stall sa Baywalk' : lang === 'zh' ? '海湾步道街头美食摊' : 'Baywalk Street Food Stalls';
-const strRestaurantTitle = lang === 'fil' ? 'Mga Kalapit na Restaurant' : lang === 'zh' ? '附近餐厅' : 'Nearby Restaurants';
-const strDisclaimer = lang === 'fil' ? 'Ang mga presyo ay tinatayang at maaaring magbago. Lahat ng restaurant ay independently operated.' : lang === 'zh' ? '价格为近似值，可能有变动。所有餐厅均为独立经营。' : 'Prices are approximate and may vary. All restaurants are independently operated.';
-
-// Structured data: list the nearby restaurants as schema.org Restaurant items
-// so Google can surface them for "baywalk restaurant" / "*food*" queries.
-const foodLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: f.title,
-  itemListElement: restaurants.map((r: typeof restaurants[number], i: number) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    item: {
-      '@type': 'Restaurant',
-      name: r.name,
-      servesCuisine: r.type,
-      priceRange: r.price,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Puerto Princesa City',
-        addressRegion: 'Palawan',
-        addressCountry: 'PH',
-      },
-    },
-  })),
-};
+const strCategoryTitle = lang === 'fil' ? 'Uri ng Dining' : lang === 'zh' ? '餐饮类型' : 'Dining by Type';
+const strDisclaimer = lang === 'fil' ? 'Bilang isang independiyenteng, non-commercial na gabay, lista namin ang pagkain ayon sa uri, hindi ayon sa tindahan. Ang presyo ay tinatayang at maaaring magbago.' : lang === 'zh' ? '作为独立非商业指南，我们按类型而非具体店铺列出餐饮。价格仅供参考，可能有变动。' : 'As an independent, non-commercial guide we list food by type, not by vendor. Prices are approximate and may vary.';
 ---
 
 <section id="food" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-  <script type="application/ld+json" set:html={JSON.stringify(foodLd)} />
   <div class="text-center mb-14">
     <p class="section-eyebrow mb-3">{lang === 'fil' ? 'Lasa ng Palawan' : lang === 'zh' ? '巴拉望的味道' : 'Taste of Palawan'}</p>
     <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
@@ -103,41 +72,29 @@ const foodLd = {
     </div>
   </div>
 
-  <!-- Restaurants -->
+  <!-- Dining by type (neutral) -->
   <div>
     <div class="flex items-center gap-3 mb-6">
       <div class="w-10 h-10 bg-ocean/10 rounded-xl flex items-center justify-center">
         <Icon name="pin" size={20} class="text-ocean" />
       </div>
-      <h3 class="font-display font-semibold text-xl text-navy">{strRestaurantTitle}</h3>
+      <h3 class="font-display font-semibold text-xl text-navy">{strCategoryTitle}</h3>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {restaurants.map(r => (
-        <div class="bg-white rounded-2xl shadow-sm border border-sand-warm/40 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
-          <div class="p-5 flex-1">
-            <div class="flex items-start justify-between mb-3">
-              <div>
-                <h4 class="font-display font-semibold text-navy">{r.name}</h4>
-                <p class="text-xs text-navy/40 mt-0.5">{r.type}</p>
-              </div>
-              <span class="bg-palm/10 text-palm text-xs font-semibold px-2 py-1 rounded-full shrink-0">
-                {r.distance}
-              </span>
-            </div>
-            <p class="text-navy/60 text-sm leading-relaxed mb-3">{r.desc}</p>
-            <div class="flex items-center gap-2">
-              <span class="bg-gold/10 text-gold text-xs font-semibold px-2 py-0.5 rounded-full">{r.price}</span>
-              {r.highlight && (
-                <span class="bg-sunset/10 text-sunset text-xs px-2 py-0.5 rounded-full">{r.highlight}</span>
-              )}
-            </div>
-          </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      {categories.map((c: any) => (
+        <div class="bg-white rounded-2xl shadow-sm border border-sand-warm/40 p-5 hover:shadow-md transition-shadow flex flex-col">
+          <h4 class="font-display font-semibold text-navy mb-2">{c[0]}</h4>
+          <p class="text-navy/60 text-sm leading-relaxed flex-1">{c[2]}</p>
+          <span class="bg-gold/10 text-gold text-xs font-semibold px-2 py-0.5 rounded-full mt-3 self-start">{c[1]}</span>
         </div>
       ))}
     </div>
   </div>
 
-  <p class="text-center text-navy/40 text-xs mt-8">
+  {f.neutralNote && (
+    <p class="text-center text-navy/55 text-xs mt-8 max-w-2xl mx-auto">{f.neutralNote}</p>
+  )}
+  <p class="text-center text-navy/40 text-xs mt-3">
     {strDisclaimer}
   </p>
 </section>

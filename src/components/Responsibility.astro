@@ -1,0 +1,44 @@
+---
+import { ui } from '../i18n/ui';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const rp = t.responsibility;
+const items = rp.items ?? [];
+---
+
+<section id="responsibility" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="section-eyebrow mb-3">{rp.eyebrow}</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+      {rp.title}
+    </h2>
+    <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+    <p class="text-navy/60 max-w-2xl mx-auto">{rp.subtitle}</p>
+  </div>
+
+  <p class="text-navy/60 text-sm leading-relaxed max-w-3xl mx-auto mb-10 text-center">{rp.intro}</p>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+    {items.map((it: any) => (
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-sand-warm/50 hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-full bg-ocean/10 flex items-center justify-center mb-4">
+          <Icon name={it.icon} size={24} class="text-ocean" />
+        </div>
+        <h3 class="font-display font-semibold text-lg text-navy mb-2">{it.title}</h3>
+        <p class="text-navy/65 text-sm leading-relaxed">{it.body}</p>
+      </div>
+    ))}
+  </div>
+
+  {rp.pledge && (
+    <div class="bg-palm/10 border border-palm/20 rounded-2xl p-6 sm:p-8 text-center max-w-3xl mx-auto">
+      <p class="text-navy/75 text-sm leading-relaxed">{rp.pledge}</p>
+    </div>
+  )}
+</section>

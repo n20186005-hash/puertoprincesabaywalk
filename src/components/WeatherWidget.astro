@@ -1,0 +1,345 @@
+---
+import { ui } from '../i18n/ui';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const w = t.weather;
+
+// Coordinates for the Baywalk waterfront (Puerto Princesa, Palawan).
+const lat = 9.744029;
+const lng = 118.7322572;
+---
+
+<section id="weather" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="section-eyebrow mb-3">{w.eyebrow}</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+      {w.title}
+    </h2>
+    <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+    <p class="text-navy/60 max-w-2xl mx-auto">{w.subtitle}</p>
+  </div>
+
+  <div
+    id="weather-widget"
+    class="bg-gradient-to-br from-ocean/10 to-navy/5 rounded-3xl border border-ocean/15 p-6 sm:p-8"
+    data-wx={JSON.stringify(w)}
+  >
+    <!-- Loading / state -->
+    <div id="weather-state" class="flex items-center justify-center gap-3 text-navy/60 py-10">
+      <span class="w-5 h-5 rounded-full border-2 border-navy/30 border-t-ocean animate-spin"></span>
+      <span>{w.loading}</span>
+    </div>
+
+    <!-- Content (filled by script) -->
+    <div id="weather-content" class="hidden">
+      <!-- Current -->
+      <div class="grid lg:grid-cols-3 gap-6 items-center">
+        <div class="flex items-center gap-5">
+          <div id="wx-current-icon" class="text-ocean"></div>
+          <div>
+            <p id="wx-temp" class="font-display font-bold text-5xl text-navy leading-none">--°</p>
+            <p id="wx-cond" class="text-navy/70 mt-1">--</p>
+            <p id="wx-summary" class="text-sm text-navy/60 mt-1"></p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 lg:col-span-2">
+          <div class="bg-white/70 rounded-xl p-3 text-center">
+            <p class="text-xs text-navy/50 uppercase tracking-wide mb-1" id="wx-lbl-feels"></p>
+            <p id="wx-feels" class="font-display font-semibold text-navy">--°</p>
+          </div>
+          <div class="bg-white/70 rounded-xl p-3 text-center">
+            <p class="text-xs text-navy/50 uppercase tracking-wide mb-1" id="wx-lbl-hum"></p>
+            <p id="wx-hum" class="font-display font-semibold text-navy">--%</p>
+          </div>
+          <div class="bg-white/70 rounded-xl p-3 text-center">
+            <p class="text-xs text-navy/50 uppercase tracking-wide mb-1" id="wx-lbl-wind"></p>
+            <p id="wx-wind" class="font-display font-semibold text-navy">--</p>
+          </div>
+          <div class="bg-white/70 rounded-xl p-3 text-center">
+            <p class="text-xs text-navy/50 uppercase tracking-wide mb-1" id="wx-lbl-precip"></p>
+            <p id="wx-precip" class="font-display font-semibold text-navy">--</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Risk notice (top, red) -->
+      <div id="wx-risk" class="mt-5 hidden rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700"></div>
+
+      <!-- Smart advice: three dynamic columns -->
+      <div class="mt-5 grid md:grid-cols-3 gap-4">
+        <div id="wx-col-outfit" class="hidden rounded-2xl bg-white/70 border border-sand-warm/40 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-navy/50 mb-2" id="wx-h-outfit"></p>
+          <ul id="wx-out" class="space-y-1.5 text-sm text-navy/80 list-disc list-inside"></ul>
+        </div>
+        <div id="wx-col-activity" class="hidden rounded-2xl bg-white/70 border border-sand-warm/40 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-navy/50 mb-2" id="wx-h-activity"></p>
+          <ul id="wx-act" class="space-y-1.5 text-sm text-navy/80 list-disc list-inside"></ul>
+        </div>
+        <div id="wx-col-items" class="hidden rounded-2xl bg-white/70 border border-sand-warm/40 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-navy/50 mb-2" id="wx-h-items"></p>
+          <ul id="wx-item" class="space-y-1.5 text-sm text-navy/80 list-disc list-inside"></ul>
+        </div>
+      </div>
+      <p id="wx-norisk" class="mt-4 hidden text-sm text-navy/50 flex items-center gap-2">
+        <Icon name="check" size={16} class="text-green-600" /><span></span>
+      </p>
+
+      <!-- Sun times -->
+      <div class="mt-4 flex flex-wrap gap-6 text-sm text-navy/60">
+        <span class="flex items-center gap-1.5"><Icon name="sun" size={16} class="text-gold" /><span id="wx-lbl-sunrise"></span>: <span id="wx-sunrise"></span></span>
+        <span class="flex items-center gap-1.5"><Icon name="moon" size={16} class="text-navy" /><span id="wx-lbl-sunset"></span>: <span id="wx-sunset"></span></span>
+      </div>
+
+      <!-- 7-day forecast -->
+      <div class="mt-8">
+        <p class="text-xs font-semibold uppercase tracking-wide text-navy/50 mb-3" id="wx-lbl-today"></p>
+        <div id="wx-forecast" class="grid grid-cols-3 sm:grid-cols-7 gap-2"></div>
+      </div>
+
+      <p id="wx-updated" class="mt-4 text-xs text-navy/40 text-right"></p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var root = document.getElementById('weather-widget');
+    if (!root) return;
+    var W = JSON.parse(root.dataset.wx || '{}');
+    var L = W || {};
+    var days = W.days || ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    var cond = W.conditions || {};
+    var advice = (W.advice && W.advice.triggers) || {};
+    var sec = (W.advice && W.advice.sections) || {};
+    var windDesc = W.windDesc || ['Light','Breezy','Strong'];
+
+    function iconName(code, isDay) {
+      if (code === 0) return isDay ? 'sun' : 'moon';
+      if (code === 1) return isDay ? 'cloud-sun' : 'cloud';
+      if (code === 2) return 'cloud-sun';
+      if (code === 3) return 'cloud';
+      if (code === 45 || code === 48) return 'fog';
+      if ((code >= 51 && code <= 57) || (code >= 61 && code <= 67) || (code >= 80 && code <= 82)) return 'rain';
+      if ((code >= 71 && code <= 77) || (code >= 85 && code <= 86)) return 'snow';
+      if (code >= 95) return 'storm';
+      return 'cloud';
+    }
+    function condLabel(code) {
+      if (code === 0) return cond.clear || 'Clear';
+      if (code === 1) return cond.mainlyClear || 'Mainly clear';
+      if (code === 2) return cond.partlyCloudy || 'Partly cloudy';
+      if (code === 3) return cond.overcast || 'Overcast';
+      if (code === 45 || code === 48) return cond.fog || 'Fog';
+      if (code >= 51 && code <= 57) return cond.drizzle || 'Drizzle';
+      if (code >= 61 && code <= 67) return cond.rain || 'Rain';
+      if (code >= 80 && code <= 82) return cond.showers || 'Showers';
+      if (code >= 71 && code <= 77) return cond.snow || 'Snow';
+      if (code >= 85 && code <= 86) return cond.snowShowers || 'Snow showers';
+      if (code >= 95) return cond.storm || 'Thunderstorm';
+      return cond.cloudy || 'Cloudy';
+    }
+    function svg(name, cls) {
+      var paths = {
+        sun: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>',
+        moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+        cloud: '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>',
+        'cloud-sun': '<circle cx="7" cy="7" r="3"/><path d="M20 14a4 4 0 0 0 0-8 5 5 0 0 0-9.7 1.5A3.5 3.5 0 0 0 7 19h10a3 3 0 0 0 3-5z"/>',
+        rain: '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><line x1="8" y1="22" x2="8" y2="19"/><line x1="12" y1="22" x2="12" y2="19"/><line x1="16" y1="22" x2="16" y2="19"/>',
+        storm: '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><polyline points="13 13 11 18 14 18 12 22"/>',
+        snow: '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><line x1="9" y1="22" x2="9" y2="20"/><line x1="13" y1="22" x2="13" y2="20"/><line x1="17" y1="22" x2="17" y2="20"/>',
+        fog: '<path d="M3 8h11a3 3 0 1 0-3-3"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="3" y1="17" x2="21" y2="17"/><line x1="3" y1="21" x2="17" y2="21"/>'
+      };
+      return '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="' + (cls||'') + '">' + (paths[name] || paths.cloud) + '</svg>';
+    }
+    function beaufort(kmh) {
+      if (kmh < 1) return 0;
+      if (kmh < 6) return 1;
+      if (kmh < 12) return 2;
+      if (kmh < 20) return 3;
+      if (kmh < 29) return 4;
+      if (kmh < 39) return 5;
+      if (kmh < 50) return 6;
+      if (kmh < 62) return 7;
+      if (kmh < 75) return 8;
+      if (kmh < 89) return 9;
+      if (kmh < 103) return 10;
+      if (kmh < 118) return 11;
+      return 12;
+    }
+    function showError() {
+      var st = document.getElementById('weather-state');
+      st.classList.remove('hidden');
+      st.querySelector('span:last-child').textContent = W.error || 'Weather unavailable.';
+      var spin = st.querySelector('span:first-child');
+      if (spin) spin.remove();
+    }
+    function setList(ulId, colId, items) {
+      var ul = document.getElementById(ulId);
+      var col = document.getElementById(colId);
+      ul.innerHTML = '';
+      if (!items || !items.length) { col.classList.add('hidden'); return; }
+      items.forEach(function (s) {
+        var li = document.createElement('li');
+        li.textContent = s;
+        ul.appendChild(li);
+      });
+      col.classList.remove('hidden');
+    }
+    function render(data) {
+      var cur = data.current;
+      var d = data.daily;
+      var todayPop = (d.precipitation_probability_max && d.precipitation_probability_max[0]) || 0;
+      var uvNow = (cur.uv_index != null) ? cur.uv_index : ((d.uv_index_max && d.uv_index_max[0]) || 0);
+
+      document.getElementById('weather-state').classList.add('hidden');
+      document.getElementById('weather-content').classList.remove('hidden');
+
+      document.getElementById('wx-current-icon').innerHTML = svg(iconName(cur.weather_code, cur.is_day === 1));
+      document.getElementById('wx-temp').textContent = Math.round(cur.temperature_2m) + '°';
+      var cLabel = condLabel(cur.weather_code);
+      document.getElementById('wx-cond').textContent = cLabel;
+      document.getElementById('wx-feels').textContent = Math.round(cur.apparent_temperature) + '°';
+      document.getElementById('wx-hum').textContent = Math.round(cur.relative_humidity_2m) + '%';
+      var lvl = beaufort(cur.wind_speed_10m);
+      document.getElementById('wx-wind').textContent = Math.round(cur.wind_speed_10m) + ' km/h';
+      document.getElementById('wx-precip').textContent = (cur.precipitation > 0 ? cur.precipitation + ' mm' : '0');
+
+      document.getElementById('wx-lbl-feels').textContent = W.feelsLike || 'Feels like';
+      document.getElementById('wx-lbl-hum').textContent = W.humidity || 'Humidity';
+      document.getElementById('wx-lbl-wind').textContent = W.wind || 'Wind';
+      document.getElementById('wx-lbl-precip').textContent = W.precip || 'Precip';
+
+      // --- Smart advice engine ---
+      var code = cur.weather_code;
+      var isModHeavy = [63,65,66,67,82,95,96,97,98,99].indexOf(code) !== -1;
+      var isThunder = code >= 95;
+      var isLightRain = [51,53,55,56,57,61,80,81].indexOf(code) !== -1;
+      var precipNow = isModHeavy || isLightRain || cur.precipitation > 0.5;
+      var highTemp = Math.max(cur.temperature_2m, d.temperature_2m_max[0]) >= 32;
+      var uvHigh = uvNow >= 5;
+      var tempDiff = (d.temperature_2m_max[0] - d.temperature_2m_min[0]) > 8;
+      var lowTemp = d.temperature_2m_max[0] <= 10;
+      var windHigh = lvl >= 7;
+      var windMod = lvl >= 5 && lvl <= 6;
+      var clear = code === 0 || code === 1;
+      var cloudy = code === 3;
+      var fog = code === 45 || code === 48;
+
+      var active = [];
+      if (isModHeavy) active.push('modHeavyRain');
+      if (isThunder) active.push('thunder');
+      if (isLightRain && !isModHeavy) active.push('lightRain');
+      if (!precipNow && todayPop >= 60) active.push('precipProb');
+      if (highTemp) active.push('highTemp');
+      if (uvHigh) active.push('uvHigh');
+      if (tempDiff) active.push('tempDiff');
+      if (lowTemp) active.push('lowTemp');
+      if (windHigh) active.push('windHigh');
+      else if (windMod) active.push('windModerate');
+      if (clear) active.push('clear');
+      if (cloudy) active.push('cloudy');
+      if (fog) active.push('fog');
+
+      var out = [], act = [], item = [], risk = [];
+      active.forEach(function (k) {
+        var o = advice[k];
+        if (!o) return;
+        if (o.outfit) out.push(o.outfit);
+        if (o.activity) act.push(o.activity);
+        if (o.item) item.push(o.item);
+        if (o.risk) risk.push(o.risk);
+      });
+
+      // Risk banner (top, red) — only when there is a real risk
+      var riskBox = document.getElementById('wx-risk');
+      var noRisk = document.getElementById('wx-norisk');
+      if (risk.length) {
+        riskBox.innerHTML = '<p class="font-semibold mb-1">' + (sec.risk || 'Risk') + '</p><ul class="list-disc list-inside space-y-0.5">' +
+          risk.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ul>';
+        riskBox.classList.remove('hidden');
+        noRisk.classList.add('hidden');
+      } else {
+        riskBox.classList.add('hidden');
+        noRisk.classList.remove('hidden');
+        noRisk.querySelector('span').textContent = W.advice && W.advice.noRisk ? W.advice.noRisk : '';
+      }
+
+      document.getElementById('wx-h-outfit').textContent = sec.outfit || 'What to wear';
+      document.getElementById('wx-h-activity').textContent = sec.activity || 'Plan';
+      document.getElementById('wx-h-items').textContent = sec.items || 'Bring';
+      setList('wx-out', 'wx-col-outfit', out);
+      setList('wx-act', 'wx-col-activity', act);
+      setList('wx-item', 'wx-col-items', item);
+
+      // Summary line: condition · min–max℃ · (UV if strong) · wind
+      var uvText = uvHigh ? (W.uvStrong || 'Strong UV') : '';
+      var windText = windDesc[lvl >= 7 ? 2 : (lvl >= 5 ? 1 : 0)] || '';
+      var summary = cLabel + ' · ' + Math.round(d.temperature_2m_min[0]) + '–' + Math.round(d.temperature_2m_max[0]) + '℃' +
+        (uvText ? ' · ' + uvText : '') + (windText ? ' · ' + windText : '');
+      document.getElementById('wx-summary').textContent = summary;
+
+      // Sun times
+      document.getElementById('wx-lbl-sunrise').textContent = W.sunrise || 'Sunrise';
+      document.getElementById('wx-lbl-sunset').textContent = W.sunset || 'Sunset';
+      document.getElementById('wx-sunrise').textContent = (d.sunrise && d.sunrise[0] ? d.sunrise[0].slice(11, 16) : '--');
+      document.getElementById('wx-sunset').textContent = (d.sunset && d.sunset[0] ? d.sunset[0].slice(11, 16) : '--');
+
+      // 7-day forecast
+      document.getElementById('wx-lbl-today').textContent = (W.today || 'Today') + ' · ' + (W.pop || 'Rain');
+      var fc = document.getElementById('wx-forecast');
+      fc.innerHTML = '';
+      for (var i = 0; i < d.time.length && i < 7; i++) {
+        var dt = new Date(d.time[i] + 'T00:00:00');
+        var dow = days[dt.getDay()];
+        var pop = d.precipitation_probability_max ? d.precipitation_probability_max[i] : 0;
+        var cell = document.createElement('div');
+        cell.className = 'bg-white/70 rounded-xl p-3 text-center';
+        cell.innerHTML =
+          '<p class="text-xs text-navy/50 mb-1">' + dow + '</p>' +
+          svg(iconName(d.weather_code[i], true), 'mx-auto text-ocean w-7 h-7') +
+          '<p class="font-display font-semibold text-navy text-sm mt-1">' + Math.round(d.temperature_2m_max[i]) + '°</p>' +
+          '<p class="text-navy/50 text-xs">' + Math.round(d.temperature_2m_min[i]) + '°</p>' +
+          '<p class="text-[11px] text-ocean mt-1">' + pop + '%</p>';
+        fc.appendChild(cell);
+      }
+
+      if (W.updated) {
+        var now = new Date();
+        document.getElementById('wx-updated').textContent = W.updated + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+    }
+
+    var CACHE_KEY = 'ppc-baywalk-weather-v1';
+    var CACHE_TTL = 30 * 60 * 1000;
+    try {
+      var cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        var parsed = JSON.parse(cached);
+        if (parsed.t && Date.now() - parsed.t < CACHE_TTL) {
+          render(parsed.data);
+        }
+      }
+    } catch (e) {}
+
+    var url = 'https://api.open-meteo.com/v1/forecast' +
+      '?latitude=' + encodeURIComponent('9.744029') + '&longitude=' + encodeURIComponent('118.7322572') +
+      '&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_gusts_10m,is_day,uv_index' +
+      '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,sunrise,sunset' +
+      '&timezone=Asia/Manila&forecast_days=7&wind_speed_unit=kmh';
+
+    fetch(url)
+      .then(function (r) { if (!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function (data) {
+        render(data);
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data: data })); } catch (e) {}
+      })
+      .catch(function () { showError(); });
+  })();
+</script>

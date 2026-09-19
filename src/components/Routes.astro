@@ -1,0 +1,79 @@
+---
+import { ui } from '../i18n/ui';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const r = t.routes;
+const general = r.general ?? {};
+const tailored = r.tailored ?? [];
+---
+
+<section id="routes" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-sand-warm/30">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <p class="section-eyebrow mb-3">{r.eyebrow}</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+        {r.title}
+      </h2>
+      <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+      <p class="text-navy/60 max-w-2xl mx-auto">{r.subtitle}</p>
+    </div>
+
+    <!-- Classic itineraries -->
+    <h3 class="font-display font-semibold text-xl text-navy mb-6">{r.generalTitle}</h3>
+    <div class="grid md:grid-cols-2 gap-6 mb-14">
+      {(general.halfDay || general.fullDay) && [general.halfDay, general.fullDay].map((plan: any) => plan && (
+        <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-sand-warm/50">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-xl bg-ocean/10 flex items-center justify-center">
+              <Icon name="clock" size={22} class="text-ocean" />
+            </div>
+            <div>
+              <h4 class="font-display font-semibold text-lg text-navy">{plan.title}</h4>
+              <p class="text-xs text-ocean font-medium">{plan.time}</p>
+            </div>
+          </div>
+          <ol class="space-y-3">
+            {plan.items?.map((it: string, i: number) => (
+              <li class="flex items-center gap-3 text-sm text-navy/75">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ocean/10 text-ocean font-semibold text-xs">{i + 1}</span>
+                <span>{it}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tailored -->
+    <h3 class="font-display font-semibold text-xl text-navy mb-6">{r.tailoredTitle}</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      {tailored.map((route: any) => (
+        <div class="bg-navy text-white rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-11 h-11 rounded-xl bg-gold/20 flex items-center justify-center">
+              <Icon name={route.icon} size={22} class="text-gold-light" />
+            </div>
+            <div>
+              <h4 class="font-display font-semibold text-lg">{route.title}</h4>
+              {route.audience && <p class="text-xs text-gold-light">{route.audience}</p>}
+            </div>
+          </div>
+          <ul class="space-y-2.5">
+            {route.items?.map((it: string) => (
+              <li class="flex items-start gap-2 text-sm text-white/75">
+                <span class="text-gold mt-0.5 shrink-0">&#10003;</span>
+                <span>{it}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -26,6 +26,11 @@
       "tickets": "Pagpasok",
       "parking": "Paradahan",
       "food": "Pagkain",
+      "tides": "Karagatan",
+      "weather": "Panahon",
+      "routes": "Mga Ruta",
+      "seasonal": "Pananahon",
+      "responsibility": "Responsibilidad",
       "itinerary": "Itineraryo"
     }
   },
@@ -144,10 +149,18 @@
     "body2": "Ang mga tricycle ang pinakakaraniwang paraan ng lokal na transportasyon. Sumakay lamang ng tricycle at sabihing 'Baywalk' — alam ng lahat ng driver kung saan ito. Ang mga pamasahe ay karaniwang PHP 50-150 depende sa iyong panimulang punto."
   },
   "facilities": {
-    "label": "Mga Pasilidad ng Bisita",
-    "title": "Ano ang Available sa Site",
-    "body1": "Ang Baywalk ay nag-aalok ng hanay ng mga pasilidad kabilang ang mga pampublikong palikuran, seating areas, ilaw para sa kaligtasan sa gabi, at mga basurahan sa buong promenade. Ang lugar ay pinapanatiling malinis ng city government.",
-    "body2": "Available ang libreng paradahan sa kahabaan ng Sandoval Street at mga kalapit na designated parking areas. Ang mga vendor ay nagbebenta ng pagkain, inumin, at souvenir sa buong haba ng Baywalk."
+    "eyebrow": "Mga Serbisyo ng Bisita",
+    "title": "Mga Pasilidad at Amenities",
+    "subtitle": "Mga pang-araw-araw na serbisyo sa paligid ng Baywalk — ayon sa uri, hindi ayon sa pangalan",
+    "intro": "Ang Baywalk at ang mga kalapit nitong lugar ay nag-aalok ng mga amenities na kailangan ng isang waterfront na gabi. Inilalarawan namin ang mga ito ayon sa kategorya upang makapagplano ka nang walang bias sa komersyo.",
+    "cards": [
+      { "icon": "wc", "title": "Mga Pampublikong Palikuran", "text": "Ang mga pampublikong palikuran ay nasa mga pangunahing gathering area at sa mga agwat sa kahabaan ng promenade, pinapanatili ng lungsod. Magdala ng kaunting barya kung humihingi ng donasyon." },
+      { "icon": "food", "title": "Pagkain at Refreshments", "text": "Tingnan ang seksyong Pagkain para sa mga kategorya ng pagkain at inumin — seafood grill, casual dining, street food, at bakery." },
+      { "icon": "bed", "title": "Mga Matutuluyan sa Malapit", "text": "Isang hanay ng mga uri ng matutuluyan ay nasa walking distance o maikling tricycle ride: budget guesthouses, mid-range hotel, at waterfront resort. Mag-book nang maaga sa dry-season peak." },
+      { "icon": "built", "title": "Convenience at Grocery", "text": "Ang mga sari-sari store, mini-mart, at supermarket sa city center ay may inumin, snacks, sun care, at essentials. Ang pinakamalapit na buong supermarket ay maikling tricycle ride papuntang inland." },
+      { "icon": "fuel", "title": "Fuel at EV Charging", "text": "Ang mga petrol station ay nakakalat sa buong lungsod, ilang minuto ang layo gamit ang tricycle o motorbike. Limitado pa rin ang mga pampublikong EV charging point sa Puerto Princesa — mag-charge bago dumating at kumpirmahin ang mga lokasyon sa iyong accommodation." },
+      { "icon": "car", "title": "Paradahan", "text": "Ang libreng street parking ay naka-line sa Sandoval Street at mga kalapit na kalsada. Tingnan ang seksyong Paradahan para sa mga detalye at tip sa peak hour." }
+    ]
   },
   "safety": {
     "label": "Mga Tip ng Bisita",
@@ -178,7 +191,7 @@
     },
     {
       "q": "May mga restaurant at pagkaing malapit ba?",
-      "a": "Oo, sikat ang Baywalk area sa mga seafood stall at casual eatery nito. Kabilang sa mga sikat na restaurant ang Kinabuchs Grill & Bar, Badjao Seafront Restaurant, Kalui Restaurant, at maraming lokal na ihawan stall sa kahabaan ng promenade."
+      "a": "Oo, sikat ang Baywalk area sa mga seafood stall at casual eatery nito. Makikita rito ang mga kategorya ng pagkain tulad ng seafood grill, casual dining, street food, at bakery — tingnan ang seksyong Pagkain para sa detalye."
     }
   ],
   "map": {
@@ -253,46 +266,36 @@
     "tip": "Tip: Dumating nang maaga (bago mag-4:30 PM) para sa pinakamagandang paradahan sa panahon ng sunset"
   },
   "food": {
-    "title": "Mga Kalapit na Restaurant at Pagkain",
-    "subtitle": "Sariwang seafood, Pinoy street food, at casual dining",
-    "restaurants": [
-      [
-        "Kinabuchs Grill & Bar",
-        "Casual Dining",
-        "PHP 250–600",
-        "Sikat sa sariwang seafood at inihaw na karne, may outdoor seating malapit sa Baywalk"
-      ],
-      [
-        "Badjao Seafront Restaurant",
-        "Seafood Special",
-        "PHP 400–900",
-        "Matatagpuan sa ibabaw ng tubig na may nakamamanghang tanawin — sulit ang pagpunta"
-      ],
-      [
-        "Kalui Restaurant",
-        "Fine Filipino",
-        "PHP 400–800",
-        "Maaarteng Filipino cuisine sa isang magandang native-style na setting"
-      ],
-      [
-        "Ihawang Pantalan",
-        "Local Ihawan",
-        "PHP 100–300",
-        "Mga street-side grill stall sa kahabaan mismo ng Baywalk promenade"
-      ],
-      [
-        "Haim Chicken Inato",
-        "Local Favorite",
-        "PHP 150–300",
-        "Sikat na Filipino-style roasted chicken, ilang minuto lang ang layo mula sa Baywalk"
-      ],
-      [
-        "Baker's Hill",
-        "Bakery & Snacks",
-        "PHP 100–250",
-        "Mga sikat na hopia at pastry — perpekto para sa mabilis na meryenda"
-      ]
+    "title": "Pagkain at Refreshments",
+    "subtitle": "Ano ang kakainin sa Baywalk — ayon sa uri, hindi ayon sa brand",
+    "neutralNote": "Bilang isang independiyenteng, non-commercial na gabay, nakalista namin ang pagkain ayon sa uri, hindi ayon sa tindahan. Ang mga opsyon at presyo ay nag-iiba ayon sa stall at panahon.",
+    "categories": [
+      ["Seafood Grills", "PHP 150–400", "Sariwang huli — isda, pusit, hipon, alimango — inihaw sa order sa ibabaw ng mga charcoal grill na naka-line sa promenade."],
+      ["Casual at Native Dining", "PHP 250–800", "Mga sit-down restaurant malapit sa waterfront na naghahain ng Filipino at seafood menu; ang iba ay nakatayo sa mga poste sa ibabaw ng tubig."],
+      ["Street Food at Snacks", "PHP 20–100", "Grilled skewers (ihaw-ihaw), mga lokal na bite, sariwang fruit shakes, at ice cream mula sa mga movable stall."],
+      ["Bakeries at Sweets", "PHP 50–250", "Hopia, pastry, at takeaway snacks — madaling para sa hapon na treat o picnic."]
     ]
+  },
+  "tides": {
+    "eyebrow": "Dagat at Alon",
+    "title": "Mga Alon sa Baywalk",
+    "subtitle": "Paano binabago ng dalawang beses na pagtaas-baba ng tubig ang iyong pagbisita",
+    "intro": "Ang Puerto Princesa ay nakaharap sa Sulu Sea, kung saan ang mga alon ay may mixed semi-diurnal na ritmo — dalawang high tide at dalawang low tide araw-araw, na may saklaw na humigit-kumulang 0.5–2 metro. Tahimik na binabago ng tubig ang itsura ng bay mula umaga hanggang gabi.",
+    "patternTitle": "Karaniwang Pang-araw na Pattern ng Alon",
+    "weekNote": "Halimbawang pattern sa isang linggo — ang aktwal na oras ay gumagalaw ng humigit-kumulang isang oras bawat araw. Sumangguni sa live tide table bago pumunta.",
+    "high": "High",
+    "low": "Low",
+    "time": "Oras",
+    "height": "Taas (m)",
+    "days": ["Lun", "Mar", "Miy", "Huw", "Biy", "Sab", "Ling"],
+    "tipsTitle": "Ang Alon at ang Iyong Pagbisita",
+    "tips": [
+      "Sa high tide, umaabot ang tubig sa seawall — pinakapuno at pinakareplektibo ang bay, perpekto para sa sunset photos.",
+      "Sa low tide, humihiwalay ang bay at lumalabas ang mga mudflat at suporta ng mga nakatayong restaurant; hindi naapektuhan ang promenade.",
+      "Ang boat trips, island hopping, at dining sa tabi ng tubig ay pinakamainam sa oras ng high tide.",
+      "Ang oras ng alon ay gumagalaw ng humigit-kumulang isang oras bawat araw, kaya huwag magplano base sa schedule kahapon."
+    ],
+    "disclaimer": "Ang oras at taas ng alon ay humigit-kumulang at nagbabago ayon sa buwan at panahon. Laging kumpirmahin sa kasalukuyang lokal na tide table (hal. isang tide-forecast app) bago magplano ng mga gawain sa tubig."
   },
   "itinerary": {
     "title": "Plano ng Pagbisita",
@@ -340,6 +343,134 @@
       "cookies": "Mga Setting ng Cookie"
     },
     "copyright": "© 2025 Puerto Princesa City Baywalk Park. Lahat ng karapatan ay nakalaan. Hindi kaakibat sa gobyerno ng Lungsod ng Puerto Princesa."
+  },
+  "heritage": {
+    "eyebrow": "Kasaysayan at mga Kuwento",
+    "title": "Ang Kuwento ng Baywalk",
+    "subtitle": "Mula sa tahimik na baybayin hanggang sa puso ng gabi ng lungsod",
+    "timeline": [
+      { "era": "Bago ang 2000s", "heading": "Isang Working Waterfront", "body": "Bago ang pagbabago nito, ang baybayin ng Sandoval Street ay isang simpleng bahagi ng baybayin na ginagamit ng mga mangingisda at lokal na trader. Ang mga maliliit na bangka ay sumasayaw sa bay at ang lungsod ay humarap sa Sulu Sea nang walang pormal na espasyo para sa publiko." },
+      { "era": "2000s", "heading": "Urban Renewal", "body": "Bilang bahagi ng layunin ng Puerto Princesa na gawing berde at maganda ang lungsod, ang waterfront ay na-reclaim at na-landscape bilang isang pampublikong promenade — may mga puno ng niyog, may ilaw, at bukas sa lahat." },
+      { "era": "Ngayon", "heading": "Ang Salas ng Lungsod", "body": "Ang Baywalk ay ngayon na paboritong tambayan sa gabi ng lungsod: libre, pampamilya, at buhay na may pagkain, musika, at paglubog ng araw. Ito ay nakatatayo bilang simbolo ng koneksyon ng Puerto Princesa sa dagat." }
+    ],
+    "legends": {
+      "title": "Mga Kuwento at Lokal na Lore",
+      "intro": "Tulad ng maraming bayan sa baybayin ng Pilipinas, ang baybayin ng Puerto Princesa ay may mga kuwentong ipinasa ng mga mangingisda at pamilya. Ibinabahagi ang mga ito bilang pamana ng kultura, hindi bilang katotohanang siyentipiko.",
+      "stories": [
+        { "title": "Ang Tagapagbantay ng Sulu Sea", "body": "Ang mga nakatatanda ay nagsasalita ng isang espiritu ng dagat na sinasabing nagbabantay sa mga manghuhuli sa takip-silim. Maging literal o poetiko, ang kuwento ay nagpapakita ng patuloy na respeto sa tubig na nagpapakain sa lungsod." },
+        { "title": "Ang Paglubog ng Araw bilang Araw-araw na Regalo", "body": "Sinasabi ng mga lokal na ang tanyag na paglubog ng araw sa Baywalk ay ang dagat na 'bumubuga ng hininga' sa pagtatapos ng araw — isang banayad na paalala, sa tradisyon, na huminto at magpasalamat bago ang takip-silim." },
+        { "title": "Ang Palawan Peacock-Pheasant Sign", "body": "Ang marker ng Palawan peacock-pheasant ay naging hindi opisyal na landmark at photo rite of passage — isang maliit na simbolo ng lokal na pride sa natatanging wildlife ng isla." }
+      ],
+      "note": "Tangkilikin ang mga kuwentong ito bilang folklore. Para sa mga katotohanang natural-history, tingnan ang aming mga conservation note sa ibaba."
+    }
+  },
+  "routes": {
+    "eyebrow": "Mga Iminumungkahing Ruta",
+    "title": "Paano Gamitin ang Iyong Oras",
+    "subtitle": "Pumili ng plano na akma sa iyong grupo at enerhiya",
+    "generalTitle": "Mga Classic na Itinerary",
+    "general": {
+      "halfDay": { "title": "Half-Day na Gabi", "time": "~4:00 PM – 7:00 PM (3 oras)", "items": ["Dumating bandang 4 PM at kunin ang magandang spot para sa sunset", "Maglakad sa promenade mula dulo hanggang dulo", "Panoorin ang paglubog ng araw sa pangunahing viewing area", "Hapunan sa isang seafood grill o street stall", "Ice cream at live music bago umuwi"] },
+      "fullDay": { "title": "Full-Day na Puerto Princesa", "time": "9:00 AM – 8:00 PM (8–10 oras)", "items": ["Umaga: Immaculate Conception Cathedral at Plaza Cuartel", "Tanghali: Palawan Museum at isang lokal na tanghalian", "Hapon: magpahinga, bumalik sa Baywalk bandang 4 PM", "Sunset, hapunan, at musika sa Baywalk", "Opsyonal na gabi: night market o city walk"] }
+    },
+    "tailoredTitle": "Mga Ruta ayon sa Uri ng Bisita",
+    "tailored": [
+      { "key": "family", "icon": "users", "title": "Pamilya na may mga Bata", "audience": "Lahat ng edad", "items": ["Dumating nang maaga (~4 PM) upang iwasan ang init at ang tao", "Patag, stroller-friendly na promenade", "Mga bench at bukas na espasyo para mag-ikot ang mga bata", "Kid-friendly na street food at ice cream", "Panatilihin ang mga bata sa arm's reach malapit sa tubig sa low tide"] },
+      { "key": "photo", "icon": "camera", "title": "Mga Photographer at Kalikasan", "audience": "Golden hour at wildlife", "items": ["I-scout ang Peacock-Pheasant sign bago ang golden hour", "Ang golden hour ay bandang 5–6 PM sa ibabaw ng Sulu Sea", "Ang low tide ay naglalantad ng mudflat at mga naka-stilt na restaurant — magandang detail shots", "Ang blue hour pagkatapos ng sunset para sa city lights", "Magdala ng wide lens para sa panorama"] },
+      { "key": "accessible", "icon": "shield", "title": "Low-Effort / Accessible", "audience": "Matatanda at limitadong mobility", "items": ["Paved, step-free na promenade sa tabi ng tubig", "Mga rest spot at bench sa regular na agwat", "Ang isang tricycle ay maaaring maghatid sa pangunahing pasukan", "Bisitahin sa kalmadong huling hapon", "Iwasan ang peak sunset crush kung ang tao ay isang alalahanin"] }
+    ]
+  },
+  "seasonal": {
+    "eyebrow": "Estratehiya sa Panahon",
+    "title": "Kailan Bumisita — Kwarter sa Kwarter",
+    "subtitle": "Meteorolohiya, linaw ng tubig, at wildlife, base sa long-term (30-year mean) climate norms",
+    "note": "Ang mga pattern ay sumasalamin sa klima ng Pilipinas (PAGASA) at long-term marine norms. Laging tingnan ang isang live local forecast (PAGASA o weather app) bago pumunta. Ang Sulu Sea ay karaniwang kalmado at mainit sa buong taon.",
+    "columns": ["Panahon", "Panahon", "Tubig at Dagat", "Wildlife", "Ang Payo Namin"],
+    "rows": [
+      { "period": "Dis – Peb (NE Monsoon)", "weather": "Tuyo, mas malamig, maaliwalas (24–30°C). Pinaka-konting ulan.", "water": "Pinakakalmadong dagat, pinakamagandang linaw para sa paglangoy at larawan.", "wildlife": "Ang malinaw na tubig ay pabor sa reef at shorelife; migratory birds sa wetlands.", "advice": "Peak season — pinakamainam na kondisyon. Mag-book ng lodging nang maaga." },
+      { "period": "Mar – Mayo (Mainit at Tuyo)", "weather": "Mainit at tuyo (28–34°C), tumataas na humidity.", "water": "Mainit, karaniwang kalmado; paminsan-minsang haze.", "wildlife": "Ang sea turtle ay mas aktibo malapit sa shore; magandang snorkeling.", "advice": "Pumunta sa sunset para iwas init. Uminom nang maraming tubig." },
+      { "period": "Hun – Ago (SW Monsoon)", "weather": "Wet season; hapon na ulan, mas magalaw na dagat.", "water": "Mas maraming alon, mababang linaw pagkatapos ng ulan; mas malakas na agos.", "wildlife": "Lush green landscapes; plankton blooms ay humihikayat ng isda.", "advice": "Magdala ng rain gear; ang umaga ay madalas na mas malinaw. Bantayan ang sea state." },
+      { "period": "Set – Nob (Transition)", "weather": "Wet to dry; typhoon risk, mas konting tao.", "water": "Variable; post-storm runoff ay maaaring magbaba ng linaw.", "wildlife": "Quiet season — mapayapang promenade, magandang birdwatching.", "advice": "Maging flexible; bantayan ang storm advisories. Pinakamainam para sa pag-iisa." }
+    ]
+  },
+  "responsibility": {
+    "eyebrow": "Conservation at Responsibilidad",
+    "title": "Bisitahin nang Marahan, Matuto Nang Higit Pa",
+    "subtitle": "Ang pangako ng isang non-profit na gabay sa bay at komunidad nito",
+    "intro": "Ang Baywalk ay umuunlad dahil malusog ang Sulu Sea at ang lungsod. Ang maliliit na pagpili ay pinoprotektahan ang pareho.",
+    "items": [
+      { "icon": "leaf", "title": "Leave No Trace", "body": "Gamitin ang mga basurahan; kung puno na, dalhin ang iyong basura. Ang basura sa tubig ay nakakasama sa marine life." },
+      { "icon": "water", "title": "Protektahan ang Tubig", "body": "Huwag pakainin ang wildlife o itapon ang pagkain sa dagat. Panatilihing layo ang sabon at plastik sa baybayin." },
+      { "icon": "shield", "title": "Respetuhin ang Komunidad", "body": "Ang Baywalk ay isang pampubliko, pampamilyang espasyo. Panatilihing maayos ang ingay sa gabi at sundin ang lokal na gabay." },
+      { "icon": "compass", "title": "Matuto sa Lugar", "body": "Basahin ang kasaysayan at tide note para maintindihan kung bakit mahalaga ang bay na ito — ang mga informed na bisita ay protektahan ang kanilang pinahahalagahan." },
+      { "icon": "users", "title": "Suportahan ang mga Lokal nang Patas", "body": "Bumili sa mga lokal na stall at igalang ang mga vendor. Bilang isang non-commercial na gabay, hindi kami nire-recommend ang mga tiyak na negosyo." },
+      { "icon": "info", "title": "Manatiling Informed", "body": "Tingnan ang panahon, tide, at opisyal na advisory bago bumisita. Ang kondisyon sa Sulu Sea ay nagbabago araw-araw." }
+    ],
+    "pledge": "Ang site na ito ay isang independiyenteng, non-profit na visitor guide. Hindi kami kumikita mula sa mga rekomendasyon at inililista ang mga serbisyo ayon sa uri, hindi ayon sa brand, upang panatilihing patas at kapaki-pakinabang ang impormasyon para sa lahat."
+  },
+  "weather": {
+    "eyebrow": "Mga Kondisyon ng Live",
+    "title": "Panahon at Forecast ng Baywalk",
+    "subtitle": "Mga real-time na kondisyon at susunod na 7 araw sa waterfront ng Sulu Sea",
+    "loading": "Naglo-load ng mga kasalukuyang kondisyon…",
+    "error": "Ang panahon ay pansamantalang hindi available. Mangyaring tingnan ang isang local forecast app.",
+    "updated": "Na-update",
+    "now": "Ngayon",
+    "feelsLike": "Rama ng",
+    "humidity": "Humidity",
+    "wind": "Hangin",
+    "precip": "Precip",
+    "umbrellaYes": "Malamang na ulan — magdala ng payong o raincoat.",
+    "umbrellaNo": "Tuyo — hindi kailangan ng payong, sunscreen lang.",
+    "umbrellaMaybe": "May tsansa ng ulan — mainam ang portable na payong.",
+    "today": "Ngayon",
+    "days": ["Lun", "Mar", "Miy", "Huw", "Biy", "Sab", "Ling"],
+    "high": "H",
+    "low": "L",
+    "pop": "Ulan",
+    "sunrise": "Pagsikat",
+    "sunset": "Paglubog",
+    "conditions": {
+      "clear": "Malinaw",
+      "mainlyClear": "Halos Malinaw",
+      "partlyCloudy": "Bahagyang Maulap",
+      "overcast": "Maulap",
+      "fog": "Hamog",
+      "drizzle": "Amapaw",
+      "rain": "Ulan",
+      "showers": "Bugsuhan",
+      "snow": "Niyebe",
+      "snowShowers": "Bugsuhan ng Niyebe",
+      "storm": "Bagyo",
+      "cloudy": "Maulap"
+    },
+    "uvStrong": "Matinding UV",
+    "uvMild": "Katamtamang UV",
+    "windDesc": ["Mahinang hangin", "Maambon (level 5–6)", "Malakas na hangin (level 7+)"],
+    "advice": {
+      "sections": {
+        "outfit": "Ano ang Suotin",
+        "activity": "Paano Iplano ang Bisita",
+        "items": "Ano ang Dalhin",
+        "risk": "Paalala sa Panganib"
+      },
+      "noRisk": "Walang babala sa panahon sa ngayon",
+      "triggers": {
+        "precipProb": { "outfit": "Mataas ang tsansa ng ulan — magdala ng pananggal sa ulan.", "activity": "Piliin ang indoor; ipagpaliban ang beach o bundok kung umulan.", "item": "Payong / raincoat" },
+        "lightRain": { "outfit": "Mahinang ulan — ingatan ang madulas na daan.", "activity": "Ang mga open-air na activity ay hindi gaanong komportable.", "item": "Napipintong payong" },
+        "modHeavyRain": { "outfit": "Malakas na ulan — waterproof jacket ang mabuti.", "risk": "Malakas na ulan — iwasan ang mababang lugar at lambak.", "activity": "Iwas muna sa outdoor; maaaring tumigil ang boat ride at cable car.", "item": "Raincoat (mahirap ang mahabang payong sa hangin)" },
+        "thunder": { "risk": "Kulog — huwag umakyat, huwag lumangoy sa bay, huwag manatili sa ilalim ng puno.", "activity": "Malamang na sarado ang mga water activity." },
+        "highTemp": { "outfit": "Mainit — magdamit na manipis at presko.", "activity": "Iwasan ang tirik na araw sa tanghali at ikli ang outdoor.", "item": "Sunscreen, sunglasses, maraming tubig, pamigil-init" },
+        "uvHigh": { "outfit": "Matinding UV — magsuot ng pananggal.", "activity": "Maging maingat sa araw kapag nasa labas.", "item": "Sunscreen, sunglasses, sumbrero" },
+        "tempDiff": { "outfit": "Malaki ang pagkakaiba ng temperatura araw-gabi — magdala ng extra layer." },
+        "lowTemp": { "outfit": "Malamig — magdamit nang makapal.", "item": "Makapal na jacket, scarf" },
+        "windModerate": { "outfit": "Maambon — i-secure ang sumbrero.", "activity": "Ang boat ride sa beach at ibang open attraction ay maaaring huminto.", "item": "Iwas sa maluluwag na mahabang skirt" },
+        "windHigh": { "outfit": "Pananggal sa hangin; i-secure ang sumbrero at mga loose na gamit.", "risk": "Malakas na hangin — lumayo sa billboard at bato sa bay.", "activity": "Malamang na kanselado ang mga offshore activity." },
+        "clear": { "outfit": "Malinaw ang langit — magdamit ayon sa temperatura.", "activity": "Mainam para sa paglalakad at pagtingin ng sunset sa bay.", "item": "Huwag kalimutan ang proteksyon sa araw" },
+        "cloudy": { "outfit": "Lamlam na liwanag — komportable para sa litrato.", "activity": "Walang tirik na araw; mainam para sa mahabang lakad." },
+        "fog": { "risk": "Mahina ang visibility — maaaring maantala ang ferry at flight.", "activity": "Hindi mainam para sa tanawin ng dagat o bundok.", "item": "Face mask" }
+      }
+    }
   },
   "legal": {
     "privacy": {

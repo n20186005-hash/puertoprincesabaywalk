@@ -1,0 +1,51 @@
+---
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang] || ui['en'];
+const s = t.seasonal;
+const columns = s.columns ?? [];
+const rows = s.rows ?? [];
+---
+
+<section id="seasonal" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="section-eyebrow mb-3">{s.eyebrow}</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+      {s.title}
+    </h2>
+    <div class="w-20 h-1 bg-sunset rounded-full mx-auto mb-4"></div>
+    <p class="text-navy/60 max-w-2xl mx-auto">{s.subtitle}</p>
+  </div>
+
+  <div class="overflow-x-auto rounded-2xl border border-sand-warm/50 shadow-sm">
+    <table class="w-full text-sm border-collapse min-w-[760px]">
+      <thead>
+        <tr class="bg-navy text-white">
+          {columns.map((c: string) => (
+            <th class:list={['px-4 py-3 font-semibold text-left', c === 'Our Advice' || c === '建议' ? 'text-right' : '']}>{c}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row: any, i: number) => (
+          <tr class:list={['border-t border-sand-warm/40 align-top', i % 2 === 1 ? 'bg-sand-warm/20' : 'bg-white']}>
+            <td class="px-4 py-4 font-display font-semibold text-navy">{row.period}</td>
+            <td class="px-4 py-4 text-navy/70">{row.weather}</td>
+            <td class="px-4 py-4 text-navy/70">{row.water}</td>
+            <td class="px-4 py-4 text-navy/70">{row.wildlife}</td>
+            <td class="px-4 py-4 text-palm font-medium text-right">{row.advice}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  {s.note && (
+    <p class="text-navy/45 text-xs mt-4 max-w-3xl">{s.note}</p>
+  )}
+</section>
