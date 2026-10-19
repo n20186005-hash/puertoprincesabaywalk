@@ -32,7 +32,7 @@ const navKeys = [
 
 <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-sand-warm/50 shadow-sm" id="top">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label={lang === 'fil' ? 'Pangunahing nabigasyon' : lang === 'zh' ? '主导航' : 'Main navigation'}>
-    <div class="flex items-center justify-between h-16">
+    <div class="flex items-center justify-between min-h-16 gap-4 py-2">
       <!-- Logo -->
       <a href={`/${lang}/`} class="flex items-center gap-2.5 group shrink-0" aria-label="Puerto Princesa City Baywalk Park - Home">
         <svg width="36" height="36" viewBox="0 0 36 36" class="shrink-0" aria-hidden="true">
@@ -50,7 +50,7 @@ const navKeys = [
       </a>
 
       <!-- Desktop Nav -->
-      <div class="hidden lg:flex items-center gap-1">
+      <div class="hidden lg:flex min-w-0 flex-wrap justify-end items-center gap-1">
         {navKeys.map(item => (
           <a
             href={`/${lang}/${item.href}`}
@@ -67,13 +67,14 @@ const navKeys = [
         class="lg:hidden p-2 rounded-md text-navy hover:bg-sand-warm/50 transition-colors"
         aria-label={lang === 'fil' ? 'I-toggle ang menu' : lang === 'zh' ? '切换菜单' : 'Toggle menu'}
         aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <Icon name="menu" size={24} />
       </button>
     </div>
 
     <!-- Mobile Nav -->
-    <div id="mobile-menu" class="hidden lg:hidden pb-4 border-t border-sand-warm/30">
+    <div id="mobile-menu" class="hidden lg:hidden max-h-[70vh] overflow-y-auto pb-4 border-t border-sand-warm/30">
       <div class="flex flex-col pt-2">
         {navKeys.map(item => (
           <a
