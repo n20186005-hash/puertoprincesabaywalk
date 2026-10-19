@@ -1,6 +1,6 @@
 ---
 import { ui } from '../i18n/ui';
-import { mapsUrl } from '../config';
+import { mapsUrl, attraction } from '../config';
 import Icon from './Icon.astro';
 
 interface Props {
@@ -29,18 +29,19 @@ const h = t.hero;
   <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto mt-8">
     <p class="section-eyebrow text-sand-warm mb-4">{h.localName}</p>
     <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
-      {h.title}
+      {lang === 'zh' ? h.title : attraction.name}
     </h1>
     <p class="font-accent italic text-lg sm:text-xl text-sand-warm/90 mb-8 max-w-2xl mx-auto">
       &ldquo;{h.subtitle}&rdquo;
     </p>
 
     <!-- Rating -->
-    <div class="flex items-center justify-center gap-2 mb-8 text-gold-light">
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-3 text-gold-light">
       <Icon name="star" size={20} />
-      <span class="font-semibold text-white text-lg">{h.rating}</span>
+      <span class="font-semibold text-white text-lg">{attraction.rating} ★ ({Number(attraction.reviewCount).toLocaleString('en-US')} {t.info?.reviews || 'reviews'})</span>
     </div>
 
+    <p class="text-sm text-white/90 mb-6">Google Maps · <time datetime={attraction.reviewsCheckedOn}>{attraction.reviewsCheckedOn}</time> · {lang === 'fil' ? 'Naitala sa petsang ito; maaaring magbago.' : lang === 'zh' ? '核对时快照，数值可能变化。' : 'Checked on this date; figures may change.'}</p>
     <!-- CTA Buttons -->
     <div class="flex flex-wrap items-center justify-center gap-4">
       <a href={`/${lang}/#about`} class="inline-flex items-center gap-2 px-6 py-3 bg-sunset hover:bg-sunset-deep text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl">

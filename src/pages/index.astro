@@ -1,5 +1,5 @@
 ---
 // Redirect root to default language (Filipino)
 const url = new URL(Astro.url);
-return Astro.redirect('/fil' + (url.search || ''), 302);
+return Astro.redirect('/fil/' + (url.search || ''), 301);
 ---

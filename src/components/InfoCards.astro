@@ -1,6 +1,6 @@
 ---
 import { ui } from '../i18n/ui';
-import { attraction } from '../config';
+import { attraction, mapsUrl } from '../config';
 import Icon from './Icon.astro';
 
 interface Props {
@@ -18,7 +18,7 @@ const inf = t.info;
       {[
         { icon: 'clock', label: inf?.hours || 'Hours', value: attraction.hours.display, sub: inf?.hoursDaily || 'Daily' },
         { icon: 'ticket', label: inf?.entrance || 'Entrance', value: t.tickets?.free || 'Free', sub: inf?.noFee || 'No admission fee' },
-        { icon: 'star', label: inf?.rating || 'Rating', value: `${attraction.rating} / 5`, sub: `${attraction.reviewCount}+ ${inf?.reviews || 'reviews'}` },
+        { icon: 'star', label: inf?.rating || 'Rating', value: `${attraction.rating} / 5`, sub: `${Number(attraction.reviewCount).toLocaleString('en-US')} ${inf?.reviews || 'reviews'}` },
         { icon: 'pin', label: inf?.location || 'Location', value: 'Sandoval St', sub: 'Puerto Princesa City' },
         { icon: 'compass', label: inf?.bestFor || 'Best For', value: inf?.bestForVal || 'Sunset & Food', sub: inf?.bestForSub || 'Evening strolls' },
         { icon: 'water', label: inf?.setting || 'Setting', value: inf?.settingVal || 'Waterfront', sub: inf?.settingSub || 'Sulu Sea views' },
@@ -33,5 +33,6 @@ const inf = t.info;
         </div>
       ))}
     </div>
+    <p class="mt-5 text-center text-sm text-navy/70"><a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="underline">Google Maps</a> · <time datetime={attraction.reviewsCheckedOn}>{attraction.reviewsCheckedOn}</time> · {lang === 'fil' ? 'Rating at bilang sa petsang ito; maaaring magbago.' : lang === 'zh' ? '评分和评价数为核对时快照，可能变化。' : 'Rating and count checked on this date; figures may change.'}</p>
   </div>
 </section>

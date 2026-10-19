@@ -31,20 +31,18 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const t = ui[lang] || ui['en'];
 
-// Keyword-driven titles aligned with actual Search Console queries
-// (palawan baywalk, baywalk park puerto princesa, *restaurant*, *food*, sunset).
-// Keep under ~60 chars so Google doesn't truncate the brand + key intent.
+// Use the attraction name and practical visitor intent.
 const seoTitle = lang === 'fil'
-  ? 'Puerto Princesa Baywalk Park: Seafood, Sunset & Gabay'
+  ? 'Puerto Princesa City Baywalk Park: Oras at Gabay'
   : lang === 'zh'
   ? '普林塞萨港海湾步道公园：海鲜、日落与游玩攻略'
-  : 'Puerto Princesa Baywalk Park: Seafood, Sunset & Guide';
+  : 'Puerto Princesa City Baywalk Park: Hours & Visitor Guide';
 
 const seoDesc = lang === 'fil'
-  ? 'Planuhin ang iyong bisita sa Puerto Princesa Baywalk Park sa Palawan — oras ng pagbukas, mga seafood restaurant, sunset views, at libreng gawain sa gabi. Kumpletong gabay.'
+  ? 'Planuhin ang iyong bisita sa Puerto Princesa City Baywalk Park sa Palawan — oras ng pagbukas, mga seafood restaurant, sunset views, at libreng gawain sa gabi. Kumpletong gabay.'
   : lang === 'zh'
-  ? '规划巴拉望普林塞萨港海湾步道公园之行——开放时间、热门海鲜餐厅、绝美日落与免费夜间活动，完整游玩攻略。'
-  : 'Plan your visit to Puerto Princesa Baywalk Park in Palawan — opening hours, top seafood restaurants, sunset views, and free evening activities. Your complete guide.';
+  ? '规划巴拉望普林塞萨港海湾步道公园之行——开放时间、餐饮摊位、绝美日落与免费夜间活动，完整游玩攻略。'
+  : 'Plan your visit to Puerto Princesa City Baywalk Park in Palawan — opening hours, food stalls and dining, sunset views, and free evening activities. Your complete guide.';
 ---
 
 <BaseLayout lang={lang} title={seoTitle} description={seoDesc}>

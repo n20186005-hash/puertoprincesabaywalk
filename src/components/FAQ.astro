@@ -50,6 +50,13 @@ const faqTitle = lang === 'fil' ? 'Mga Madalas Itanong' : lang === 'zh' ? '常�
 const faqDesc = lang === 'fil' ? `Lahat ng maaaring gusto mong malaman bago bumisita sa ${attraction.name}.` : lang === 'zh' ? `参观${attraction.name}前您可能想知道的一切。` : `Everything you might want to know before visiting ${attraction.name}.`;
 ---
 
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqItems.map((item: { q: string; a: string }) => ({
+    '@type': 'Question', name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a }
+  }))
+})} />
 <section id="faq" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
   <div class="text-center mb-14">
     <p class="section-eyebrow mb-3">{faqEyebrow}</p>
