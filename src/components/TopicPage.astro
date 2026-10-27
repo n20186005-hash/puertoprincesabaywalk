@@ -1,0 +1,74 @@
+---
+import { topics, type TopicContent, type TopicSlug, type TopicLang } from '../data/topics';
+
+interface Props {
+  lang: TopicLang;
+  topic: TopicSlug;
+  data: TopicContent;
+}
+const { lang, topic, data } = Astro.props;
+
+const homeLabel = lang === 'fil' ? 'Tahanan' : lang === 'zh' ? '首页' : 'Home';
+const faqLabel = lang === 'fil' ? 'Mga Karaniwang Tanong' : lang === 'zh' ? '常见问题' : 'Frequently Asked Questions';
+const moreLabel = lang === 'fil' ? 'Higit pang gabay' : lang === 'zh' ? '更多指南' : 'More guides';
+const updatedLabel = lang === 'fil' ? 'Huling sinuri' : lang === 'zh' ? '最近核实' : 'Last reviewed';
+
+const relatedItems = (data.related || [])
+  .map((slug) => ({ slug, title: topics[slug]?.[lang]?.h1 ?? slug }))
+  .filter((item) => topics[item.slug]?.[lang]);
+---
+
+<main id="main-content" class="bg-cream text-charcoal font-body">
+  <div class="max-w-3xl mx-auto px-4 py-10 sm:py-14">
+    <nav aria-label="breadcrumb" class="text-sm text-charcoal/60 mb-6">
+      <a href={`/${lang}/`} class="underline hover:text-ocean">{homeLabel}</a>
+      <span class="mx-2">/</span>
+      <span>{data.h1}</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">{data.h1}</h1>
+    <p class="text-lg text-charcoal/80 mb-2">{data.lead}</p>
+    <p class="text-xs text-charcoal/50 mb-10">{updatedLabel}: {data.updated}</p>
+
+    <div class="space-y-10">
+      {data.sections?.map((section) => (
+        <section id={section.id}>
+          <h2 class="text-xl sm:text-2xl font-semibold mb-3">{section.title}</h2>
+          <p class="text-charcoal/80 leading-relaxed">{section.body}</p>
+        </section>
+      ))}
+    </div>
+
+    {data.faq?.length > 0 && (
+      <section class="mt-12" id="faq">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-4">{faqLabel}</h2>
+        <div class="space-y-3">
+          {data.faq.map((item) => (
+            <details class="bg-white/70 rounded-lg p-4 border border-charcoal/10">
+              <summary class="font-medium cursor-pointer">{item.q}</summary>
+              <p class="text-charcoal/80 mt-2 leading-relaxed">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {relatedItems.length > 0 && (
+      <section class="mt-12">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-4">{moreLabel}</h2>
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {relatedItems.map((item) => (
+            <li>
+              <a
+                href={`/${lang}/${item.slug}/`}
+                class="block bg-white/70 rounded-lg p-4 border border-charcoal/10 hover:border-ocean transition-colors"
+              >
+                <span class="font-medium">{item.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+</main>

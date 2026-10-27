@@ -43,7 +43,7 @@ export const attraction = {
   description:
     'A scenic waterfront promenade along Sandoval Street in Puerto Princesa City, Palawan. Lined with palm trees, food stalls, and ocean views, the Baywalk comes alive at sunset with live music, fresh seafood, and a vibrant local atmosphere. Free and open to all, it\'s the heartbeat of the city\'s evening life.',
   rating: '4.2',
-  reviewCount: '5661',
+  reviewCount: '5666',
   reviewsCheckedOn: '2026-10-18',
   lat: 9.744029,
   lng: 118.7322572,

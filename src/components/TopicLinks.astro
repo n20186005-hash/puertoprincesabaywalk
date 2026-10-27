@@ -1,0 +1,33 @@
+---
+import { topics, TOPIC_SLUGS, type TopicLang } from '../data/topics';
+
+interface Props {
+  lang: TopicLang;
+}
+const { lang } = Astro.props;
+
+const heading =
+  lang === 'fil' ? 'Higit pang gabay sa Baywalk' : lang === 'zh' ? '更多海湾步道指南' : 'More Baywalk guides';
+
+const items = TOPIC_SLUGS.map((slug) => {
+  const t = topics[slug][lang];
+  return { slug, title: t.h1, desc: t.lead };
+});
+---
+
+<section id="guides" class="bg-cream">
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-charcoal mb-6">{heading}</h2>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        <a
+          href={`/${lang}/${item.slug}/`}
+          class="block bg-white/70 rounded-xl p-5 border border-charcoal/10 hover:border-ocean transition-colors"
+        >
+          <h3 class="text-lg font-semibold text-charcoal mb-2">{item.title}</h3>
+          <p class="text-sm text-charcoal/70 leading-relaxed">{item.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

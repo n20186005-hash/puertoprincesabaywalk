@@ -22,6 +22,7 @@ import Responsibility from '../../components/Responsibility.astro';
 import NearbyAttractions from '../../components/NearbyAttractions.astro';
 import ItineraryChecklist from '../../components/ItineraryChecklist.astro';
 import FAQ from '../../components/FAQ.astro';
+import TopicLinks from '../../components/TopicLinks.astro';
 import Footer from '../../components/Footer.astro';
 
 export function getStaticPaths() {
@@ -31,18 +32,19 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const t = ui[lang] || ui['en'];
 
-// Use the attraction name and practical visitor intent.
+// Match real search intent: free entry, Sulu Sea sunset, seafood & live music,
+// opening hours, how to get there, and the best sunset photo spots.
 const seoTitle = lang === 'fil'
-  ? 'Puerto Princesa City Baywalk Park: Oras at Gabay'
+  ? 'Puerto Princesa City Baywalk Park: Gabay, Sunset at mga Restawran'
   : lang === 'zh'
-  ? '普林塞萨港海湾步道公园：海鲜、日落与游玩攻略'
-  : 'Puerto Princesa City Baywalk Park: Hours & Visitor Guide';
+  ? '普林塞萨港海湾步道公园：免费日落、海鲜餐厅与游玩攻略'
+  : 'Puerto Princesa City Baywalk Park: Complete Guide, Sunset & Restaurants';
 
 const seoDesc = lang === 'fil'
-  ? 'Planuhin ang iyong bisita sa Puerto Princesa City Baywalk Park sa Palawan — oras ng pagbukas, mga seafood restaurant, sunset views, at libreng gawain sa gabi. Kumpletong gabay.'
+  ? 'Libreng pasok, nakamamanghang sunset sa Sulu Sea, sariwang seafood at live music — kumpletong gabay sa Puerto Princesa City Baywalk Park: oras, paano pumunta, mga restawran, at pinakamagandang spot para sa sunset photos.'
   : lang === 'zh'
-  ? '规划巴拉望普林塞萨港海湾步道公园之行——开放时间、餐饮摊位、绝美日落与免费夜间活动，完整游玩攻略。'
-  : 'Plan your visit to Puerto Princesa City Baywalk Park in Palawan — opening hours, food stalls and dining, sunset views, and free evening activities. Your complete guide.';
+  ? '免费入园、绝美苏禄海日落、新鲜海鲜与现场音乐——普林塞萨港海湾步道公园完整游玩攻略：开放时间、交通方式、餐厅推荐与最佳日落拍照点。'
+  : 'Free entry, stunning Sulu Sea sunsets, fresh seafood & live music — Puerto Princesa City Baywalk Park’s complete visitor guide: hours, how to get there, restaurants, and the best sunset photo spots.';
 ---
 
 <BaseLayout lang={lang} title={seoTitle} description={seoDesc}>
@@ -68,6 +70,7 @@ const seoDesc = lang === 'fil'
     <ItineraryChecklist lang={lang} />
     <Responsibility lang={lang} />
     <FAQ lang={lang} />
+    <TopicLinks lang={lang} />
   </main>
   <Footer lang={lang} />
 </BaseLayout>

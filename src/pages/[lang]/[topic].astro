@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TopicPage from '../../components/TopicPage.astro';
+import { siteConfig, attraction } from '../../config';
+import { languagesList } from '../../i18n/ui';
+import { topics, TOPIC_SLUGS, type TopicLang, type TopicSlug } from '../../data/topics';
+
+export function getStaticPaths() {
+  return languagesList.flatMap((lang) =>
+    TOPIC_SLUGS.map((topic) => ({ params: { lang, topic } }))
+  );
+}
+
+export const dynamicParams = false;
+
+const rawLang = (Astro.params.lang ?? 'en') as TopicLang;
+const rawTopic = (Astro.params.topic ?? 'restaurants') as TopicSlug;
+const data = topics[rawTopic]?.[rawLang];
+
+const seoTitle = data?.title ?? attraction.name;
+const seoDesc = data?.description ?? attraction.description;
+
+const pageUrl = siteConfig.baseUrl ? new URL(Astro.url.pathname, siteConfig.baseUrl).href : '';
+const homeUrl = siteConfig.baseUrl ? `${siteConfig.baseUrl}/${rawLang}/` : `/${rawLang}/`;
+
+const jsonLd: object[] = [];
+if (data) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    name: data.h1,
+    description: data.description,
+    url: pageUrl,
+    isPartOf: { '@type': 'WebSite', name: attraction.name, url: siteConfig.baseUrl },
+    about: { '@type': 'TouristAttraction', name: attraction.name },
+  });
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: homeUrl },
+      { '@type': 'ListItem', position: 2, name: data.h1, item: pageUrl },
+    ],
+  });
+  if (data.faq?.length) {
+    jsonLd.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: data.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    });
+  }
+}
+---
+<BaseLayout lang={rawLang} title={seoTitle} description={seoDesc} jsonLd={jsonLd}>
+  <TopicPage lang={rawLang} topic={rawTopic} data={data} />
+</BaseLayout>

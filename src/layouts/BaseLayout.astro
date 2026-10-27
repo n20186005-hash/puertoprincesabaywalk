@@ -8,6 +8,8 @@ interface Props {
   description?: string;
   ogImage?: string;
   lang?: string;
+  /** Additional JSON-LD blocks (WebPage, BreadcrumbList, FAQPage, ...) for subpages. */
+  jsonLd?: object[];
 }
 
 const {
@@ -15,6 +17,7 @@ const {
   description = attraction.description,
   ogImage = '/gallery/puerto-princesa-city-baywalk-park-1.jpg',
   lang = 'en',
+  jsonLd = [],
 } = Astro.props;
 
 const pageSuffix = Astro.url.pathname.replace(/^\/(fil|en|zh)(?=\/|$)/, '');
@@ -111,6 +114,11 @@ const ga4Id = siteConfig.ga4Id;
     sameAs: [mapsUrl],
     ...(siteConfig.baseUrl ? { url: siteConfig.baseUrl } : {}),
   })} />}
+
+  {/* Extra structured data for subpages (WebPage / BreadcrumbList / FAQPage). */}
+  {jsonLd.map((ld, i) => (
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} key={i} />
+  ))}
 
   <style is:global>
     /* Additional global styles handled in global.css */
